@@ -11,6 +11,9 @@ const AdminProtected = (props) => {
     const isLogin = sessionStorage.getItem("adminAccessToken");
     if (isLogin) {
       setIsAuth(true);
+    } else {
+      navigate("/admin");
+      setIsAuth(false);
     }
   }, [isAuth]);
 

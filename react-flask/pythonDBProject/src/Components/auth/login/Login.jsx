@@ -72,6 +72,7 @@ const Login = () => {
                 name="email"
                 onChange={handlechange}
                 placeholder="Email"
+                required
               />
 
               <div className={style.inputWithIcon}>
@@ -81,6 +82,7 @@ const Login = () => {
                   name="password"
                   onChange={handlechange}
                   placeholder="Password"
+                  required
                 />
                 <span className={style.icon} onClick={togglePassword}>
                   <Icon icon={icon} size={20} />
@@ -105,6 +107,18 @@ const Login = () => {
                   className="text-blue-900 hover:underline transition ease-in-out duration-300"
                 >
                   Forgot Password
+                </Link>
+              </div>
+
+              <hr className="my-4 border-gray-300" />
+
+              <div className="text-center ">
+                <p className="text-gray-600">Don't have an account?</p>
+                <Link
+                  to="/signup"
+                  className="text-blue-900 hover:underline transition ease-in-out duration-300"
+                >
+                  Sign Up
                 </Link>
               </div>
             </form>

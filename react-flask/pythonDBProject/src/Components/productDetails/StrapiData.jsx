@@ -61,19 +61,19 @@ const StrapiData = () => {
           data.data.data.map((product) => (
             <div
               key={product.id}
-              className="bg-white shadow-md rounded-lg p-2 hover:translate-y-[-9px] transition-all duration-500 ease-in-out"
+              className="bg-white shadow-xl rounded-lg p-2 hover:translate-y-[-9px] transition-all duration-500 ease-in-out"
             >
               <img
                 src={`http://localhost:1337${product.attributes.image.data[0].attributes.url}`}
                 alt={product.attributes.title}
-                className="w-full h-80 object-contains rounded-md"
+                className="w-full h-[200px] object-contains rounded-md"
               />
               <div className="mt-4">
                 <h2 className="text-xl font-semibold">
                   {product.attributes.title}
                 </h2>
                 <p className="text-gray-500 py-0.5">
-                ₹{product.attributes.price.toFixed(2)}
+                  ₹{product.attributes.price.toFixed(2)}
                 </p>
                 <div className="flex items-center mt-2">
                   <svg

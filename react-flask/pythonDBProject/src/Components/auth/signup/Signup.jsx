@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
 const Signup = () => {
@@ -26,7 +26,7 @@ const Signup = () => {
 
     if (response.status === 201) {
       console.log(response);
-      toast.success("Signup Successfully");
+      toast.success(response.data.message);
       setTimeout(() => {
         navigate("/login");
       }, 3000);
@@ -50,6 +50,7 @@ const Signup = () => {
                 name="name"
                 onChange={handlechange}
                 placeholder="Full Name"
+                required
               />
 
               <input
@@ -58,6 +59,7 @@ const Signup = () => {
                 name="email"
                 onChange={handlechange}
                 placeholder="Email"
+                required
               />
 
               <input
@@ -66,6 +68,7 @@ const Signup = () => {
                 name="mobile"
                 onChange={handlechange}
                 placeholder="mobile"
+                required
               />
               <input
                 type="password"
@@ -73,6 +76,7 @@ const Signup = () => {
                 name="password"
                 onChange={handlechange}
                 placeholder="Password"
+                required
               />
 
               <button
@@ -81,6 +85,17 @@ const Signup = () => {
               >
                 Create Account
               </button>
+              <hr className="my-4 border-gray-300" />
+
+              <div className="text-center ">
+                <p className="text-gray-600">Already have an account?</p>
+                <Link
+                  to="/login"
+                  className="text-blue-900 hover:underline transition ease-in-out duration-300"
+                >
+                  Login
+                </Link>
+              </div>
             </form>
           </div>
         </div>
