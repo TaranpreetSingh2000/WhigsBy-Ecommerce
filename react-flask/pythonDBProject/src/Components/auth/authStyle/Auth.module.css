@@ -1,0 +1,15 @@
+.inputWithIcon {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .inputWithIcon input {
+    padding-right: 30px;
+  }
+  
+  .inputWithIcon .icon {
+    position: absolute;
+    top: 22%;
+    right: 10px;
+  }
+  
