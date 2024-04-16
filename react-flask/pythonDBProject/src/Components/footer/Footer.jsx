@@ -15,16 +15,12 @@ const Footer = () => {
         <div className="container p-6">
           <div className="grid md:grid-cols-2 lg:grid-cols-4">
             <div className="mb-6">
-              <h5 className="mb-2.5 font-bold uppercase ">Website</h5>
+              <h5 className="mb-2.5 font-bold uppercase text-left">Website</h5>
               <p className="text-left">
                 Welcome to Whigsby, your premier destination for all things
                 fashion and lifestyle. Discover a curated selection of the
                 latest trends in clothing, accessories, and home decor, all
-                handpicked to elevate your style. With a focus on quality and
-                affordability, Whigsby offers a seamless shopping experience,
-                from browsing to checkout. Whether you're updating and adding a
-                touch of elegance to your home, Whigsby has you covered. Shop
-                now and redefine your style with Whigsby.
+                handpicked to elevate your style.
               </p>
             </div>
 
@@ -126,9 +122,8 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <p>
-            <p>Copyright @ 2024 Whigsby All Right Reserved.</p>
-          </p>
+
+          <p>Copyright @ 2024 Whigsby All Right Reserved.</p>
         </div>
       </footer>
     </>

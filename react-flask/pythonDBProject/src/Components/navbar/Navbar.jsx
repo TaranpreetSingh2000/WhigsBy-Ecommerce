@@ -68,11 +68,11 @@ const Navbar = () => {
     sessionStorage.removeItem("accessToken");
     sessionStorage.removeItem("loginEmail");
     localStorage.removeItem("Email");
+    setIsMenuOpen(false);
     toast.success("Logout Successfully ");
     setTimeout(() => {
       navigate("/login");
-    }, 3000);
-    setIsMenuOpen(!isMenuOpen);
+    }, 1000);
   };
 
   const handleAdminLogout = () => {
@@ -82,7 +82,6 @@ const Navbar = () => {
     setTimeout(() => {
       navigate("/admin");
     }, 3000);
-    setIsMenuOpen(!isMenuOpen);
   };
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -94,13 +93,23 @@ const Navbar = () => {
       <nav className="bg-white dark:bg-gray-900 w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
         <div className="flex flex-wrap items-center justify-between mx-auto p-2.5">
           <div>
-            <Link to="/">
-              <img
-                src={logo}
-                className="w-auto h-[80px] cursor-pointer"
-                alt="Logo"
-              />
-            </Link>
+            {isAuth ? (
+              <Link to="/dashboard">
+                <img
+                  src={logo}
+                  className="w-auto h-[80px] cursor-pointer"
+                  alt="Logo"
+                />
+              </Link>
+            ) : (
+              <Link to="/">
+                <img
+                  src={logo}
+                  className="w-auto h-[80px] cursor-pointer"
+                  alt="Logo"
+                />
+              </Link>
+            )}
           </div>
 
           <div
@@ -179,13 +188,12 @@ const Navbar = () => {
                   </li>
 
                   {isAdminAuth ? (
-                    <Link
-                      to="/admin"
+                    <a
                       className="block px-4 w-full whitespace-nowrap bg-white py-2 text-md font-normal text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25 cursor-pointer"
                       onClick={handleAdminLogout}
                     >
                       Logged out Admin
-                    </Link>
+                    </a>
                   ) : (
                     <Link
                       to="/admin"
@@ -208,13 +216,13 @@ const Navbar = () => {
 
                   <li>
                     {isAuth ? (
-                      <Link
-                        to="/login"
+                      <a
+                        href="#"
                         className="block px-4 w-full whitespace-nowrap bg-white py-2 text-md font-normal text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25"
                         onClick={handleLogout}
                       >
                         Logout
-                      </Link>
+                      </a>
                     ) : (
                       <Link
                         to="/login"

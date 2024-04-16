@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React from "react";
 import Data from "./Components/data/Data";
 import {
   Route,
@@ -16,6 +16,7 @@ import Admin from "./Components/auth/admin/Admin.jsx";
 import Contact from "./Components/contact/Contact.jsx";
 import AdminProtected from "./Components/services/AdminProtected.jsx";
 import AdminDashboard from "./Components/adminDashboard/AdminDashboard.jsx";
+import ProductDetails from "./Components/productDetails/ProductDetails.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -26,6 +27,10 @@ const router = createBrowserRouter(
         <Route path="login" element={<Login />} />
         <Route path="admin" element={<Admin />} />
         <Route path="dashboard" element={<Protected Component={Dashboard} />} />
+        <Route
+          path="/productDetails/:productId"
+          element={<Protected Component={ProductDetails} />}
+        />
         <Route
           path="/admin/dashboard"
           element={<AdminProtected Component={AdminDashboard} />}

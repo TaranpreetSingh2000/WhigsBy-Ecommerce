@@ -1,19 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const AdminDashboard = () => {
-  const navigate = useNavigate();
-
-  const handleAdminLogout = () => {
-    sessionStorage.removeItem("adminAccessToken");
-    toast.success("Logout Successfully ");
-    setTimeout(() => {
-      navigate("/admin");
-    }, 3000);
-  };
-
   return (
     <>
       <ToastContainer autoClose={3000} />
@@ -74,12 +63,6 @@ const AdminDashboard = () => {
                 >
                   Cart
                 </a>
-                <a
-                  className="text-gray-300 py-2 px-4 block hover:bg-gray-700 hover:text-white"
-                  onClick={handleAdminLogout}
-                >
-                  Logout
-                </a>
               </nav>
             </div>
           </div>
@@ -96,9 +79,6 @@ const AdminDashboard = () => {
                 <p className="text-lg font-semibold text-gray-700">500</p>
               </div>
               <div>
-                <button className="bg-blue-500 text-white px-4 py-2 rounded-md mr-4">
-                  Add Product
-                </button>
                 <button className="bg-green-500 text-white px-4 py-2 rounded-md">
                   Manage Products
                 </button>
