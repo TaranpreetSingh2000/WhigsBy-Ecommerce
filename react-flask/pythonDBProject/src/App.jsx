@@ -17,6 +17,7 @@ import Contact from "./Components/contact/Contact.jsx";
 import AdminProtected from "./Components/services/AdminProtected.jsx";
 import AdminDashboard from "./Components/adminDashboard/AdminDashboard.jsx";
 import ProductDetails from "./Components/productDetails/ProductDetails.jsx";
+import Cart from "./cart/Cart.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
           path="/productDetails/:productId"
           element={<Protected Component={ProductDetails} />}
         />
+        <Route path="/cart" element={<Protected Component={Cart} />} />
         <Route
           path="/admin/dashboard"
           element={<AdminProtected Component={AdminDashboard} />}

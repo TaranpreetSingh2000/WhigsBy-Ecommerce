@@ -53,11 +53,14 @@ const StrapiData = () => {
   }
   return (
     <div className="container mx-auto px-4 mb-6">
+        <h1 className="uppercase my-[40px] text-[1.8em] text-zinc-700 font-medium tracking-[0.3em] tracking-normal-[2.5em] mb-[40px] px-[45px]">
+          GRAND GLOBAL BRANDS
+        </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 cursor-pointer ">
         {data.data &&
           data.data.data.map((product) => (
             <Link key={product.id} to={`/productDetails/${product.id}`}>
-              <div className="bg-white shadow-xl rounded-lg p-2 h-[100%] hover:translate-y-[-9px] transition-all duration-500 ease-in-out">
+              <div className="bg-white shadow-xl rounded-lg p-2 h-[100%] hover:border border-blue-600">
                 <img
                   src={`http://localhost:1337${product.attributes.image.data[0].attributes.url}`}
                   alt={product.attributes.title}
