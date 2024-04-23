@@ -8,13 +8,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { BsCart2 } from "react-icons/bs";
 import { CartContext } from "../../_context/CartContext";
-import Cart from "../../cart/Cart";
+import Cart from "../cart/Cart";
 import { getUserCartItems } from "../../../_utils/GlobalApi";
 
 const Navbar = () => {
   const [isAuth, setIsAuth] = useState(false);
   const [isAdminAuth, setIsAdminAuth] = useState(false);
   const [user, setUser] = useState("");
+  const [openCart, setOpenCart] = useState(false);
   const { cart, setCart } = useContext(CartContext);
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,11 +34,15 @@ const Navbar = () => {
     getUserCartItems(email).then((res) => {
       const result = res.data.data;
       if (result) {
-        setCart(result.map((prod) => prod.attributes.products.data));
+        setCart(
+          result.map((prod) => ({
+            id: prod?.id,
+            products: prod.attributes.products.data,
+          }))
+        );
       }
     });
   };
-
   useEffect(() => {
     const isLogin = sessionStorage.getItem("accessToken");
     if (isLogin) {
@@ -262,15 +267,18 @@ const Navbar = () => {
               </div>
             </div>
 
-            <div className="flex justify-center items-center my-1 cursor-pointer">
-              <Link to="/cart">
-                <BsCart2 className="text-xl cursor-pointer" />
-              </Link>
+            <div
+              className="flex justify-center items-center my-1 cursor-pointer  "
+              onClick={() => setOpenCart(!openCart)}
+            >
+              {/* <Link to="/cart"> */}
+              <BsCart2 className="text-xl cursor-pointer" />
+              {/* </Link> */}
               <span className="font-semibold text-md cursor-pointer">
                 ({isAuth ? cart?.length : 0})
               </span>
             </div>
-            {isAuth ? <Cart /> : null}
+            {openCart && isAuth ? <Cart /> : null}
           </div>
         </div>
       </nav>

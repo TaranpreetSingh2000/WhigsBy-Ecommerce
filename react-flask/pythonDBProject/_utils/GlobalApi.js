@@ -20,4 +20,7 @@ const getUserCartItems = (email) =>
     "/carts?populate[products][populate][0]=image&&filters[email][$eq]=" + email
   );
 
-export { addtoCart, getProductsById, getUserCartItems };
+// delete cartItems
+const deleteCartItems = (id) => axiosClient.delete("/carts/" + id);
+
+export { addtoCart, getProductsById, getUserCartItems, deleteCartItems };

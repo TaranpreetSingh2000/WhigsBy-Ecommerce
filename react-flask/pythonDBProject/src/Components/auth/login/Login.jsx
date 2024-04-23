@@ -24,7 +24,6 @@ const Login = () => {
 
   const handeSubmit = async (e) => {
     e.preventDefault();
-    debugger;
     try {
       const response = await axios.post(
         "http://localhost:5000/login",

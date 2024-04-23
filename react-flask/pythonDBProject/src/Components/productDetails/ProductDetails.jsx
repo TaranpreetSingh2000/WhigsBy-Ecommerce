@@ -20,6 +20,7 @@ const ProductDetails = () => {
     `http://localhost:1337/api/products/${productId}?populate=*`
   );
 
+  const email = localStorage.getItem("Email");
   useEffect(() => {
     setFilterData(response);
   }, [response]);
@@ -63,32 +64,46 @@ const ProductDetails = () => {
 
   const data = {
     data: {
-      email: localStorage.getItem("Email"),
+      email: email,
       products: filterdata.data.data.id,
     },
   };
 
   const onAddToCartClick = () => {
-    addtoCart(data).then((res) => {
-      console.log(res);
-      setCart((cart) => [...cart, filterdata.data.data]);
-      toast.success("Product Added successfully ", {
-        containerId: "cartContainer",
-      });
-    });
+    addtoCart(data).then(
+      (res) => {
+        console.log(res);
+        if (res) {
+          setCart((cart) => [
+            ...cart,
+            {
+              id: res?.data?.data?.id,
+              products: filterdata?.data?.data,
+            },
+          ]);
+        }
+        toast.success("Product Added successfully ", {
+          containerId: "cartContainer",
+        });
+      },
+      (error) => {
+        toast.warning("Something went wrong", error, {
+          containerId: "cartContainer",
+        });
+      }
+    );
   };
 
   return (
     <>
-      <ToastContainer autoClose={2000} containerId="cartContainer" />
-
+      <ToastContainer autoClose={1000} containerId="cartContainer" />
       <div className="pt-4 px-7">
         <Breadcrumb pathname={pathname} />
         <div className="flex justify-center p-4  mb-6">
           <div className="w-1/2 flex flex-col items-center justify-center gap-5">
             <div className=" hover:translate-y-[-9px] transition-all duration-500 ease-in-out">
               <img
-                src={`http://localhost:1337${filterdata.data.data.attributes.image.data[0].attributes.url}`}
+                src={`http://localhost:1337${filterdata?.data?.data?.attributes.image.data[0].attributes.url}`}
                 alt={filterdata.data.data.attributes.title}
                 className="h-[100%] w-11/12"
                 style={{ mixBlendMode: "darken" }}
@@ -97,22 +112,22 @@ const ProductDetails = () => {
           </div>
           <div className="w-1/2 flex flex-col pt-5">
             <h2 className="text-3xl font-semibold mb-2">
-              {filterdata.data.data.attributes.title}
+              {filterdata?.data?.data?.attributes.title}
             </h2>
 
             <div className="w-[130px]">
               <button className="text-white bg-red-700 text-left px-2 py-0.5 rounded-[4px] font-semibold mb-2 text-sm">
-                {filterdata.data.data.attributes.offer}
+                {filterdata?.data?.data?.attributes.offer}
               </button>
             </div>
 
             <div className="flex items-center gap-1">
               <span className="text-red-500 mb-2 text-2xl">
-                {filterdata.data.data.attributes.discount}%
+                {filterdata?.data?.data?.attributes.discount}%
               </span>
               <p className="text-black mb-2 text-3xl">
                 <sup className="text-xl mt-[20px] leading-0">₹</sup>
-                {filterdata.data.data.attributes.price.toFixed(0)}
+                {filterdata?.data?.data?.attributes.price.toFixed(0)}
               </p>
             </div>
 
@@ -120,7 +135,7 @@ const ProductDetails = () => {
               <span className="text-gray-500 mb-2 text-md font-serif">
                 M.R.P: ₹{" "}
                 <span className="line-through">
-                  {filterdata.data.data.attributes.mrp}
+                  {filterdata?.data?.data?.attributes.mrp}
                 </span>
               </span>
             </div>
@@ -138,30 +153,13 @@ const ProductDetails = () => {
                 />
               </svg>
               <p className="text-gray-600 mb-2 text-lg">
-                {filterdata.data.data.attributes.rating.toFixed(1)}
+                {filterdata?.data?.data?.attributes.rating.toFixed(1)}
               </p>
             </div>
             <p className="text-gray-600 mb-4 text-md">
-              {filterdata.data.data.attributes.category}
+              {filterdata?.data?.data?.attributes.category}
             </p>
 
-            {/* <div className="flex gap-3 my-3 items-center">
-          <button
-            className="w-12 h-10 py-1 px-5 border border-gray-200 bg-gray-100 hover:bg-gray-500 hover:text-white hover:transition-all ease-in-out duration-500"
-            onClick={() =>
-              quantity === 0 ? 0 : setQuantity((prev) => prev - 1)
-            }
-          >
-            -
-          </button>
-          <span>{quantity}</span>
-          <button
-            className="w-12 h-10 py-1 px-3 text-center border border-gray-200 bg-gray-100 hover:bg-gray-500 hover:text-white hover:transition-all ease-in-out duration-500"
-            onClick={() => setQuantity((prev) => prev + 1)}
-          >
-            +
-          </button>
-        </div> */}
             <div className="flex items-center">
               <button
                 className="bg-blue-600  text-md text-white px-5 py-2 mr-2 rounded-md flex items-center gap-2 hover:opacity-[0.9]"
