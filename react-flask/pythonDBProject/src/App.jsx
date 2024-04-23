@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Data from "./Components/data/Data";
 import {
   Route,
@@ -17,6 +17,7 @@ import Contact from "./Components/contact/Contact.jsx";
 import AdminProtected from "./Components/services/AdminProtected.jsx";
 import AdminDashboard from "./Components/adminDashboard/AdminDashboard.jsx";
 import ProductDetails from "./Components/productDetails/ProductDetails.jsx";
+import { CartContext } from "./_context/CartContext.js";
 import Cart from "./cart/Cart.jsx";
 
 const router = createBrowserRouter(
@@ -44,9 +45,13 @@ const router = createBrowserRouter(
 );
 
 function App() {
+  const [cart, setCart] = useState([]);
+
   return (
     <>
-      <RouterProvider router={router} />
+      <CartContext.Provider value={{ cart, setCart }}>
+        <RouterProvider router={router} />
+      </CartContext.Provider>
     </>
   );
 }

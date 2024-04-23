@@ -1,22 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import { BallTriangle } from "react-loader-spinner";
 import { BsCart2 } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
-import addtoCart from "../../COMMON_API_POINTS/commonAPI";
+import Breadcrumb from "../breadcrumb/Breadcrumb";
+import { addtoCart } from "../../../_utils/GlobalApi";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { CartContext } from "../../_context/CartContext";
 
 const ProductDetails = () => {
+  const pathname = window.location.pathname;
   const { productId } = useParams();
-  const [data, setData] = useState({});
+  let [filterdata, setFilterData] = useState({});
+  const { cart, setCart } = useContext(CartContext);
   const [showCards, setShowCards] = useState(false);
-  const [quantity, setQuantity] = useState(1);
   const { response, loading, error } = useFetch(
     `http://localhost:1337/api/products/${productId}?populate=*`
   );
 
   useEffect(() => {
-    setData(response);
+    setFilterData(response);
   }, [response]);
 
   useEffect(() => {
@@ -56,81 +61,91 @@ const ProductDetails = () => {
     );
   }
 
-  console.log(data);
+  const data = {
+    data: {
+      email: localStorage.getItem("Email"),
+      products: filterdata.data.data.id,
+    },
+  };
 
-  const handleAddDataCart = () => {
-    addtoCart({
-      userEmail: localStorage.getItem("Email"),
-      ProductId: data.data.data.id,
-      productTitle: data.data.data.attributes.title,
-      productImg: data.data.data.attributes.image.data[0].attributes.url,
-      productPrice: data.data.data.attributes.price,
+  const onAddToCartClick = () => {
+    addtoCart(data).then((res) => {
+      console.log(res);
+      setCart((cart) => [...cart, filterdata.data.data]);
+      toast.success("Product Added successfully ", {
+        containerId: "cartContainer",
+      });
     });
   };
 
   return (
-    <div className="flex justify-center p-6 mb-6">
-      <div className="w-1/2 flex flex-col items-center justify-center gap-5">
-        <div className=" hover:translate-y-[-9px] transition-all duration-500 ease-in-out">
-          <img
-            src={`http://localhost:1337${data.data.data.attributes.image.data[0].attributes.url}`}
-            alt={data.data.data.attributes.title}
-            className="h-[100%] w-11/12"
-            style={{ mixBlendMode: "darken" }}
-          />
-        </div>
-      </div>
-      <div className="w-1/2 flex flex-col pt-5">
-        <h2 className="text-3xl font-semibold mb-2">
-          {data.data.data.attributes.title}
-        </h2>
+    <>
+      <ToastContainer autoClose={2000} containerId="cartContainer" />
 
-        <div className="w-[130px]">
-          <button className="text-white bg-red-700 text-left px-2 py-0.5 rounded-[4px] font-semibold mb-2 text-sm">
-            {data.data.data.attributes.offer}
-          </button>
-        </div>
+      <div className="pt-4 px-7">
+        <Breadcrumb pathname={pathname} />
+        <div className="flex justify-center p-4  mb-6">
+          <div className="w-1/2 flex flex-col items-center justify-center gap-5">
+            <div className=" hover:translate-y-[-9px] transition-all duration-500 ease-in-out">
+              <img
+                src={`http://localhost:1337${filterdata.data.data.attributes.image.data[0].attributes.url}`}
+                alt={filterdata.data.data.attributes.title}
+                className="h-[100%] w-11/12"
+                style={{ mixBlendMode: "darken" }}
+              />
+            </div>
+          </div>
+          <div className="w-1/2 flex flex-col pt-5">
+            <h2 className="text-3xl font-semibold mb-2">
+              {filterdata.data.data.attributes.title}
+            </h2>
 
-        <div className="flex items-center gap-1">
-          <span className="text-red-500 mb-2 text-2xl">
-            {data.data.data.attributes.discount}%
-          </span>
-          <p className="text-black mb-2 text-3xl">
-            <sup className="text-xl mt-[20px] leading-0">₹</sup>
-            {data.data.data.attributes.price.toFixed(0)}
-          </p>
-        </div>
+            <div className="w-[130px]">
+              <button className="text-white bg-red-700 text-left px-2 py-0.5 rounded-[4px] font-semibold mb-2 text-sm">
+                {filterdata.data.data.attributes.offer}
+              </button>
+            </div>
 
-        <div className="flex items-center gap-2">
-          <span className="text-gray-500 mb-2 text-md font-serif">
-            M.R.P: ₹{" "}
-            <span className="line-through">
-              {data.data.data.attributes.mrp}
-            </span>
-          </span>
-        </div>
+            <div className="flex items-center gap-1">
+              <span className="text-red-500 mb-2 text-2xl">
+                {filterdata.data.data.attributes.discount}%
+              </span>
+              <p className="text-black mb-2 text-3xl">
+                <sup className="text-xl mt-[20px] leading-0">₹</sup>
+                {filterdata.data.data.attributes.price.toFixed(0)}
+              </p>
+            </div>
 
-        <div className="flex gap-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 text-yellow-400 mt-1"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10 2a1 1 0 0 1 .784.385l2.647 3.414 4.093.595a1 1 0 0 1 .554 1.705l-2.96 2.88.7 4.274a1 1 0 0 1-1.451 1.054L10 14.254l-3.67 1.93a1 1 0 0 1-1.45-1.054l.7-4.274-2.96-2.88a1 1 0 0 1 .554-1.705l4.093-.595L9.216 2.385A1 1 0 0 1 10 2z"
-            />
-          </svg>
-          <p className="text-gray-600 mb-2 text-lg">
-            {data.data.data.attributes.rating.toFixed(1)}
-          </p>
-        </div>
-        <p className="text-gray-600 mb-4 text-md">
-          {data.data.data.attributes.category}
-        </p>
+            <div className="flex items-center gap-2">
+              <span className="text-gray-500 mb-2 text-md font-serif">
+                M.R.P: ₹{" "}
+                <span className="line-through">
+                  {filterdata.data.data.attributes.mrp}
+                </span>
+              </span>
+            </div>
 
-        <div className="flex gap-3 my-3 items-center">
+            <div className="flex gap-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 text-yellow-400 mt-1"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 2a1 1 0 0 1 .784.385l2.647 3.414 4.093.595a1 1 0 0 1 .554 1.705l-2.96 2.88.7 4.274a1 1 0 0 1-1.451 1.054L10 14.254l-3.67 1.93a1 1 0 0 1-1.45-1.054l.7-4.274-2.96-2.88a1 1 0 0 1 .554-1.705l4.093-.595L9.216 2.385A1 1 0 0 1 10 2z"
+                />
+              </svg>
+              <p className="text-gray-600 mb-2 text-lg">
+                {filterdata.data.data.attributes.rating.toFixed(1)}
+              </p>
+            </div>
+            <p className="text-gray-600 mb-4 text-md">
+              {filterdata.data.data.attributes.category}
+            </p>
+
+            {/* <div className="flex gap-3 my-3 items-center">
           <button
             className="w-12 h-10 py-1 px-5 border border-gray-200 bg-gray-100 hover:bg-gray-500 hover:text-white hover:transition-all ease-in-out duration-500"
             onClick={() =>
@@ -146,26 +161,28 @@ const ProductDetails = () => {
           >
             +
           </button>
-        </div>
-        <div className="flex items-center">
-          <button
-            className="bg-yellow-400 uppercase text-md text-black px-5 py-2 mr-2 rounded flex items-center gap-2"
-            onClick={handleAddDataCart}
-          >
-            <span>
-              <BsCart2 className="text-xl" />
-            </span>
-            Add to Cart
-          </button>
-          <button className="bg-blue-600 uppercase text-md text-white px-5 py-2 rounded flex justify-center items-center gap-2">
-            <span>
-              <AiOutlineHeart className="text-xl" />
-            </span>
-            Add to Wishlist
-          </button>
+        </div> */}
+            <div className="flex items-center">
+              <button
+                className="bg-blue-600  text-md text-white px-5 py-2 mr-2 rounded-md flex items-center gap-2 hover:opacity-[0.9]"
+                onClick={onAddToCartClick}
+              >
+                <span>
+                  <BsCart2 className="text-xl" />
+                </span>
+                Add to Cart
+              </button>
+              <button className="bg-blue-600  text-md text-white px-5 py-2 rounded-md flex justify-center items-center gap-2 hover:opacity-[0.9]">
+                <span>
+                  <AiOutlineHeart className="text-xl" />
+                </span>
+                Add to Wishlist
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

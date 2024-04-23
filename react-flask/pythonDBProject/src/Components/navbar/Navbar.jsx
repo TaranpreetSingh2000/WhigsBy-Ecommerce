@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import logo from "../../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -7,14 +7,36 @@ import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { BsCart2 } from "react-icons/bs";
+import { CartContext } from "../../_context/CartContext";
+import Cart from "../../cart/Cart";
+import { getUserCartItems } from "../../../_utils/GlobalApi";
 
 const Navbar = () => {
   const [isAuth, setIsAuth] = useState(false);
   const [isAdminAuth, setIsAdminAuth] = useState(false);
   const [user, setUser] = useState("");
+  const { cart, setCart } = useContext(CartContext);
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef();
+  const email = localStorage.getItem("Email");
+
+  useEffect(() => {
+    if (email) {
+      getCartItem();
+    } else {
+      setCart(0);
+    }
+  }, [email]);
+
+  const getCartItem = () => {
+    getUserCartItems(email).then((res) => {
+      const result = res.data.data;
+      if (result) {
+        setCart(result.map((prod) => prod.attributes.products.data));
+      }
+    });
+  };
 
   useEffect(() => {
     const isLogin = sessionStorage.getItem("accessToken");
@@ -240,16 +262,15 @@ const Navbar = () => {
               </div>
             </div>
 
-            <div className="cartSection my-1">
-              <span className="flex flex-row-reverse">
-                {/* <sup className="border border-red-600 bg-red-600 text-white rounded-2xl px-1 py-2">
-                  0
-                </sup> */}
-                <Link to="/cart">
-                  <BsCart2 className="text-xl cursor-pointer" />
-                </Link>
+            <div className="flex justify-center items-center my-1 cursor-pointer">
+              <Link to="/cart">
+                <BsCart2 className="text-xl cursor-pointer" />
+              </Link>
+              <span className="font-semibold text-md cursor-pointer">
+                ({isAuth ? cart?.length : 0})
               </span>
             </div>
+            {isAuth ? <Cart /> : null}
           </div>
         </div>
       </nav>
