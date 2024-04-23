@@ -17,7 +17,6 @@ const Admin = () => {
   };
 
   const handleLogin = async (e) => {
-    debugger;
     e.preventDefault();
     try {
       const response = await axios.post(

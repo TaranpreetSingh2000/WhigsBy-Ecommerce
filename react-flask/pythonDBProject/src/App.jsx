@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Data from "./Components/data/Data";
 import {
   Route,
@@ -16,6 +16,10 @@ import Admin from "./Components/auth/admin/Admin.jsx";
 import Contact from "./Components/contact/Contact.jsx";
 import AdminProtected from "./Components/services/AdminProtected.jsx";
 import AdminDashboard from "./Components/adminDashboard/AdminDashboard.jsx";
+import ProductDetails from "./Components/productDetails/ProductDetails.jsx";
+import { CartContext } from "./_context/CartContext.js";
+import Cart from "./Components/cart/Cart.jsx";
+import Page from "./cartPage/Page.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +31,12 @@ const router = createBrowserRouter(
         <Route path="admin" element={<Admin />} />
         <Route path="dashboard" element={<Protected Component={Dashboard} />} />
         <Route
+          path="/productDetails/:productId"
+          element={<Protected Component={ProductDetails} />}
+        />
+        <Route path="/cart" element={<Protected Component={Cart} />} />
+        <Route path="/page" element={<Protected Component={Page} />} />
+        <Route
           path="/admin/dashboard"
           element={<AdminProtected Component={AdminDashboard} />}
         />
@@ -37,9 +47,13 @@ const router = createBrowserRouter(
 );
 
 function App() {
+  const [cart, setCart] = useState([]);
+
   return (
     <>
-      <RouterProvider router={router} />
+      <CartContext.Provider value={{ cart, setCart }}>
+        <RouterProvider router={router} />
+      </CartContext.Provider>
     </>
   );
 }

@@ -6,11 +6,13 @@ const AdminProtected = (props) => {
   const { Component } = props;
   const navigate = useNavigate();
 
-  debugger;
   useEffect(() => {
     const isLogin = sessionStorage.getItem("adminAccessToken");
     if (isLogin) {
       setIsAuth(true);
+    } else {
+      navigate("/admin");
+      setIsAuth(false);
     }
   }, [isAuth]);
 

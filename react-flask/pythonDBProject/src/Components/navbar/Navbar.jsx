@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import logo from "../../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -6,15 +6,43 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { BsCart2 } from "react-icons/bs";
+import { CartContext } from "../../_context/CartContext";
+import Cart from "../cart/Cart";
+import { getUserCartItems } from "../../../_utils/GlobalApi";
 
 const Navbar = () => {
   const [isAuth, setIsAuth] = useState(false);
   const [isAdminAuth, setIsAdminAuth] = useState(false);
   const [user, setUser] = useState("");
+  const [openCart, setOpenCart] = useState(false);
+  const { cart, setCart } = useContext(CartContext);
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef();
+  const email = localStorage.getItem("Email");
 
+  useEffect(() => {
+    if (email) {
+      getCartItem();
+    } else {
+      setCart(0);
+    }
+  }, [email]);
+
+  const getCartItem = () => {
+    getUserCartItems(email).then((res) => {
+      const result = res.data.data;
+      if (result) {
+        setCart(
+          result.map((prod) => ({
+            id: prod?.id,
+            products: prod.attributes.products.data,
+          }))
+        );
+      }
+    });
+  };
   useEffect(() => {
     const isLogin = sessionStorage.getItem("accessToken");
     if (isLogin) {
@@ -68,11 +96,11 @@ const Navbar = () => {
     sessionStorage.removeItem("accessToken");
     sessionStorage.removeItem("loginEmail");
     localStorage.removeItem("Email");
+    setIsMenuOpen(false);
     toast.success("Logout Successfully ");
     setTimeout(() => {
       navigate("/login");
-    }, 3000);
-    setIsMenuOpen(!isMenuOpen);
+    }, 1000);
   };
 
   const handleAdminLogout = () => {
@@ -82,7 +110,6 @@ const Navbar = () => {
     setTimeout(() => {
       navigate("/admin");
     }, 3000);
-    setIsMenuOpen(!isMenuOpen);
   };
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -94,13 +121,23 @@ const Navbar = () => {
       <nav className="bg-white dark:bg-gray-900 w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
         <div className="flex flex-wrap items-center justify-between mx-auto p-2.5">
           <div>
-            <Link to="/">
-              <img
-                src={logo}
-                className="w-auto h-[80px] cursor-pointer"
-                alt="Logo"
-              />
-            </Link>
+            {isAuth ? (
+              <Link to="/dashboard">
+                <img
+                  src={logo}
+                  className="w-auto h-[80px] cursor-pointer"
+                  alt="Logo"
+                />
+              </Link>
+            ) : (
+              <Link to="/">
+                <img
+                  src={logo}
+                  className="w-auto h-[80px] cursor-pointer"
+                  alt="Logo"
+                />
+              </Link>
+            )}
           </div>
 
           <div
@@ -143,91 +180,105 @@ const Navbar = () => {
             </ul>
           </div>
 
-          <div className="flex flex-row items-center">
-            {(isAuth || isAdminAuth) && (
-              <div className="profileSection">
-                <ul>
-                  <li>
-                    <strong>{user && `Welcome, ${user}`}</strong>
-                  </li>
-                </ul>
-              </div>
-            )}
+          <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-row items-center">
+              {(isAuth || isAdminAuth) && (
+                <div className="profileSection">
+                  <ul>
+                    <li>
+                      <strong>{user && `Welcome, ${user}`}</strong>
+                    </li>
+                  </ul>
+                </div>
+              )}
 
-            <div className="relative" ref={menuRef}>
-              <button
-                className="flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none cursor-pointer"
-                onClick={toggleMenu}
-                aria-expanded={isMenuOpen ? "true" : "false"}
-              >
-                <FontAwesomeIcon
-                  icon={faUser}
-                  className="rounded-full p-2 m-2 text-blue-800 border border-blue-800"
-                />
-              </button>
+              <div className="relative" ref={menuRef}>
+                <button
+                  className="flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none cursor-pointer"
+                  onClick={toggleMenu}
+                  aria-expanded={isMenuOpen ? "true" : "false"}
+                >
+                  <FontAwesomeIcon
+                    icon={faUser}
+                    className="rounded-full p-2 m-2 text-blue-800 border border-blue-800"
+                  />
+                </button>
 
-              {isMenuOpen && (
-                <ul className="absolute  z-[1000] float-left m-0 w-[150px] list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-surface-dark right-0 mt-2 h-30">
-                  <li>
-                    <a
-                      href="#"
-                      className="block w-full whitespace-nowrap bg-white px-4 py-2 text-md font-normal text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25"
-                      onClick={toggleMenu}
-                    >
-                      My Profile
-                    </a>
-                  </li>
-
-                  {isAdminAuth ? (
-                    <Link
-                      to="/admin"
-                      className="block px-4 w-full whitespace-nowrap bg-white py-2 text-md font-normal text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25 cursor-pointer"
-                      onClick={handleAdminLogout}
-                    >
-                      Logged out Admin
-                    </Link>
-                  ) : (
-                    <Link
-                      to="/admin"
-                      className="block px-4 w-full whitespace-nowrap bg-white py-2 text-md font-normal text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25 cursor-pointer"
-                      onClick={toggleMenu}
-                    >
-                      Login Admin
-                    </Link>
-                  )}
-
-                  <li>
-                    <a
-                      href="#"
-                      className="block w-full whitespace-nowrap bg-white px-4 py-2 text-md font-normal text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25"
-                      onClick={toggleMenu}
-                    >
-                      Settings
-                    </a>
-                  </li>
-
-                  <li>
-                    {isAuth ? (
-                      <Link
-                        to="/login"
-                        className="block px-4 w-full whitespace-nowrap bg-white py-2 text-md font-normal text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25"
-                        onClick={handleLogout}
+                {isMenuOpen && (
+                  <ul className="absolute  z-[1000] float-left m-0 w-[150px] list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-surface-dark right-0 mt-2 h-30">
+                    <li>
+                      <a
+                        href="#"
+                        className="block w-full whitespace-nowrap bg-white px-4 py-2 text-md font-normal text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25"
+                        onClick={toggleMenu}
                       >
-                        Logout
-                      </Link>
+                        My Profile
+                      </a>
+                    </li>
+
+                    {isAdminAuth ? (
+                      <a
+                        className="block px-4 w-full whitespace-nowrap bg-white py-2 text-md font-normal text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25 cursor-pointer"
+                        onClick={handleAdminLogout}
+                      >
+                        Logged out Admin
+                      </a>
                     ) : (
                       <Link
-                        to="/login"
+                        to="/admin"
                         className="block px-4 w-full whitespace-nowrap bg-white py-2 text-md font-normal text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25 cursor-pointer"
                         onClick={toggleMenu}
                       >
-                        Login User
+                        Login Admin
                       </Link>
                     )}
-                  </li>
-                </ul>
-              )}
+
+                    <li>
+                      <a
+                        href="#"
+                        className="block w-full whitespace-nowrap bg-white px-4 py-2 text-md font-normal text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25"
+                        onClick={toggleMenu}
+                      >
+                        Settings
+                      </a>
+                    </li>
+
+                    <li>
+                      {isAuth ? (
+                        <a
+                          href="#"
+                          className="block px-4 w-full whitespace-nowrap bg-white py-2 text-md font-normal text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25"
+                          onClick={handleLogout}
+                        >
+                          Logout
+                        </a>
+                      ) : (
+                        <Link
+                          to="/login"
+                          className="block px-4 w-full whitespace-nowrap bg-white py-2 text-md font-normal text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25 cursor-pointer"
+                          onClick={toggleMenu}
+                        >
+                          Login User
+                        </Link>
+                      )}
+                    </li>
+                  </ul>
+                )}
+              </div>
             </div>
+
+            <div
+              className="flex justify-center items-center my-1 cursor-pointer  "
+              onClick={() => setOpenCart(!openCart)}
+            >
+              {/* <Link to="/cart"> */}
+              <BsCart2 className="text-xl cursor-pointer" />
+              {/* </Link> */}
+              <span className="font-semibold text-md cursor-pointer">
+                ({isAuth ? cart?.length : 0})
+              </span>
+            </div>
+            {openCart && isAuth ? <Cart /> : null}
           </div>
         </div>
       </nav>
