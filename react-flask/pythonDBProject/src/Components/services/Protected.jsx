@@ -16,15 +16,7 @@ const Protected = (props) => {
     }
   }, [isAuth]);
 
-  return (
-    <>
-      {isAuth && (
-        <div>
-          <Component />
-        </div>
-      )}
-    </>
-  );
+  return <>{isAuth && <Component />}</>;
 };
 
 export default Protected;
