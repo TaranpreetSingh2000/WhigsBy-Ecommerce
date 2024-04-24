@@ -65,7 +65,7 @@ const ProductDetails = () => {
   const data = {
     data: {
       email: email,
-      products: filterdata.data.data.id,
+      products: filterdata?.data?.data?.id,
     },
   };
 
@@ -105,7 +105,7 @@ const ProductDetails = () => {
               <img
                 src={`http://localhost:1337${filterdata?.data?.data?.attributes.image.data[0].attributes.url}`}
                 alt={filterdata.data.data.attributes.title}
-                className="h-[100%] w-11/12"
+                className="h-[100%] w-full"
                 style={{ mixBlendMode: "darken" }}
               />
             </div>
