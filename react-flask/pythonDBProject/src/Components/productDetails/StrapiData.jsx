@@ -63,15 +63,15 @@ const StrapiData = () => {
               <div className="bg-white border border-gray-100 rounded-lg h-[100%]  cursor-pointer">
                 <img
                   src={`http://localhost:1337${product.attributes.image.data[0].attributes.url}`}
-                  alt={product.attributes.title}
+                  alt={product?.attributes?.title}
                   className="w-full h-[250px] rounded-md"
                 />
 
                 <div className="flex flex-col justify-center items-center mt-2 p-2">
                   <p className="text-lg font-semibold">
-                    {product.attributes.title.split(" ")[0]}
+                    {product?.attributes?.title.split(" ")[0]}
                   </p>
-                  <h2 className="text-lg font-[Arial]">
+                  <h2 className="text-lg font-[Arial] min-h-[110px] hover:text-orange-500 hover:underline">
                     {product.attributes.title.slice(0, 100)}...
                   </h2>
                 </div>
@@ -97,13 +97,13 @@ const StrapiData = () => {
                     ₹{product.attributes.price.toFixed(2)}
                   </p>
 
-                  <span className="text-gray-500 mb-2 text-sm font-serif">
+                  <span className="text-gray-500 mb-2 text-sm">
                     M.R.P: ₹
                     <span className="line-through">
                       {product?.attributes.mrp}
                     </span>
                   </span>
-                  <span className="text-black mb-2 text-md font-[sans-serif]">
+                  <span className="text-black mb-2 text-md font-[sans-serif] tracking-wide">
                     ({product?.attributes.discount.split("-")}% off)
                   </span>
                 </div>

@@ -23,4 +23,18 @@ const getUserCartItems = (email) =>
 // delete cartItems
 const deleteCartItems = (id) => axiosClient.delete("/carts/" + id);
 
-export { addtoCart, getProductsById, getUserCartItems, deleteCartItems };
+// filter products by categories
+
+debugger;
+const getProductsByCategories = (category) =>
+  axiosClient.get(
+    "/products?filters[category][$containsi]=" + category + "&populate=*"
+  );
+
+export {
+  addtoCart,
+  getProductsById,
+  getUserCartItems,
+  deleteCartItems,
+  getProductsByCategories,
+};

@@ -15,7 +15,7 @@ const Footer = () => {
         <div className="container p-6">
           <div className="grid md:grid-cols-2 lg:grid-cols-4">
             <div className="mb-6">
-              <h5 className="mb-2.5 font-bold uppercase text-left">Website</h5>
+              <h5 className="mb-2.5 font-bold uppercase">Website</h5>
               <p className="text-left">
                 Welcome to Whigsby, your premier destination for all things
                 fashion and lifestyle. Discover a curated selection of the

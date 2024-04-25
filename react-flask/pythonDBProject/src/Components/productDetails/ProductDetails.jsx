@@ -5,10 +5,11 @@ import { BallTriangle } from "react-loader-spinner";
 import { BsCart2 } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import Breadcrumb from "../breadcrumb/Breadcrumb";
-import { addtoCart } from "../../../_utils/GlobalApi";
+import { addtoCart, getProductsByCategories } from "../../../_utils/GlobalApi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CartContext } from "../../_context/CartContext";
+import CategoryProducts from "./CategoryProducts";
 
 const ProductDetails = () => {
   const pathname = window.location.pathname;
@@ -16,13 +17,24 @@ const ProductDetails = () => {
   let [filterdata, setFilterData] = useState({});
   const { cart, setCart } = useContext(CartContext);
   const [showCards, setShowCards] = useState(false);
+  const [categoryDetails, setCategoryDetails] = useState("");
   const { response, loading, error } = useFetch(
     `http://localhost:1337/api/products/${productId}?populate=*`
   );
 
   const email = localStorage.getItem("Email");
+
+  const getCateogoryProducts = (category) => {
+    debugger;
+    getProductsByCategories(category).then((res) => {
+      console.log(res, "---> category");
+      setCategoryDetails(res);
+    });
+  };
+
   useEffect(() => {
     setFilterData(response);
+    getCateogoryProducts(response?.data?.data?.attributes?.category);
   }, [response]);
 
   useEffect(() => {
@@ -97,15 +109,15 @@ const ProductDetails = () => {
   return (
     <>
       <ToastContainer autoClose={1000} containerId="cartContainer" />
-      <div className="pt-4 px-7">
+      <div className="pt-4 px-3">
         <Breadcrumb pathname={pathname} />
         <div className="flex justify-center p-4  mb-6">
           <div className="w-1/2 flex flex-col items-center justify-center gap-5">
             <div className=" hover:translate-y-[-9px] transition-all duration-500 ease-in-out">
               <img
                 src={`http://localhost:1337${filterdata?.data?.data?.attributes.image.data[0].attributes.url}`}
-                alt={filterdata.data.data.attributes.title}
-                className="h-[100%] w-full"
+                alt={filterdata?.data?.data?.attributes.title}
+                className="h-[100%] w-[100%]"
                 style={{ mixBlendMode: "darken" }}
               />
             </div>
@@ -178,6 +190,10 @@ const ProductDetails = () => {
               </button>
             </div>
           </div>
+        </div>
+
+        <div className="categories">
+          <CategoryProducts categoryDetails={categoryDetails} />
         </div>
       </div>
     </>
