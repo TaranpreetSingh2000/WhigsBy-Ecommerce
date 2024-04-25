@@ -5,27 +5,31 @@ import { BallTriangle } from "react-loader-spinner";
 import { BsCart2 } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import Breadcrumb from "../breadcrumb/Breadcrumb";
-import { addtoCart, getProductsByCategories } from "../../../_utils/GlobalApi";
+import {
+  addtoCart,
+  getProductsByCategories,
+  addtoWhistlist,
+} from "../../../_utils/GlobalApi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CartContext } from "../../_context/CartContext";
 import CategoryProducts from "./CategoryProducts";
+import { IoHeartSharp } from "react-icons/io5";
 
 const ProductDetails = () => {
   const pathname = window.location.pathname;
   const { productId } = useParams();
   let [filterdata, setFilterData] = useState({});
-  const { cart, setCart } = useContext(CartContext);
+  const { cart, setCart, wishlist, setWistlist } = useContext(CartContext);
   const [showCards, setShowCards] = useState(false);
+  const [isAddedToWishlist, setIsAddedToWishlist] = useState(false);
   const [categoryDetails, setCategoryDetails] = useState("");
   const { response, loading, error } = useFetch(
     `http://localhost:1337/api/products/${productId}?populate=*`
   );
 
   const email = localStorage.getItem("Email");
-
   const getCateogoryProducts = (category) => {
-    debugger;
     getProductsByCategories(category).then((res) => {
       console.log(res, "---> category");
       setCategoryDetails(res);
@@ -82,28 +86,39 @@ const ProductDetails = () => {
   };
 
   const onAddToCartClick = () => {
-    addtoCart(data).then(
-      (res) => {
-        console.log(res);
-        if (res) {
-          setCart((cart) => [
-            ...cart,
-            {
-              id: res?.data?.data?.id,
-              products: filterdata?.data?.data,
-            },
-          ]);
-        }
-        toast.success("Product Added successfully ", {
-          containerId: "cartContainer",
-        });
-      },
-      (error) => {
-        toast.warning("Something went wrong", error, {
-          containerId: "cartContainer",
-        });
+    addtoCart(data).then((res) => {
+      if (res) {
+        setCart((cart) => [
+          ...cart,
+          {
+            id: res?.data?.data?.id,
+            products: filterdata?.data?.data,
+          },
+        ]);
       }
-    );
+      toast.success("Product Added successfully ", {
+        containerId: "cartContainer",
+      });
+    });
+  };
+
+  const onAddToWhishlistClick = () => {
+    debugger;
+    addtoWhistlist(data).then((res) => {
+      if (res) {
+        setIsAddedToWishlist(true);
+        setWistlist((whishlist) => [
+          ...whishlist,
+          {
+            id: res?.data?.data?.id,
+            products: filterdata?.data?.data,
+          },
+        ]);
+      }
+      toast.success("Product Added to Whishlist ", {
+        containerId: "cartContainer",
+      });
+    });
   };
 
   return (
@@ -182,12 +197,29 @@ const ProductDetails = () => {
                 </span>
                 Add to Cart
               </button>
-              <button className="bg-blue-600  text-md text-white px-5 py-2 rounded-md flex justify-center items-center gap-2 hover:opacity-[0.9]">
-                <span>
-                  <AiOutlineHeart className="text-xl" />
-                </span>
-                Add to Wishlist
-              </button>
+
+              {isAddedToWishlist ? (
+                <button
+                  className="bg-gray-700  text-md text-white px-5 py-2 rounded-md flex justify-center items-center gap-2 hover:opacity-[0.9]"
+                  onClick={onAddToWhishlistClick}
+                  disabled
+                >
+                  <span>
+                    <IoHeartSharp className=" text-xl text-pink-600" />
+                  </span>
+                  Add to Wishlist
+                </button>
+              ) : (
+                <button
+                  className="bg-blue-600  text-md text-white px-5 py-2 rounded-md flex justify-center items-center gap-2 hover:opacity-[0.9]"
+                  onClick={onAddToWhishlistClick}
+                >
+                  <span>
+                    <AiOutlineHeart className="text-xl" />
+                  </span>
+                  Add to Wishlist
+                </button>
+              )}
             </div>
           </div>
         </div>

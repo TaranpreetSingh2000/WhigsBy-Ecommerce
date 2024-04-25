@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { GoHeart } from "react-icons/go";
 import { BsCart2 } from "react-icons/bs";
 import { CartContext } from "../../_context/CartContext";
 import Cart from "../cart/Cart";
@@ -16,7 +17,7 @@ const Navbar = () => {
   const [isAdminAuth, setIsAdminAuth] = useState(false);
   const [user, setUser] = useState("");
   const [openCart, setOpenCart] = useState(false);
-  const { cart, setCart } = useContext(CartContext);
+  const { cart, setCart, wishlist, setWishlist } = useContext(CartContext);
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef();
@@ -27,6 +28,7 @@ const Navbar = () => {
       getCartItem();
     } else {
       setCart(0);
+      setWishlist(null);
     }
   }, [email]);
 
@@ -267,16 +269,23 @@ const Navbar = () => {
               </div>
             </div>
 
-            <div
-              className="flex justify-center items-center my-1 cursor-pointer  "
-              onClick={() => setOpenCart(!openCart)}
-            >
-              {/* <Link to="/cart"> */}
-              <BsCart2 className="text-xl cursor-pointer" />
-              {/* </Link> */}
-              <span className="font-semibold text-md cursor-pointer">
-                ({isAuth ? cart?.length : 0})
-              </span>
+            <div className="flex gap-5 justify-center items-center my-1 cursor-pointer  ">
+              <div
+                className="flex items-center"
+                onClick={() => setOpenCart(!openCart)}
+              >
+                <BsCart2 className="text-xl cursor-pointer" />
+                <span className="font-semibold text-md cursor-pointer">
+                  ({isAuth ? cart?.length : 0})
+                </span>
+              </div>
+
+              <div>
+                <GoHeart className="text-xl text-pink-600" />
+                {/* <span className="font-semibold text-md cursor-pointer">
+                  {isAuth ? wishlist?.length : ""}
+                </span> */}
+              </div>
             </div>
             {openCart && isAuth ? <Cart /> : null}
           </div>

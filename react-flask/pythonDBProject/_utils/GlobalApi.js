@@ -25,11 +25,14 @@ const deleteCartItems = (id) => axiosClient.delete("/carts/" + id);
 
 // filter products by categories
 
-debugger;
 const getProductsByCategories = (category) =>
   axiosClient.get(
     "/products?filters[category][$containsi]=" + category + "&populate=*"
   );
+
+// whishlist Products
+
+const addtoWhistlist = (data) => axiosClient.post("/whistlists", data);
 
 export {
   addtoCart,
@@ -37,4 +40,5 @@ export {
   getUserCartItems,
   deleteCartItems,
   getProductsByCategories,
+  addtoWhistlist,
 };
