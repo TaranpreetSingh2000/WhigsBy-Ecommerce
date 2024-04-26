@@ -10,14 +10,17 @@ import { GoHeart } from "react-icons/go";
 import { BsCart2 } from "react-icons/bs";
 import { CartContext } from "../../_context/CartContext";
 import Cart from "../cart/Cart";
-import { getUserCartItems } from "../../../_utils/GlobalApi";
+import {
+  getUserCartItems,
+  getUserWishlistItem,
+} from "../../../_utils/GlobalApi";
 
 const Navbar = () => {
   const [isAuth, setIsAuth] = useState(false);
   const [isAdminAuth, setIsAdminAuth] = useState(false);
   const [user, setUser] = useState("");
   const [openCart, setOpenCart] = useState(false);
-  const { cart, setCart, wishlist, setWishlist } = useContext(CartContext);
+  const { cart, setCart, wishlist, setWistlist } = useContext(CartContext);
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef();
@@ -26,9 +29,10 @@ const Navbar = () => {
   useEffect(() => {
     if (email) {
       getCartItem();
+      getWishlistItem();
     } else {
       setCart(0);
-      setWishlist(null);
+      setWistlist(0);
     }
   }, [email]);
 
@@ -37,6 +41,20 @@ const Navbar = () => {
       const result = res.data.data;
       if (result) {
         setCart(
+          result.map((prod) => ({
+            id: prod?.id,
+            products: prod.attributes.products.data,
+          }))
+        );
+      }
+    });
+  };
+
+  const getWishlistItem = () => {
+    getUserWishlistItem(email).then((res) => {
+      const result = res.data.data;
+      if (result) {
+        setWistlist(
           result.map((prod) => ({
             id: prod?.id,
             products: prod.attributes.products.data,
@@ -269,7 +287,7 @@ const Navbar = () => {
               </div>
             </div>
 
-            <div className="flex gap-5 justify-center items-center my-1 cursor-pointer  ">
+            <div className="flex gap-3 justify-center items-end my-1 cursor-pointer  ">
               <div
                 className="flex items-center"
                 onClick={() => setOpenCart(!openCart)}
@@ -281,10 +299,9 @@ const Navbar = () => {
               </div>
 
               <div>
-                <GoHeart className="text-xl text-pink-600" />
-                {/* <span className="font-semibold text-md cursor-pointer">
-                  {isAuth ? wishlist?.length : ""}
-                </span> */}
+                <Link to="/wishlist">
+                  <GoHeart className="text-xl" />
+                </Link>
               </div>
             </div>
             {openCart && isAuth ? <Cart /> : null}

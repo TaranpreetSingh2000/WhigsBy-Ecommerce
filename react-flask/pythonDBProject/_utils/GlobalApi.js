@@ -34,6 +34,19 @@ const getProductsByCategories = (category) =>
 
 const addtoWhistlist = (data) => axiosClient.post("/whistlists", data);
 
+// get wishlist Item
+
+const getUserWishlistItem = (email) =>
+  axiosClient.get(
+    "/whistlists?populate[products][populate][0]=image&&filters[email][$eq]=" +
+      email
+  );
+
+// delete wishlist Item
+
+debugger;
+const deleteWishlistItem = (id) => axiosClient.delete("/whistlists/" + id);
+
 export {
   addtoCart,
   getProductsById,
@@ -41,4 +54,6 @@ export {
   deleteCartItems,
   getProductsByCategories,
   addtoWhistlist,
+  getUserWishlistItem,
+  deleteWishlistItem,
 };

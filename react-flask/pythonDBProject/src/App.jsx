@@ -20,6 +20,7 @@ import ProductDetails from "./Components/productDetails/ProductDetails.jsx";
 import { CartContext } from "./_context/CartContext.js";
 import Cart from "./Components/cart/Cart.jsx";
 import Page from "./cartPage/Page.jsx";
+import Wishlist from "./Components/wishlist/Wishlist.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,6 +36,7 @@ const router = createBrowserRouter(
           element={<Protected Component={ProductDetails} />}
         />
         <Route path="/cart" element={<Protected Component={Cart} />} />
+        <Route path="/wishlist" element={<Protected Component={Wishlist} />} />
         <Route path="/page" element={<Protected Component={Page} />} />
         <Route
           path="/admin/dashboard"

@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Page = () => {
-  const { cart, setCart, whishlist } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
   const email = localStorage.getItem("Email");
 
   const getTotalAmount = () => {
@@ -17,8 +17,6 @@ const Page = () => {
     });
     return totalAmount;
   };
-
-  console.log(whishlist);
 
   const deleteCartItems_ = (id) => {
     deleteCartItems(id).then((res) => {
@@ -36,6 +34,7 @@ const Page = () => {
   const getCartItem = () => {
     getUserCartItems(email).then((res) => {
       const result = res.data.data;
+
       if (result) {
         setCart(
           result.map((prod) => ({
