@@ -5,14 +5,16 @@ import { Link } from "react-router-dom";
 import {
   deleteWishlistItem,
   getUserWishlistItem,
+  addtoCart,
 } from "../../../_utils/GlobalApi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import wishlistIcon from "../../assets/wishlist.png";
 const Wishlist = () => {
-  const { wishlist, setWistlist } = useContext(CartContext);
+  const { wishlist, setWistlist, cart, setCart } = useContext(CartContext);
   const email = localStorage.getItem("Email");
 
+  console.log(wishlist);
   const handleDeleteWishlistItems = (id) => {
     deleteWishlistItem(id).then((res) => {
       toast.success("Product Removed from wishlist ", {
@@ -40,10 +42,36 @@ const Wishlist = () => {
     });
   };
 
+  const onAddToCartClick = (id) => {
+    debugger;
+    const data = {
+      data: {
+        email: email,
+        product: id,
+      },
+    };
+
+    addtoCart(data).then((res) => {
+      console.log(res);
+      // if (res) {
+      //   setCart((cart) => [
+      //     ...cart,
+      //     {
+      //       id: res?.data?.data?.id,
+      //       product: wishlist?.products,
+      //     },
+      //   ]);
+      // }
+      toast.success("Product Added successfully ", {
+        containerId: "wishlistRemoveContainer",
+      });
+    });
+  };
+
   return (
     <>
       <ToastContainer autoClose={1000} containerId="wishlistRemoveContainer" />
-      <div className="container mx-auto p-4">
+      <div className="container mx-auto p-10">
         {wishlist.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {wishlist.length > 0 &&
@@ -84,7 +112,12 @@ const Wishlist = () => {
                     <div className="border-t border-gray-300 w-full flex items-center justify-center p-3">
                       <Link
                         to=""
-                        className="text-red-500 font-semibold cursor-pointer w-full text-center"
+                        className="text-red-500 font-semibold cursor-pointer w-full text-center hover:text-red-600"
+                        onClick={() =>
+                          onAddToCartClick(
+                            item?.products?.attributes?.image?.data[0]?.id
+                          )
+                        }
                       >
                         ADD TO CART
                       </Link>

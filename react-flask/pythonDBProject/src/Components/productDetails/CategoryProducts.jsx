@@ -4,20 +4,24 @@ import { Link } from "react-router-dom";
 
 const CategoryProducts = ({ categoryDetails }) => {
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto p-10">
       <h3 className="text-xl font-semibold font-[Arial] mb-4">
         Similar Products
       </h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {categoryDetails?.data?.data &&
           categoryDetails?.data?.data.map((product) => (
-            <Link key={product.id} to={`/productDetails/${product.id}`} className="flex justify-center">
-              <div className="bg-white border border-gray-300 w-[80%] rounded-lg h-[100%] cursor-pointer">
+            <Link
+              key={product.id}
+              to={`/productDetails/${product.id}`}
+              className="flex justify-center"
+            >
+              <div className="bg-white border border-gray-300 w-[100%] rounded-lg h-[100%] cursor-pointer">
                 <div>
                   <img
                     src={`http://localhost:1337${product.attributes.image.data[0].attributes.url}`}
                     alt={product?.attributes?.title}
-                    className="rounded-md h-[300px] w-[100%]"
+                    className="rounded-md h-[250px] object-fill w-[100%]"
                     style={{ mixBlendMode: "darken" }}
                   />
                 </div>

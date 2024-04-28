@@ -35,7 +35,7 @@ const router = createBrowserRouter(
           path="/productDetails/:productId"
           element={<Protected Component={ProductDetails} />}
         />
-        <Route path="/cart" element={<Protected Component={Cart} />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Protected Component={Wishlist} />} />
         <Route path="/page" element={<Protected Component={Page} />} />
         <Route
