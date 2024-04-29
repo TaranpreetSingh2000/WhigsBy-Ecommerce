@@ -13,7 +13,7 @@ const Page = () => {
   const getTotalAmount = () => {
     let totalAmount = 0;
     cart.forEach((element) => {
-      totalAmount = totalAmount + Number(element.products.attributes.price);
+      totalAmount = totalAmount + Number(element?.products?.attributes?.price);
     });
     return totalAmount;
   };

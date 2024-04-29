@@ -25,6 +25,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef();
   const email = localStorage.getItem("Email");
+  localStorage.setItem("Wishlist", JSON.stringify(wishlist));
 
   useEffect(() => {
     if (email) {
@@ -34,7 +35,7 @@ const Navbar = () => {
       setCart(0);
       setWistlist(0);
     }
-  }, [email]);
+  }, [email, cart]);
 
   const getCartItem = () => {
     getUserCartItems(email).then((res) => {

@@ -8,6 +8,8 @@ const axiosClient = axios.create({
   },
 });
 
+const getAllProducts = () => axiosClient.get("/products?populate=*");
+
 const getProductsById = (id) =>
   axiosClient.get("/products/" + id + "?populate=*");
 
@@ -44,10 +46,10 @@ const getUserWishlistItem = (email) =>
 
 // delete wishlist Item
 
-debugger;
 const deleteWishlistItem = (id) => axiosClient.delete("/whistlists/" + id);
 
 export {
+  getAllProducts,
   addtoCart,
   getProductsById,
   getUserCartItems,

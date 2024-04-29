@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { json, useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import { BallTriangle } from "react-loader-spinner";
 import { BsCart2 } from "react-icons/bs";
@@ -29,12 +29,20 @@ const ProductDetails = () => {
   );
 
   const email = localStorage.getItem("Email");
+  const WishlistItems = JSON.parse(localStorage.getItem("Wishlist"));
   const getCateogoryProducts = (category) => {
     getProductsByCategories(category).then((res) => {
-      console.log(res, "---> category");
+      window.scrollTo(0, 0);
       setCategoryDetails(res);
     });
   };
+  useEffect(() => {
+    if (WishlistItems.some((item) => item.products.id === Number(productId))) {
+      setIsAddedToWishlist(true);
+    } else {
+      setIsAddedToWishlist(false);
+    }
+  }, [productId]);
 
   useEffect(() => {
     setFilterData(response);
@@ -43,8 +51,8 @@ const ProductDetails = () => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setShowCards(true);
       window.scrollTo(0, 0);
+      setShowCards(true);
     }, 500);
 
     return () => clearTimeout(timeout);
@@ -103,7 +111,6 @@ const ProductDetails = () => {
   };
 
   const onAddToWhishlistClick = () => {
-    debugger;
     addtoWhistlist(data).then((res) => {
       if (res) {
         setIsAddedToWishlist(true);
@@ -128,7 +135,7 @@ const ProductDetails = () => {
         <Breadcrumb pathname={pathname} />
         <div className="flex justify-center p-4  mb-6">
           <div className="w-1/2 flex flex-col items-center justify-center gap-5">
-            <div className=" hover:translate-y-[-9px] transition-all duration-500 ease-in-out">
+            <div className=" hover:translate-y-[-9px] w-[70%] transition-all duration-500 ease-in-out">
               <img
                 src={`http://localhost:1337${filterdata?.data?.data?.attributes.image.data[0].attributes.url}`}
                 alt={filterdata?.data?.data?.attributes.title}
@@ -150,7 +157,12 @@ const ProductDetails = () => {
 
             <div className="flex items-center gap-1">
               <span className="text-red-500 mb-2 text-2xl">
-                {filterdata?.data?.data?.attributes.discount}%
+                {(
+                  (filterdata?.data?.data?.attributes.mrp -
+                    filterdata?.data?.data?.attributes.price) /
+                  filterdata?.data?.data?.attributes.mrp
+                ).toFixed(1) * 100}
+                %
               </span>
               <p className="text-black mb-2 text-3xl">
                 <sup className="text-xl mt-[20px] leading-0">₹</sup>

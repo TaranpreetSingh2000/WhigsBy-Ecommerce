@@ -13,13 +13,15 @@ import wishlistIcon from "../../assets/wishlist.png";
 const Wishlist = () => {
   const { wishlist, setWistlist, cart, setCart } = useContext(CartContext);
   const email = localStorage.getItem("Email");
+  const WishlistItems = JSON.parse(localStorage.getItem("Wishlist"));
 
-  console.log(wishlist);
   const handleDeleteWishlistItems = (id) => {
     deleteWishlistItem(id).then((res) => {
       toast.success("Product Removed from wishlist ", {
         containerId: "wishlistRemoveContainer",
       });
+      const updatedWishlist = WishlistItems.filter((item) => item.id !== id);
+      localStorage.setItem("Wishlist", JSON.stringify(updatedWishlist));
       if (res) {
         getWishlistItem();
       } else {
@@ -47,21 +49,22 @@ const Wishlist = () => {
     const data = {
       data: {
         email: email,
-        product: id,
+        products: id,
       },
     };
-
     addtoCart(data).then((res) => {
       console.log(res);
-      // if (res) {
-      //   setCart((cart) => [
-      //     ...cart,
-      //     {
-      //       id: res?.data?.data?.id,
-      //       product: wishlist?.products,
-      //     },
-      //   ]);
-      // }
+      if (res) {
+        setCart((cart) => [
+          ...cart,
+          {
+            id: res?.data?.data?.id,
+            product: wishlist.map((item) => {
+              return item.products.id == id;
+            }),
+          },
+        ]);
+      }
       toast.success("Product Added successfully ", {
         containerId: "wishlistRemoveContainer",
       });
@@ -105,7 +108,13 @@ const Wishlist = () => {
                           </span>
                         </span>
                         <span className="text-orange-500 font-semibold mb-2 text-sm font-[sans-serif] tracking-wide">
-                          ({item?.products.attributes.discount.split("-")}% off)
+                          (
+                          {(
+                            (item?.products?.attributes.mrp -
+                              item?.products?.attributes.price) /
+                            item?.products?.attributes.mrp
+                          ).toFixed(1) * 100}
+                          % off)
                         </span>
                       </div>
                     </div>
@@ -113,11 +122,7 @@ const Wishlist = () => {
                       <Link
                         to=""
                         className="text-red-500 font-semibold cursor-pointer w-full text-center hover:text-red-600"
-                        onClick={() =>
-                          onAddToCartClick(
-                            item?.products?.attributes?.image?.data[0]?.id
-                          )
-                        }
+                        onClick={() => onAddToCartClick(item?.products?.id)}
                       >
                         ADD TO CART
                       </Link>
