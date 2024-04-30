@@ -34,7 +34,6 @@ const Page = () => {
   const getCartItem = () => {
     getUserCartItems(email).then((res) => {
       const result = res.data.data;
-
       if (result) {
         setCart(
           result.map((prod) => ({

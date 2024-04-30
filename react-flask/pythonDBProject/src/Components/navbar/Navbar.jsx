@@ -32,10 +32,10 @@ const Navbar = () => {
       getCartItem();
       getWishlistItem();
     } else {
-      setCart(0);
-      setWistlist(0);
+      setCart([]);
+      setWistlist([]);
     }
-  }, [email, cart]);
+  }, [email]);
 
   const getCartItem = () => {
     getUserCartItems(email).then((res) => {

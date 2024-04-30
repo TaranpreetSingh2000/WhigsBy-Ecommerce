@@ -45,30 +45,25 @@ const Wishlist = () => {
   };
 
   const onAddToCartClick = (id) => {
-    debugger;
-    const data = {
-      data: {
-        email: email,
-        products: id,
-      },
-    };
-    addtoCart(data).then((res) => {
-      console.log(res);
-      if (res) {
-        setCart((cart) => [
-          ...cart,
-          {
-            id: res?.data?.data?.id,
-            product: wishlist.map((item) => {
-              return item.products.id == id;
-            }),
-          },
-        ]);
-      }
-      toast.success("Product Added successfully ", {
-        containerId: "wishlistRemoveContainer",
+    const productToAdd = wishlist.find((item) => item.products.id === id);
+    console.log(productToAdd);
+    if (productToAdd) {
+      const data = {
+        data: {
+          email: email,
+          products: id,
+        },
+      };
+
+      addtoCart(data).then((res) => {
+        if (res) {
+          setCart([...cart, productToAdd]);
+        }
+        toast.success("Product Added successfully ", {
+          containerId: "wishlistRemoveContainer",
+        });
       });
-    });
+    }
   };
 
   return (
