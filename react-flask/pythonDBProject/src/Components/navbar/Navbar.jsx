@@ -6,27 +6,34 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { GoHeart } from "react-icons/go";
 import { BsCart2 } from "react-icons/bs";
 import { CartContext } from "../../_context/CartContext";
 import Cart from "../cart/Cart";
-import { getUserCartItems } from "../../../_utils/GlobalApi";
+import {
+  getUserCartItems,
+  getUserWishlistItem,
+} from "../../../_utils/GlobalApi";
 
 const Navbar = () => {
   const [isAuth, setIsAuth] = useState(false);
   const [isAdminAuth, setIsAdminAuth] = useState(false);
   const [user, setUser] = useState("");
   const [openCart, setOpenCart] = useState(false);
-  const { cart, setCart } = useContext(CartContext);
+  const { cart, setCart, wishlist, setWistlist } = useContext(CartContext);
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef();
   const email = localStorage.getItem("Email");
+  localStorage.setItem("Wishlist", JSON.stringify(wishlist));
 
   useEffect(() => {
     if (email) {
       getCartItem();
+      getWishlistItem();
     } else {
-      setCart(0);
+      setCart([]);
+      setWistlist([]);
     }
   }, [email]);
 
@@ -35,6 +42,20 @@ const Navbar = () => {
       const result = res.data.data;
       if (result) {
         setCart(
+          result.map((prod) => ({
+            id: prod?.id,
+            products: prod.attributes.products.data,
+          }))
+        );
+      }
+    });
+  };
+
+  const getWishlistItem = () => {
+    getUserWishlistItem(email).then((res) => {
+      const result = res.data.data;
+      if (result) {
+        setWistlist(
           result.map((prod) => ({
             id: prod?.id,
             products: prod.attributes.products.data,
@@ -267,16 +288,22 @@ const Navbar = () => {
               </div>
             </div>
 
-            <div
-              className="flex justify-center items-center my-1 cursor-pointer  "
-              onClick={() => setOpenCart(!openCart)}
-            >
-              {/* <Link to="/cart"> */}
-              <BsCart2 className="text-xl cursor-pointer" />
-              {/* </Link> */}
-              <span className="font-semibold text-md cursor-pointer">
-                ({isAuth ? cart?.length : 0})
-              </span>
+            <div className="flex gap-3 justify-center items-end my-1 cursor-pointer  ">
+              <div
+                className="flex items-center"
+                onClick={() => setOpenCart(!openCart)}
+              >
+                <BsCart2 className="text-xl cursor-pointer" />
+                <span className="font-semibold text-md cursor-pointer">
+                  ({isAuth ? cart?.length : 0})
+                </span>
+              </div>
+
+              <div>
+                <Link to="/wishlist">
+                  <GoHeart className="text-xl" />
+                </Link>
+              </div>
             </div>
             {openCart && isAuth ? <Cart /> : null}
           </div>

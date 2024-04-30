@@ -1,34 +1,58 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { json, useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import { BallTriangle } from "react-loader-spinner";
 import { BsCart2 } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import Breadcrumb from "../breadcrumb/Breadcrumb";
-import { addtoCart } from "../../../_utils/GlobalApi";
+import {
+  addtoCart,
+  getProductsByCategories,
+  addtoWhistlist,
+} from "../../../_utils/GlobalApi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CartContext } from "../../_context/CartContext";
+import CategoryProducts from "./CategoryProducts";
+import { IoHeartSharp } from "react-icons/io5";
 
 const ProductDetails = () => {
   const pathname = window.location.pathname;
   const { productId } = useParams();
   let [filterdata, setFilterData] = useState({});
-  const { cart, setCart } = useContext(CartContext);
+  const { cart, setCart, wishlist, setWistlist } = useContext(CartContext);
   const [showCards, setShowCards] = useState(false);
+  const [isAddedToWishlist, setIsAddedToWishlist] = useState(false);
+  const [categoryDetails, setCategoryDetails] = useState("");
   const { response, loading, error } = useFetch(
     `http://localhost:1337/api/products/${productId}?populate=*`
   );
 
   const email = localStorage.getItem("Email");
+  const WishlistItems = JSON.parse(localStorage.getItem("Wishlist"));
+  const getCateogoryProducts = (category) => {
+    getProductsByCategories(category).then((res) => {
+      window.scrollTo(0, 0);
+      setCategoryDetails(res);
+    });
+  };
+  useEffect(() => {
+    if (WishlistItems.some((item) => item.products.id === Number(productId))) {
+      setIsAddedToWishlist(true);
+    } else {
+      setIsAddedToWishlist(false);
+    }
+  }, [productId]);
+
   useEffect(() => {
     setFilterData(response);
+    getCateogoryProducts(response?.data?.data?.attributes?.category);
   }, [response]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setShowCards(true);
       window.scrollTo(0, 0);
+      setShowCards(true);
     }, 500);
 
     return () => clearTimeout(timeout);
@@ -70,42 +94,52 @@ const ProductDetails = () => {
   };
 
   const onAddToCartClick = () => {
-    addtoCart(data).then(
-      (res) => {
-        console.log(res);
-        if (res) {
-          setCart((cart) => [
-            ...cart,
-            {
-              id: res?.data?.data?.id,
-              products: filterdata?.data?.data,
-            },
-          ]);
-        }
-        toast.success("Product Added successfully ", {
-          containerId: "cartContainer",
-        });
-      },
-      (error) => {
-        toast.warning("Something went wrong", error, {
-          containerId: "cartContainer",
-        });
+    addtoCart(data).then((res) => {
+      if (res) {
+        setCart((cart) => [
+          ...cart,
+          {
+            id: res?.data?.data?.id,
+            products: filterdata?.data?.data,
+          },
+        ]);
       }
-    );
+      toast.success("Product Added successfully ", {
+        containerId: "cartContainer",
+      });
+    });
+  };
+
+  const onAddToWhishlistClick = () => {
+    addtoWhistlist(data).then((res) => {
+      if (res) {
+        setIsAddedToWishlist(true);
+        setWistlist((whishlist) => [
+          ...whishlist,
+          {
+            id: res?.data?.data?.id,
+            products: filterdata?.data?.data,
+          },
+        ]);
+      }
+      toast.success("Product Added to Whishlist ", {
+        containerId: "cartContainer",
+      });
+    });
   };
 
   return (
     <>
       <ToastContainer autoClose={1000} containerId="cartContainer" />
-      <div className="pt-4 px-7">
+      <div className="pt-4 px-3">
         <Breadcrumb pathname={pathname} />
         <div className="flex justify-center p-4  mb-6">
           <div className="w-1/2 flex flex-col items-center justify-center gap-5">
-            <div className=" hover:translate-y-[-9px] transition-all duration-500 ease-in-out">
+            <div className=" hover:translate-y-[-9px] w-[70%] transition-all duration-500 ease-in-out">
               <img
                 src={`http://localhost:1337${filterdata?.data?.data?.attributes.image.data[0].attributes.url}`}
-                alt={filterdata.data.data.attributes.title}
-                className="h-[100%] w-full"
+                alt={filterdata?.data?.data?.attributes.title}
+                className="h-[100%] w-[100%]"
                 style={{ mixBlendMode: "darken" }}
               />
             </div>
@@ -123,7 +157,12 @@ const ProductDetails = () => {
 
             <div className="flex items-center gap-1">
               <span className="text-red-500 mb-2 text-2xl">
-                {filterdata?.data?.data?.attributes.discount}%
+                {(
+                  (filterdata?.data?.data?.attributes.mrp -
+                    filterdata?.data?.data?.attributes.price) /
+                  filterdata?.data?.data?.attributes.mrp
+                ).toFixed(1) * 100}
+                %
               </span>
               <p className="text-black mb-2 text-3xl">
                 <sup className="text-xl mt-[20px] leading-0">₹</sup>
@@ -170,14 +209,35 @@ const ProductDetails = () => {
                 </span>
                 Add to Cart
               </button>
-              <button className="bg-blue-600  text-md text-white px-5 py-2 rounded-md flex justify-center items-center gap-2 hover:opacity-[0.9]">
-                <span>
-                  <AiOutlineHeart className="text-xl" />
-                </span>
-                Add to Wishlist
-              </button>
+
+              {isAddedToWishlist ? (
+                <button
+                  className="bg-gray-700  text-md text-white px-5 py-2 rounded-md flex justify-center items-center gap-2 hover:opacity-[0.9]"
+                  onClick={onAddToWhishlistClick}
+                  disabled
+                >
+                  <span>
+                    <IoHeartSharp className=" text-xl text-pink-600" />
+                  </span>
+                  Add to Wishlist
+                </button>
+              ) : (
+                <button
+                  className="bg-blue-600  text-md text-white px-5 py-2 rounded-md flex justify-center items-center gap-2 hover:opacity-[0.9]"
+                  onClick={onAddToWhishlistClick}
+                >
+                  <span>
+                    <AiOutlineHeart className="text-xl" />
+                  </span>
+                  Add to Wishlist
+                </button>
+              )}
             </div>
           </div>
+        </div>
+
+        <div className="categories">
+          <CategoryProducts categoryDetails={categoryDetails} />
         </div>
       </div>
     </>

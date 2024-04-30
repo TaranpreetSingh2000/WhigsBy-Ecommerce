@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 const Cart = () => {
   const { cart, setCart } = useContext(CartContext);
 
-  console.log(cart, "---> came to cart section");
   return (
     <div className="h-[300px] w-[250px] bg-gray-100 z-10 rounded-md absolute mx-10 right-10 top-[6rem] p-5 border shadow-sm overflow-auto transition-all duration-500 ease-out">
       <div className="mt-4 space-y-6">

@@ -8,6 +8,8 @@ const axiosClient = axios.create({
   },
 });
 
+const getAllProducts = () => axiosClient.get("/products?populate=*");
+
 const getProductsById = (id) =>
   axiosClient.get("/products/" + id + "?populate=*");
 
@@ -23,4 +25,37 @@ const getUserCartItems = (email) =>
 // delete cartItems
 const deleteCartItems = (id) => axiosClient.delete("/carts/" + id);
 
-export { addtoCart, getProductsById, getUserCartItems, deleteCartItems };
+// filter products by categories
+
+const getProductsByCategories = (category) =>
+  axiosClient.get(
+    "/products?filters[category][$containsi]=" + category + "&populate=*"
+  );
+
+// whishlist Products
+
+const addtoWhistlist = (data) => axiosClient.post("/whistlists", data);
+
+// get wishlist Item
+
+const getUserWishlistItem = (email) =>
+  axiosClient.get(
+    "/whistlists?populate[products][populate][0]=image&&filters[email][$eq]=" +
+      email
+  );
+
+// delete wishlist Item
+
+const deleteWishlistItem = (id) => axiosClient.delete("/whistlists/" + id);
+
+export {
+  getAllProducts,
+  addtoCart,
+  getProductsById,
+  getUserCartItems,
+  deleteCartItems,
+  getProductsByCategories,
+  addtoWhistlist,
+  getUserWishlistItem,
+  deleteWishlistItem,
+};
