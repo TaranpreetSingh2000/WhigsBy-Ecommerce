@@ -25,7 +25,7 @@ const ProductDetails = () => {
   const [isAddedToWishlist, setIsAddedToWishlist] = useState(false);
   const [categoryDetails, setCategoryDetails] = useState("");
   const { response, loading, error } = useFetch(
-    `http://localhost:1337/api/products/${productId}?populate=*`
+    `https://whigsby-live-server.onrender.com/api/products/${productId}?populate=*`
   );
 
   const email = localStorage.getItem("Email");
@@ -42,7 +42,7 @@ const ProductDetails = () => {
     } else {
       setIsAddedToWishlist(false);
     }
-  }, [productId]);
+  }, []);
 
   useEffect(() => {
     setFilterData(response);
@@ -137,7 +137,7 @@ const ProductDetails = () => {
           <div className="w-1/2 flex flex-col items-center justify-center gap-5">
             <div className=" hover:translate-y-[-9px] w-[70%] transition-all duration-500 ease-in-out">
               <img
-                src={`http://localhost:1337${filterdata?.data?.data?.attributes.image.data[0].attributes.url}`}
+                src={`${filterdata?.data?.data?.attributes.image.data[0].attributes.url}`}
                 alt={filterdata?.data?.data?.attributes.title}
                 className="h-[100%] w-[100%]"
                 style={{ mixBlendMode: "darken" }}

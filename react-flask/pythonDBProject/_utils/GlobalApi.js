@@ -2,7 +2,7 @@ import axios from "axios";
 
 const apiKey = import.meta.env.VITE_PUBLIC_REST_API_KEY;
 const axiosClient = axios.create({
-  baseURL: "http://localhost:1337/api",
+  baseURL: "https://whigsby-live-server.onrender.com/api",
   headers: {
     Authorization: `Bearer ${apiKey}`,
   },

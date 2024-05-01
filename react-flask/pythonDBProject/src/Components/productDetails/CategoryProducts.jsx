@@ -19,7 +19,7 @@ const CategoryProducts = ({ categoryDetails }) => {
               <div className="bg-white border border-gray-300 w-[100%] rounded-lg h-[100%] cursor-pointer">
                 <div>
                   <img
-                    src={`http://localhost:1337${product.attributes.image.data[0].attributes.url}`}
+                    src={`${product.attributes.image.data[0].attributes.url}`}
                     alt={product?.attributes?.title}
                     className="rounded-md h-[250px] object-fill w-[100%]"
                     style={{ mixBlendMode: "darken" }}

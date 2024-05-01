@@ -77,7 +77,7 @@ const Wishlist = () => {
                 <div className="border border-gray-200 rounded-md" key={index}>
                   <div className="flex relative">
                     <img
-                      src={`http://localhost:1337${item.products.attributes.image.data[0].attributes.url}`}
+                      src={`${item.products.attributes.image.data[0].attributes.url}`}
                       className="w-full h-[200px] mb-4 rounded-md"
                     />
                     <RxCross1

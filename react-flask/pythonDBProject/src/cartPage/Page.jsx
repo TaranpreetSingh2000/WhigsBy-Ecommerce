@@ -57,7 +57,7 @@ const Page = () => {
                   cart.map((item) => (
                     <li className="flex items-center gap-4" key={item.id}>
                       <img
-                        src={`http://localhost:1337${item?.products?.attributes?.image?.data[0]?.attributes?.url}`}
+                        src={`${item?.products?.attributes?.image?.data[0]?.attributes?.url}`}
                         alt=""
                         className="size-16 rounded object-cover"
                       />

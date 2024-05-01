@@ -5,44 +5,17 @@ import { getAllProducts } from "../../../_utils/GlobalApi";
 
 const StrapiData = () => {
   const [data, setData] = useState({});
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     getAllProducts()
       .then((res) => {
         setData(res);
-        setLoading(true);
       })
       .catch((error) => {
         setError(error);
-        setLoading(false);
       });
   }, []);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timeout);
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="flex justify-center p-5">
-        <RotatingLines
-          visible={true}
-          height="80"
-          width="80"
-          strokeColor="#00008B"
-          strokeWidth="5"
-          animationDuration="0.75"
-          ariaLabel="rotating-lines-loading"
-        />
-      </div>
-    );
-  }
 
   if (error) {
     return (
@@ -57,7 +30,6 @@ const StrapiData = () => {
       </div>
     );
   }
-
   return (
     <>
       <div className="container mx-auto px-4 mb-6">
@@ -70,7 +42,7 @@ const StrapiData = () => {
               <Link key={product.id} to={`/productDetails/${product.id}`}>
                 <div className="bg-white border border-gray-100 rounded-lg h-[100%]  cursor-pointer">
                   <img
-                    src={`http://localhost:1337${product.attributes.image.data[0].attributes.url}`}
+                    src={`${product.attributes.image.data[0].attributes.url}`}
                     alt={product?.attributes?.title}
                     className="w-full h-[250px] rounded-md"
                   />
