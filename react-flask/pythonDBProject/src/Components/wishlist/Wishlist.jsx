@@ -78,7 +78,7 @@ const Wishlist = () => {
                   <div className="flex relative">
                     <img
                       src={`${item.products.attributes.image.data[0].attributes.url}`}
-                      className="w-full h-[200px] mb-4 rounded-md"
+                      className="w-full h-[300px] mb-4 rounded-md"
                     />
                     <RxCross1
                       className="absolute right-0 mx-2 my-2 border border-gray-500 rounded-xl p-1 text-2xl cursor-pointer"

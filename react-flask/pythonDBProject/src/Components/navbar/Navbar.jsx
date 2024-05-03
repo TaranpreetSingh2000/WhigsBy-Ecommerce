@@ -35,7 +35,7 @@ const Navbar = () => {
       setCart([]);
       setWistlist([]);
     }
-  }, [email]);
+  }, [email, cart]);
 
   const getCartItem = () => {
     getUserCartItems(email).then((res) => {
@@ -66,18 +66,14 @@ const Navbar = () => {
   };
   useEffect(() => {
     const isLogin = sessionStorage.getItem("accessToken");
+    const isAdminLogin = sessionStorage.getItem("adminAccessToken");
+
     if (isLogin) {
       setIsAuth(true);
-    } else {
-      setIsAuth(false);
-    }
-  });
-
-  useEffect(() => {
-    const isAdminLogin = sessionStorage.getItem("adminAccessToken");
-    if (isAdminLogin) {
+    } else if (isAdminLogin) {
       setIsAdminAuth(true);
     } else {
+      setIsAuth(false);
       setIsAdminAuth(false);
     }
   });
@@ -130,7 +126,7 @@ const Navbar = () => {
     toast.success("Logout Successfully ");
     setTimeout(() => {
       navigate("/admin");
-    }, 3000);
+    }, 1000);
   };
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -138,7 +134,7 @@ const Navbar = () => {
 
   return (
     <>
-      <ToastContainer autoClose={3000} />
+      <ToastContainer autoClose={1000} />
       <nav className="bg-white dark:bg-gray-900 w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
         <div className="flex flex-wrap items-center justify-between mx-auto p-2.5">
           <div>
@@ -295,7 +291,9 @@ const Navbar = () => {
               >
                 <BsCart2 className="text-xl cursor-pointer" />
                 <span className="font-semibold text-md cursor-pointer">
-                  ({isAuth ? cart?.length : 0})
+                  <sup className="border border-[#262f4a] rounded-xl p-[0.9px] px-[5px] bg-[#262f4a] text-white">
+                    {isAuth ? cart?.length : 0}
+                  </sup>
                 </span>
               </div>
 

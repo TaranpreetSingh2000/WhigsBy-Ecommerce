@@ -15,27 +15,31 @@ import "react-toastify/dist/ReactToastify.css";
 import { CartContext } from "../../_context/CartContext";
 import CategoryProducts from "./CategoryProducts";
 import { IoHeartSharp } from "react-icons/io5";
+import useCart from "../hooks/useCart";
 
 const ProductDetails = () => {
+  debugger;
   const pathname = window.location.pathname;
   const { productId } = useParams();
-  let [filterdata, setFilterData] = useState({});
+  const fetchCart = useCart();
+  const [filterdata, setFilterData] = useState({});
   const { cart, setCart, wishlist, setWistlist } = useContext(CartContext);
   const [showCards, setShowCards] = useState(false);
   const [isAddedToWishlist, setIsAddedToWishlist] = useState(false);
   const [categoryDetails, setCategoryDetails] = useState("");
+  const email = localStorage.getItem("Email");
+  const WishlistItems = JSON.parse(localStorage.getItem("Wishlist"));
   const { response, loading, error } = useFetch(
     `https://whigsby-live-server.onrender.com/api/products/${productId}?populate=*`
   );
 
-  const email = localStorage.getItem("Email");
-  const WishlistItems = JSON.parse(localStorage.getItem("Wishlist"));
   const getCateogoryProducts = (category) => {
     getProductsByCategories(category).then((res) => {
       window.scrollTo(0, 0);
       setCategoryDetails(res);
     });
   };
+
   useEffect(() => {
     if (WishlistItems.some((item) => item.products.id === Number(productId))) {
       setIsAddedToWishlist(true);
@@ -94,19 +98,8 @@ const ProductDetails = () => {
   };
 
   const onAddToCartClick = () => {
-    addtoCart(data).then((res) => {
-      if (res) {
-        setCart((cart) => [
-          ...cart,
-          {
-            id: res?.data?.data?.id,
-            products: filterdata?.data?.data,
-          },
-        ]);
-      }
-      toast.success("Product Added successfully ", {
-        containerId: "cartContainer",
-      });
+    fetchCart(data, {
+      productData: filterdata?.data?.data,
     });
   };
 
@@ -130,43 +123,43 @@ const ProductDetails = () => {
 
   return (
     <>
-      <ToastContainer autoClose={1000} containerId="cartContainer" />
-      <div className="pt-4 px-3">
+      <ToastContainer autoClose={1000} />
+      <div className="pt-4 px-6">
         <Breadcrumb pathname={pathname} />
-        <div className="flex justify-center p-4  mb-6">
-          <div className="w-1/2 flex flex-col items-center justify-center gap-5">
-            <div className=" hover:translate-y-[-9px] w-[70%] transition-all duration-500 ease-in-out">
+        <div className="flex justify-center p-4 mb-6 max-[500px]:flex-col">
+          <div className="w-1/2 flex flex-col items-center justify-center gap-5 max-[500px]:w-full">
+            <div className=" hover:translate-y-[-9px] transition-all duration-500 ease-in-out">
               <img
-                src={`${filterdata?.data?.data?.attributes.image.data[0].attributes.url}`}
-                alt={filterdata?.data?.data?.attributes.title}
-                className="h-[100%] w-[100%]"
+                src={`${filterdata?.data?.data?.attributes?.image.data[0].attributes.url}`}
+                alt={filterdata?.data?.data?.attributes?.title}
+                className="h-[100%]"
                 style={{ mixBlendMode: "darken" }}
               />
             </div>
           </div>
-          <div className="w-1/2 flex flex-col pt-5">
-            <h2 className="text-3xl font-semibold mb-2">
-              {filterdata?.data?.data?.attributes.title}
+          <div className="w-1/2 flex flex-col pt-5 max-[500px]:w-full">
+            <h2 className="text-3xl font-semibold mb-2 max-[500px]:text-xl">
+              {filterdata?.data?.data?.attributes?.title}
             </h2>
 
             <div className="w-[130px]">
               <button className="text-white bg-red-700 text-left px-2 py-0.5 rounded-[4px] font-semibold mb-2 text-sm">
-                {filterdata?.data?.data?.attributes.offer}
+                {filterdata?.data?.data?.attributes?.offer}
               </button>
             </div>
 
             <div className="flex items-center gap-1">
               <span className="text-red-500 mb-2 text-2xl">
                 {(
-                  (filterdata?.data?.data?.attributes.mrp -
-                    filterdata?.data?.data?.attributes.price) /
-                  filterdata?.data?.data?.attributes.mrp
+                  (filterdata?.data?.data?.attributes?.mrp -
+                    filterdata?.data?.data?.attributes?.price) /
+                  filterdata?.data?.data?.attributes?.mrp
                 ).toFixed(1) * 100}
                 %
               </span>
               <p className="text-black mb-2 text-3xl">
                 <sup className="text-xl mt-[20px] leading-0">₹</sup>
-                {filterdata?.data?.data?.attributes.price.toFixed(0)}
+                {filterdata?.data?.data?.attributes?.price.toFixed(0)}
               </p>
             </div>
 
@@ -174,7 +167,7 @@ const ProductDetails = () => {
               <span className="text-gray-500 mb-2 text-md font-serif">
                 M.R.P: ₹{" "}
                 <span className="line-through">
-                  {filterdata?.data?.data?.attributes.mrp}
+                  {filterdata?.data?.data?.attributes?.mrp}
                 </span>
               </span>
             </div>
@@ -192,42 +185,42 @@ const ProductDetails = () => {
                 />
               </svg>
               <p className="text-gray-600 mb-2 text-lg">
-                {filterdata?.data?.data?.attributes.rating.toFixed(1)}
+                {filterdata?.data?.data?.attributes?.rating.toFixed(1)}
               </p>
             </div>
             <p className="text-gray-600 mb-4 text-md">
-              {filterdata?.data?.data?.attributes.category}
+              {filterdata?.data?.data?.attributes?.category}
             </p>
 
             <div className="flex items-center">
               <button
-                className="bg-blue-600  text-md text-white px-5 py-2 mr-2 rounded-md flex items-center gap-2 hover:opacity-[0.9]"
+                className="bg-blue-600  text-md text-white px-5 py-2 mr-2 rounded-md flex items-center gap-2 hover:opacity-[0.9] max-[430px]:text-sm max-[430px]:px-2"
                 onClick={onAddToCartClick}
               >
                 <span>
-                  <BsCart2 className="text-xl" />
+                  <BsCart2 className="text-xl max-[430px]:text-sm" />
                 </span>
                 Add to Cart
               </button>
 
               {isAddedToWishlist ? (
                 <button
-                  className="bg-gray-700  text-md text-white px-5 py-2 rounded-md flex justify-center items-center gap-2 hover:opacity-[0.9]"
+                  className="bg-gray-700  text-md text-white px-5 py-2 rounded-md flex justify-center items-center gap-2 hover:opacity-[0.9] max-[430px]:text-sm max-[430px]:px-2"
                   onClick={onAddToWhishlistClick}
                   disabled
                 >
                   <span>
-                    <IoHeartSharp className=" text-xl text-pink-600" />
+                    <IoHeartSharp className=" text-xl text-pink-600 max-[430px]:text-sm" />
                   </span>
                   Add to Wishlist
                 </button>
               ) : (
                 <button
-                  className="bg-blue-600  text-md text-white px-5 py-2 rounded-md flex justify-center items-center gap-2 hover:opacity-[0.9]"
+                  className="bg-blue-600  text-md text-white px-5 py-2 rounded-md flex justify-center items-center gap-2 hover:opacity-[0.9] max-[430px]:text-sm max-[430px]:px-2"
                   onClick={onAddToWhishlistClick}
                 >
                   <span>
-                    <AiOutlineHeart className="text-xl" />
+                    <AiOutlineHeart className="text-xl max-[430px]:text-sm" />
                   </span>
                   Add to Wishlist
                 </button>

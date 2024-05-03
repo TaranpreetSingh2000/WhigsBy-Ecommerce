@@ -1,24 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const AdminDashboard = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    getNumberOfUsers();
+  }, []);
+  const getNumberOfUsers = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/users");
+
+      if (response.status === 200) {
+        setData(response.data);
+      }
+    } catch (error) {
+      console.log("Getting error in fetching the number of users");
+    }
+  };
+
+  console.log(data);
+  debugger;
   return (
     <>
-      <ToastContainer autoClose={3000} />
-      {/* <div className="flex flex-col justify-center gap-5 items-center h-[80vh]">
-        <h2 className="text-5xl text-red-800">
-          Welcome to Admin Dashboard Page
-        </h2>
-
-        <button
-          type="submit"
-          class="py-3 px-4 text-md font-medium rounded-lg text-white bg-blue-700 focus:ring-4 focus:outline-none hover:bg-blue-600 hover:transition all duration-500 ease-in-out"
-          onClick={handleLogout}
-        >
-          Log out
-        </button>
-      </div> */}
+      <ToastContainer autoClose={1000} />
       <div className="flex h-screen bg-gray-200">
         {/* Sidebar */}
         <aside className="bg-gray-800 text-gray-100 flex-shrink-0 w-64">
@@ -74,15 +80,40 @@ const AdminDashboard = () => {
             <div className="bg-white p-6 flex justify-between items-center mb-8">
               <div>
                 <p className="mb-2 text-sm font-medium text-gray-600">
-                  Total Users
+                  Total Users Registered
                 </p>
-                <p className="text-lg font-semibold text-gray-700">500</p>
+                <p className="text-lg font-semibold text-gray-700">
+                  {data.user_count}
+                </p>
               </div>
               <div>
                 <button className="bg-green-500 text-white px-4 py-2 rounded-md">
                   Manage Products
                 </button>
               </div>
+            </div>
+
+            {/* Tables */}
+            <div className="w-full overflow-hidden rounded-lg shadow-md bg-white mb-8">
+              <table className="w-full whitespace-nowrap">
+                <thead>
+                  <tr className="text-left font-medium">
+                    <th className="px-6 pt-6 pb-4">ID</th>
+                    <th className="px-6 pt-6 pb-4">Name</th>
+                    <th className="px-6 pt-6 pb-4">Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.users &&
+                    data.users.map((user, index) => (
+                      <tr key={index}>
+                        <td className="px-6 py-4">{user.id}</td>
+                        <td className="px-6 py-4">{user.name}</td>
+                        <td className="px-6 py-4">{user.email}</td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
             </div>
 
             {/* Order History */}
@@ -101,32 +132,6 @@ const AdminDashboard = () => {
                 </div>
                 {/* Add more order details */}
               </div>
-            </div>
-
-            {/* Tables */}
-            <div className="w-full overflow-hidden rounded-lg shadow-md bg-white">
-              <table className="w-full whitespace-nowrap">
-                {/* Table Headers */}
-                <thead>
-                  <tr className="text-left font-medium">
-                    <th className="px-6 pt-6 pb-4">ID</th>
-                    <th className="px-6 pt-6 pb-4">Name</th>
-                    <th className="px-6 pt-6 pb-4">Email</th>
-                    {/* Add more headers */}
-                  </tr>
-                </thead>
-                {/* Table Body */}
-                <tbody>
-                  {/* Table Rows */}
-                  <tr>
-                    <td className="px-6 py-4">1</td>
-                    <td className="px-6 py-4">John Doe</td>
-                    <td className="px-6 py-4">john.doe@example.com</td>
-                    {/* Add more columns */}
-                  </tr>
-                  {/* Add more rows */}
-                </tbody>
-              </table>
             </div>
           </div>
         </main>

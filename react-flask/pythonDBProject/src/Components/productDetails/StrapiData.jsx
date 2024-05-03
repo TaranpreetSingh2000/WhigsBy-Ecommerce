@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import { getAllProducts } from "../../../_utils/GlobalApi";
+import ShopByCategories from "./ShopByCategories";
 
 const StrapiData = () => {
   const [data, setData] = useState({});
@@ -32,27 +33,34 @@ const StrapiData = () => {
   }
   return (
     <>
+      <div className="container mx-auto px-5 mb-6">
+        <h1 className="uppercase my-[40px] text-[1.8em] text-zinc-700 font-medium tracking-[0.3em] tracking-normal-[2.5em] mb-[40px] px-[45px] max-[500px]:px-0 max-[500px]:text-2xl max-[500px]:text-center">
+          SHOP BY CATEGORIES
+        </h1>
+
+        <ShopByCategories category={data.data} />
+      </div>
       <div className="container mx-auto px-4 mb-6">
-        <h1 className="uppercase my-[40px] text-[1.8em] text-zinc-700 font-medium tracking-[0.3em] tracking-normal-[2.5em] mb-[40px] px-[45px]">
+        <h1 className="uppercase my-[40px] text-[1.8em] text-zinc-700 font-medium tracking-[0.3em] tracking-normal-[2.5em] mb-[40px] px-[45px] max-[500px]:px-0 max-[500px]:text-2xl max-[500px]:text-center">
           GRAND GLOBAL BRANDS
         </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 cursor-pointer">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 cursor-pointer">
           {data.data &&
             data.data.data.map((product) => (
               <Link key={product.id} to={`/productDetails/${product.id}`}>
-                <div className="bg-white border border-gray-100 rounded-lg h-[100%]  cursor-pointer">
+                <div className="bg-white border border-gray-100 rounded-lg h-[100%] w-[95%] cursor-pointer">
                   <img
                     src={`${product.attributes.image.data[0].attributes.url}`}
                     alt={product?.attributes?.title}
-                    className="w-full h-[250px] rounded-md"
+                    className="w-full rounded-md"
                   />
 
                   <div className="flex flex-col justify-center items-center mt-2 p-2">
                     <p className="text-lg font-semibold">
                       {product?.attributes?.title.split(" ")[0]}
                     </p>
-                    <h2 className="text-lg font-[Arial] min-h-[110px] hover:text-orange-500 hover:underline">
-                      {product.attributes.title.slice(0, 100)}...
+                    <h2 className="text-md font-[Arial] hover:text-orange-500 hover:underline max-[500px]:min-h-0">
+                      {product.attributes.title.slice(0, 50)}...
                     </h2>
                   </div>
                   <div className="flex items-center mt-2">
