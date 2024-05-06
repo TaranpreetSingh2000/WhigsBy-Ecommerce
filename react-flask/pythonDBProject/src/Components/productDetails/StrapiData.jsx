@@ -33,14 +33,14 @@ const StrapiData = () => {
   }
   return (
     <>
-      <div className="container mx-auto px-5 mb-6">
+      <div className="container mx-auto mb-6">
         <h1 className="uppercase my-[40px] text-[1.8em] text-zinc-700 font-medium tracking-[0.3em] tracking-normal-[2.5em] mb-[40px] px-[45px] max-[500px]:px-0 max-[500px]:text-2xl max-[500px]:text-center">
           SHOP BY CATEGORIES
         </h1>
 
         <ShopByCategories category={data.data} />
       </div>
-      <div className="container mx-auto px-4 mb-6">
+      <div className="container mx-auto mb-6">
         <h1 className="uppercase my-[40px] text-[1.8em] text-zinc-700 font-medium tracking-[0.3em] tracking-normal-[2.5em] mb-[40px] px-[45px] max-[500px]:px-0 max-[500px]:text-2xl max-[500px]:text-center">
           GRAND GLOBAL BRANDS
         </h1>

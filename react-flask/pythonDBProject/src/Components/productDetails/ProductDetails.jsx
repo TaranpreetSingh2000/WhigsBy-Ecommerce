@@ -16,14 +16,15 @@ import { CartContext } from "../../_context/CartContext";
 import CategoryProducts from "./CategoryProducts";
 import { IoHeartSharp } from "react-icons/io5";
 import useCart from "../hooks/useCart";
+import useWishlist from "../hooks/useWishlist";
 
 const ProductDetails = () => {
-  debugger;
   const pathname = window.location.pathname;
   const { productId } = useParams();
   const fetchCart = useCart();
+  const fetchWishlist = useWishlist();
   const [filterdata, setFilterData] = useState({});
-  const { cart, setCart, wishlist, setWistlist } = useContext(CartContext);
+  const { setWistlist } = useContext(CartContext);
   const [showCards, setShowCards] = useState(false);
   const [isAddedToWishlist, setIsAddedToWishlist] = useState(false);
   const [categoryDetails, setCategoryDetails] = useState("");
@@ -104,21 +105,10 @@ const ProductDetails = () => {
   };
 
   const onAddToWhishlistClick = () => {
-    addtoWhistlist(data).then((res) => {
-      if (res) {
-        setIsAddedToWishlist(true);
-        setWistlist((whishlist) => [
-          ...whishlist,
-          {
-            id: res?.data?.data?.id,
-            products: filterdata?.data?.data,
-          },
-        ]);
-      }
-      toast.success("Product Added to Whishlist ", {
-        containerId: "cartContainer",
-      });
+    fetchWishlist(data, {
+      productData: filterdata?.data?.data,
     });
+    setIsAddedToWishlist(true);
   };
 
   return (

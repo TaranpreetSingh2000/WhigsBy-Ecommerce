@@ -3,12 +3,14 @@ import { useParams } from "react-router-dom";
 import { getProductsByCategories } from "../../../_utils/GlobalApi";
 import { BallTriangle } from "react-loader-spinner";
 import { BsCart2 } from "react-icons/bs";
-import { AiOutlineHeart } from "react-icons/ai";
+import useCart from "../hooks/useCart";
 
 const ShopCategoriesDetails = () => {
+  const fetchCart = useCart();
   const [categoryDetails, setCategoryDetails] = useState([]);
   const [loading, setLoading] = useState(false);
   const { categoryname } = useParams();
+  const email = localStorage.getItem("Email");
 
   useEffect(() => {
     debugger;
@@ -40,20 +42,33 @@ const ShopCategoriesDetails = () => {
     );
   }
 
-  console.log(categoryDetails);
+  const onAddToCartClick = (id, item) => {
+    const data = {
+      data: {
+        email: email,
+        products: id,
+      },
+    };
+    fetchCart(data, {
+      // format in for access the data in cart
+      productData: item,
+    });
+  };
+
   return (
     <>
       {categoryDetails &&
         categoryDetails.map((item, index) => (
           <div className="border p-4 flex m-5" key={index}>
-            <div className="flex-shrink-0">
+            <div className="flex w-40">
               <img
                 src={item?.attributes?.image?.data[0]?.attributes?.url}
                 alt={item?.attributes?.title}
-                className="w-32 h-32 object-contain"
+                className=" w-full object-contain"
               />
             </div>
-            <div className="flex-grow px-4">
+
+            <div className="flex flex-col px-4">
               <h2 className="text-md font-semibold">
                 {item?.attributes?.title}
               </h2>
@@ -84,10 +99,10 @@ const ShopCategoriesDetails = () => {
             </div>
             <div className="flex gap-2">
               <span>
-                <BsCart2 className="text-2xl cursor-pointer" />
-              </span>
-              <span>
-                <AiOutlineHeart className="text-2xl cursor-pointer" />
+                <BsCart2
+                  className="text-2xl cursor-pointer"
+                  onClick={() => onAddToCartClick(item?.id, item)}
+                />
               </span>
             </div>
           </div>

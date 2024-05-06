@@ -6,21 +6,21 @@ import { toast } from "react-toastify";
 const useCart = () => {
   const { cart, setCart } = useContext(CartContext);
 
-    const fetchCart = (data, productData) => {
-      addtoCart(data).then((res) => {
-        if (res) {
-          setCart((cart) => [
-            ...cart,
-            {
-              id: res?.data?.data?.id,
-              products: productData,
-            },
-          ]);
-        }
-        toast.success("Product Added successfully");
-      });
-    };
-    return fetchCart;
+  const fetchCart = (data, productData) => {
+    addtoCart(data).then((res) => {
+      if (res) {
+        setCart((cart) => [
+          ...cart,
+          {
+            id: res?.data?.data?.id,
+            products: productData,
+          },
+        ]);
+      }
+      toast.success("Product Added successfully");
+    });
+  };
+  return fetchCart;
 };
 
 export default useCart;
