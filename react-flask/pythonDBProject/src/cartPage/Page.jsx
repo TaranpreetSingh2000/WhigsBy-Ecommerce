@@ -19,6 +19,7 @@ const Page = () => {
   };
 
   const deleteCartItems_ = (id) => {
+    debugger;
     deleteCartItems(id).then((res) => {
       toast.success("Product Removed from cart ", {
         containerId: "cartRemoveContainer",

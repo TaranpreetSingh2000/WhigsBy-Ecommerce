@@ -5,7 +5,7 @@ const AdminCart = () => {
 
   return (
     <div className="container mx-auto p-4 overflow-y-auto">
-      {cart.length > 0 &&
+      {cart.length > 0 ? (
         cart.map((item, index) => (
           <div
             className="flex leading-7 gap-4 border border-gray-300 m-2 rounded-md p-3 bg-white"
@@ -63,7 +63,12 @@ const AdminCart = () => {
               </p>
             </div>
           </div>
-        ))}
+        ))
+      ) : (
+        <p className="text-center text-gray-700 text-xl mx-auto">
+          No products in the cart
+        </p>
+      )}
     </div>
   );
 };

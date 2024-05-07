@@ -18,11 +18,11 @@ const Login = () => {
     password: "",
   });
 
-  const handlechange = (e) => {
+  const handleChange = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
-  const handeSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
@@ -57,70 +57,95 @@ const Login = () => {
   return (
     <>
       <ToastContainer autoClose={3000} />
-      <div className="bg-grey mt-6 flex flex-col">
-        <div className="container max-w-lg mx-auto flex-1 flex flex-col items-center justify-center px-2">
-          <div className="p-6 rounded text-black w-full bg-gray-50 shadow-md">
-            <h1 className="mb-8 text-3xl text-center uppercase text-green-950">
-              Login In
-            </h1>
+      <div className="bg-gray-100 min-h-screen py-[4rem]">
+        <div className="max-w-md w-full mx-auto p-8 bg-white rounded-lg shadow-lg">
+          <h1 className="text-3xl text-center font-semibold text-gray-800 mb-6">
+            Log In
+          </h1>
 
-            <form onSubmit={handeSubmit}>
+          <form className="space-y-4" onSubmit={handleSubmit}>
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Email
+              </label>
               <input
-                type="text"
-                className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
                 name="email"
-                onChange={handlechange}
-                placeholder="Email"
+                type="email"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="Enter your email"
+                onChange={handleChange}
                 required
               />
+            </div>
 
+            <div>
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Password
+              </label>
               <div className={style.inputWithIcon}>
                 <input
-                  type={passwordType}
-                  className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
                   name="password"
-                  onChange={handlechange}
-                  placeholder="Password"
+                  type={passwordType}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  placeholder="Enter your password"
+                  onChange={handleChange}
                   required
                 />
                 <span className={style.icon} onClick={togglePassword}>
                   <Icon icon={icon} size={20} />
                 </span>
               </div>
+            </div>
 
-              <button
-                type="submit"
-                className="w-full text-center py-3 rounded bg-blue-700 text-white outline-lime-800"
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <input
+                  id="remember"
+                  type="checkbox"
+                  className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                />
+                <label
+                  htmlFor="remember"
+                  className="ml-2 block text-sm text-gray-900"
+                >
+                  Remember me
+                </label>
+              </div>
+
+              <div>
+                <Link
+                  to="/forgot-password"
+                  className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                >
+                  Forgot Password?
+                </Link>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Log In
+            </button>
+          </form>
+
+          <div className="mt-4 text-center">
+            <p className="text-sm text-gray-600">
+              Don't have an account?
+              <Link
+                to="/signup"
+                className="ml-1 font-medium text-indigo-600 hover:text-indigo-500"
               >
-                Login In
-              </button>
-
-              <div className="flex justify-between items-center mt-2">
-                <div className="remember">
-                  <input type="checkbox" className="input-check p-3" />
-                  <span className="mx-1">Remember me</span>
-                </div>
-
-                <Link
-                  to=""
-                  className="text-blue-900 hover:underline transition ease-in-out duration-300"
-                >
-                  Forgot Password
-                </Link>
-              </div>
-
-              <hr className="my-4 border-gray-300" />
-
-              <div className="text-center ">
-                <p className="text-gray-600">Don't have an account?</p>
-                <Link
-                  to="/signup"
-                  className="text-blue-900 hover:underline transition ease-in-out duration-300"
-                >
-                  Sign Up
-                </Link>
-              </div>
-            </form>
+                Sign Up
+              </Link>
+            </p>
           </div>
         </div>
       </div>

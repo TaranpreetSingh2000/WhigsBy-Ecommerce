@@ -8,18 +8,22 @@ const axiosClient = axios.create({
   },
 });
 
-const getAllProducts = () => axiosClient.get("/products?populate=*");
+const getAllProducts = () =>
+  axiosClient.get("/products?populate=* &pagination[limit]=100");
 
 const getProductsById = (id) =>
-  axiosClient.get("/products/" + id + "?populate=*");
+  axiosClient.get("/products/" + id + "?populate=* &pagination[limit]=100");
 
 // add to cart function
-const addtoCart = (data) => axiosClient.post("/carts", data);
+const addtoCart = (data) =>
+  axiosClient.post("/carts", data, "&pagination[limit]=100");
 
 // Get user cart items
 const getUserCartItems = (email) =>
   axiosClient.get(
-    "/carts?populate[products][populate][0]=image&&filters[email][$eq]=" + email
+    "/carts?populate[products][populate][0]=image&&filters[email][$eq]=" +
+      email +
+      "&pagination[limit]=100"
   );
 
 // delete cartItems
@@ -34,14 +38,16 @@ const getProductsByCategories = (category) =>
 
 // whishlist Products
 
-const addtoWhistlist = (data) => axiosClient.post("/whistlists", data);
+const addtoWhistlist = (data) =>
+  axiosClient.post("/whistlists", data, "&pagination[limit]=100");
 
 // get wishlist Item
 
 const getUserWishlistItem = (email) =>
   axiosClient.get(
     "/whistlists?populate[products][populate][0]=image&&filters[email][$eq]=" +
-      email
+      email +
+      "&pagination[limit]=100"
   );
 
 // delete wishlist Item

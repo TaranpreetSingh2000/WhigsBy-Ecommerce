@@ -1,10 +1,34 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { CartContext } from "../../_context/CartContext";
 import { Link } from "react-router-dom";
+import { getUserCartItems } from "../../../_utils/GlobalApi";
 
 const Cart = () => {
   const { cart, setCart } = useContext(CartContext);
 
+  const email = localStorage.getItem("Email");
+
+  useEffect(() => {
+    if (email) {
+      getCartItem();
+    } else {
+      setCart([]);
+    }
+  }, [email, cart]);
+
+  const getCartItem = () => {
+    getUserCartItems(email).then((res) => {
+      const result = res.data.data;
+      if (result) {
+        setCart(
+          result.map((prod) => ({
+            id: prod?.id,
+            products: prod.attributes.products.data,
+          }))
+        );
+      }
+    });
+  };
   return (
     <div className="h-[300px] w-[250px] bg-gray-100 z-10 rounded-md absolute mx-10 right-10 top-[6rem] p-5 border shadow-sm overflow-auto transition-all duration-500 ease-out">
       <div className="mt-4 space-y-6">
