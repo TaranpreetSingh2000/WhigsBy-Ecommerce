@@ -11,7 +11,7 @@ const ShopByCategories = ({ category }) => {
   ];
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-5 gap-4 p-3">
       {uniqueCategories.map((category, index) => (
         <Link key={index} to={`/categoryDetails/${category}`}>
           <div

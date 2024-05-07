@@ -13,7 +13,6 @@ const ShopCategoriesDetails = () => {
   const email = localStorage.getItem("Email");
 
   useEffect(() => {
-    debugger;
     setLoading(true);
     getCateogoryProducts(categoryname);
   }, [categoryname]);
@@ -59,7 +58,10 @@ const ShopCategoriesDetails = () => {
     <>
       {categoryDetails &&
         categoryDetails.map((item, index) => (
-          <div className="border p-4 flex m-5" key={index}>
+          <div
+            className="border p-4 flex m-5 max-[500px]:flex-col max-[500px]:items-center"
+            key={index}
+          >
             <div className="flex w-40">
               <img
                 src={item?.attributes?.image?.data[0]?.attributes?.url}

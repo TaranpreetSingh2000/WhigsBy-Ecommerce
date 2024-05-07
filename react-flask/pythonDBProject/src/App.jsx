@@ -22,6 +22,9 @@ import Cart from "./Components/cart/Cart.jsx";
 import Page from "./cartPage/Page.jsx";
 import Wishlist from "./Components/wishlist/Wishlist.jsx";
 import ShopCategoriesDetails from "./Components/productDetails/ShopCategoriesDetails.jsx";
+import ManageProducts from "./Components/adminDashboard/manageProducts/ManageProducts.jsx";
+import Users from "./Components/adminDashboard/Users.jsx";
+import AdminCart from "./Components/adminDashboard/AdminCart.jsx";
 // import Checkout from "./Components/checkout/Checkout.jsx";
 
 const router = createBrowserRouter(
@@ -47,9 +50,13 @@ const router = createBrowserRouter(
         <Route path="/wishlist" element={<Protected Component={Wishlist} />} />
         <Route path="/page" element={<Protected Component={Page} />} />
         <Route
-          path="/admin/dashboard"
+          path="admindashboard"
           element={<AdminProtected Component={AdminDashboard} />}
-        />
+        >
+          <Route path="manageproducts" element={<ManageProducts />} />
+          <Route path="user" element={<Users />} />
+          <Route path="admincart" element={<AdminCart />} />
+        </Route>
         <Route path="contact" element={<Contact />} />
       </Route>
     </>

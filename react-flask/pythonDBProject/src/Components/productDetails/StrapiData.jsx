@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { RotatingLines } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import { getAllProducts } from "../../../_utils/GlobalApi";
 import ShopByCategories from "./ShopByCategories";
@@ -31,24 +30,41 @@ const StrapiData = () => {
       </div>
     );
   }
+
   return (
     <>
       <div className="container mx-auto mb-6">
-        <h1 className="uppercase my-[40px] text-[1.8em] text-zinc-700 font-medium tracking-[0.3em] tracking-normal-[2.5em] mb-[40px] px-[45px] max-[500px]:px-0 max-[500px]:text-2xl max-[500px]:text-center">
+        <h1 className="uppercase my-[40px] text-[1.8em] text-zinc-700 font-medium tracking-[0.3em] tracking-normal-[2.5em] mb-[40px] px-[50px] max-[500px]:px-0 max-[500px]:text-2xl max-[500px]:text-center">
           SHOP BY CATEGORIES
         </h1>
 
-        <ShopByCategories category={data.data} />
+        {data.data ? (
+          <ShopByCategories category={data.data} />
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
+            <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
+            <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
+            <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
+            <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
+            <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
+            <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
+            <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
+            <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
+            <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
+            <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
+          </div>
+        )}
       </div>
       <div className="container mx-auto mb-6">
         <h1 className="uppercase my-[40px] text-[1.8em] text-zinc-700 font-medium tracking-[0.3em] tracking-normal-[2.5em] mb-[40px] px-[45px] max-[500px]:px-0 max-[500px]:text-2xl max-[500px]:text-center">
           GRAND GLOBAL BRANDS
         </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 cursor-pointer">
-          {data.data &&
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 cursor-pointer p-3">
+          {data.data ? (
             data.data.data.map((product) => (
               <Link key={product.id} to={`/productDetails/${product.id}`}>
-                <div className="bg-white border border-gray-100 rounded-lg h-[100%] w-[95%] cursor-pointer">
+                <div className="bg-white border border-gray-100 rounded-lg h-[100%] w-[100%] cursor-pointer">
                   <img
                     src={`${product.attributes.image.data[0].attributes.url}`}
                     alt={product?.attributes?.title}
@@ -102,7 +118,39 @@ const StrapiData = () => {
                   </div>
                 </div>
               </Link>
-            ))}
+            ))
+          ) : (
+            <>
+              <div className="bg-white border border-gray-100 rounded-lg h-[100%] w-[290px] cursor-pointer mt-5 p-2">
+                <div className="h-[300px] w-[270px] bg-slate-200 animate-pulse rounded-lg"></div>
+                <div className="h-[30px] w-[100px] bg-slate-200 animate-pulse flex justify-center mx-auto mt-2"></div>
+                <div className="h-[30px] w-[260px] bg-slate-200 animate-pulse mt-2"></div>
+                <div className="h-[30px] w-[80px] bg-slate-200 animate-pulse mt-2"></div>
+                <div className="h-[30px] w-[260px] bg-slate-200 animate-pulse mt-2"></div>
+              </div>
+              <div className="bg-white border border-gray-100 rounded-lg h-[100%] w-[290px] cursor-pointer mt-5 p-2">
+                <div className="h-[300px] w-[270px] bg-slate-200 animate-pulse rounded-lg"></div>
+                <div className="h-[30px] w-[100px] bg-slate-200 animate-pulse flex justify-center mx-auto mt-2"></div>
+                <div className="h-[30px] w-[260px] bg-slate-200 animate-pulse mt-2"></div>
+                <div className="h-[30px] w-[80px] bg-slate-200 animate-pulse mt-2"></div>
+                <div className="h-[30px] w-[260px] bg-slate-200 animate-pulse mt-2"></div>
+              </div>
+              <div className="bg-white border border-gray-100 rounded-lg h-[100%] w-[290px] cursor-pointer mt-5 p-2">
+                <div className="h-[300px] w-[270px] bg-slate-200 animate-pulse rounded-lg"></div>
+                <div className="h-[30px] w-[100px] bg-slate-200 animate-pulse flex justify-center mx-auto mt-2"></div>
+                <div className="h-[30px] w-[260px] bg-slate-200 animate-pulse mt-2"></div>
+                <div className="h-[30px] w-[80px] bg-slate-200 animate-pulse mt-2"></div>
+                <div className="h-[30px] w-[260px] bg-slate-200 animate-pulse mt-2"></div>
+              </div>
+              <div className="bg-white border border-gray-100 rounded-lg h-[100%] w-[290px] cursor-pointer mt-5 p-2">
+                <div className="h-[300px] w-[270px] bg-slate-200 animate-pulse rounded-lg"></div>
+                <div className="h-[30px] w-[100px] bg-slate-200 animate-pulse flex justify-center mx-auto mt-2"></div>
+                <div className="h-[30px] w-[260px] bg-slate-200 animate-pulse mt-2"></div>
+                <div className="h-[30px] w-[80px] bg-slate-200 animate-pulse mt-2"></div>
+                <div className="h-[30px] w-[260px] bg-slate-200 animate-pulse mt-2"></div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>

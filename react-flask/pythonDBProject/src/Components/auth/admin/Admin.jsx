@@ -30,7 +30,7 @@ const Admin = () => {
         localStorage.setItem("Email", loginData.email);
         toast.success("Admin has Login Successfully");
         setTimeout(() => {
-          navigate("/admin/dashboard");
+          navigate("/admindashboard/user");
         }, 3000);
       }
     } catch (error) {

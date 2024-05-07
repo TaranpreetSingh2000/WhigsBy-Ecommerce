@@ -292,7 +292,7 @@ const Navbar = () => {
                 <BsCart2 className="text-xl cursor-pointer" />
                 <span className="font-semibold text-md cursor-pointer">
                   <sup className="border border-[#262f4a] rounded-xl p-[0.9px] px-[5px] bg-[#262f4a] text-white">
-                    {isAuth ? cart?.length : 0}
+                    {isAuth || isAdminAuth ? cart?.length : 0}
                   </sup>
                 </span>
               </div>

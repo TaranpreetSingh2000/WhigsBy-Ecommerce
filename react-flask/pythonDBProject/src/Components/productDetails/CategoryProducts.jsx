@@ -3,7 +3,6 @@ import { TiTick } from "react-icons/ti";
 import { Link } from "react-router-dom";
 
 const CategoryProducts = ({ categoryDetails }) => {
-  debugger;
   return (
     <>
       <div className="container mx-auto p-10 max-[500px]:p-4">
