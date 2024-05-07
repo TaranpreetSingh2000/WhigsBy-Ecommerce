@@ -13,7 +13,7 @@ const Signup = () => {
     password: "",
   });
 
-  const handlechange = (e) => {
+  const handleChange = (e) => {
     setRegisterData({ ...registerData, [e.target.name]: e.target.value });
   };
 
@@ -36,68 +36,102 @@ const Signup = () => {
   return (
     <>
       <ToastContainer autoClose={3000} />
-      <div className="bg-grey mt-6 flex flex-col">
-        <div className="container max-w-lg mx-auto flex-1 flex flex-col items-center justify-center px-2">
-          <div className="p-6 rounded text-black w-full bg-gray-50 shadow-md">
-            <h1 className="mb-8 text-3xl text-center uppercase text-green-950">
-              Sign up
-            </h1>
+      <div className="bg-gray-100 min-h-screen">
+        <div className="max-w-md w-full mx-auto p-8 bg-white rounded-lg shadow-lg">
+          <h1 className="text-3xl text-center font-semibold text-gray-800 mb-6">
+            Sign Up
+          </h1>
 
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                className="block border border-grey-light w-full p-3 rounded mb-4"
-                name="name"
-                onChange={handlechange}
-                placeholder="Full Name"
-                required
-              />
-
-              <input
-                type="email"
-                className="block border border-grey-light w-full p-3 rounded mb-4"
-                name="email"
-                onChange={handlechange}
-                placeholder="Email"
-                required
-              />
-
-              <input
-                type="number"
-                className="block border border-grey-light w-full p-3 rounded mb-4"
-                name="mobile"
-                onChange={handlechange}
-                placeholder="mobile"
-                required
-              />
-              <input
-                type="password"
-                className="block border border-grey-light w-full p-3 rounded mb-4"
-                name="password"
-                onChange={handlechange}
-                placeholder="Password"
-                required
-              />
-
-              <button
-                type="submit"
-                className="w-full text-center py-3 rounded bg-blue-700 text-white"
+          <form className="space-y-4" onSubmit={handleSubmit}>
+            <div>
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-gray-700"
               >
-                Create Account
-              </button>
-              <hr className="my-4 border-gray-300" />
+                Full Name
+              </label>
+              <input
+                name="name"
+                type="text"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="Enter your full name"
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-              <div className="text-center ">
-                <p className="text-gray-600">Already have an account?</p>
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Email
+              </label>
+              <input
+                name="email"
+                type="email"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="Enter your email"
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="mobile"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Mobile
+              </label>
+              <input
+                name="mobile"
+                type="tel"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="Enter your mobile number"
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Password
+              </label>
+              <input
+                name="password"
+                type="password"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="Enter your password"
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Create Account
+            </button>
+
+            <hr className="my-4 border-gray-300" />
+
+            <div className="text-center ">
+              <p className="text-sm text-gray-600">
+                Already have an account?
                 <Link
                   to="/login"
-                  className="text-blue-900 hover:underline transition ease-in-out duration-300"
+                  className="ml-1 font-medium text-indigo-600 hover:text-indigo-500"
                 >
-                  Login
+                  Log In
                 </Link>
-              </div>
-            </form>
-          </div>
+              </p>
+            </div>
+          </form>
         </div>
       </div>
     </>

@@ -34,7 +34,7 @@ const Users = () => {
         </div>
         <div>
           <Link
-            to="/products"
+            to="/admindashboard/manageproducts"
             className="bg-green-500 text-white px-4 py-2 rounded-md"
           >
             Manage Products

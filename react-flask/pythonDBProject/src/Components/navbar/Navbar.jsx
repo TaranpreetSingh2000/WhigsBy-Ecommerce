@@ -35,7 +35,7 @@ const Navbar = () => {
       setCart([]);
       setWistlist([]);
     }
-  }, [email, cart]);
+  }, [email]);
 
   const getCartItem = () => {
     getUserCartItems(email).then((res) => {
