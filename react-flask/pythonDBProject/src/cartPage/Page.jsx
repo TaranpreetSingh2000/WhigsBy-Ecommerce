@@ -57,7 +57,7 @@ const Page = () => {
                   cart.map((item) => (
                     <li className="flex items-center gap-4" key={item.id}>
                       <img
-                        src={`http://localhost:1337${item?.products?.attributes?.image?.data[0]?.attributes?.url}`}
+                        src={`${item?.products?.attributes?.image?.data[0]?.attributes?.url}`}
                         alt=""
                         className="size-16 rounded object-cover"
                       />
@@ -148,12 +148,12 @@ const Page = () => {
                   </div>
 
                   <div className="flex justify-end">
-                    <a
-                      href="#"
+                    <Link
+                      to=""
                       className="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
                     >
                       Checkout
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

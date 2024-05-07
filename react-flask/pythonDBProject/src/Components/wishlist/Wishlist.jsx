@@ -68,7 +68,7 @@ const Wishlist = () => {
 
   return (
     <>
-      <ToastContainer autoClose={1000} containerId="wishlistRemoveContainer" />
+      <ToastContainer autoClose={500} containerId="wishlistRemoveContainer" />
       <div className="container mx-auto p-10">
         {wishlist.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -77,8 +77,8 @@ const Wishlist = () => {
                 <div className="border border-gray-200 rounded-md" key={index}>
                   <div className="flex relative">
                     <img
-                      src={`http://localhost:1337${item.products.attributes.image.data[0].attributes.url}`}
-                      className="w-full h-[200px] mb-4 rounded-md"
+                      src={`${item?.products?.attributes?.image.data[0].attributes.url}`}
+                      className="w-full h-[300px] mb-4 rounded-md"
                     />
                     <RxCross1
                       className="absolute right-0 mx-2 my-2 border border-gray-500 rounded-xl p-1 text-2xl cursor-pointer"
@@ -88,18 +88,18 @@ const Wishlist = () => {
                   <div className="flex flex-col items-center">
                     <div className="w-full flex flex-col justify-center items-center">
                       <h2 className="text-md font-[system-ui]">
-                        {item.products.attributes.title.slice(0, 30)}...
+                        {item?.products?.attributes?.title.slice(0, 30)}...
                       </h2>
 
                       <div className="mt-1 pt-2 flex items-baseline gap-2">
                         <p className="text-black font-semibold text-lg py-0.5">
-                          ₹{item.products.attributes.price.toFixed(2)}
+                          ₹{item?.products?.attributes?.price.toFixed(2)}
                         </p>
 
                         <span className="text-gray-500 mb-2 text-sm">
                           ₹
                           <span className="line-through">
-                            {item?.products.attributes.mrp}
+                            {item?.products?.attributes?.mrp}
                           </span>
                         </span>
                         <span className="text-orange-500 font-semibold mb-2 text-sm font-[sans-serif] tracking-wide">

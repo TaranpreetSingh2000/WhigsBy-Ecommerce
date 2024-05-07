@@ -21,6 +21,11 @@ import { CartContext } from "./_context/CartContext.js";
 import Cart from "./Components/cart/Cart.jsx";
 import Page from "./cartPage/Page.jsx";
 import Wishlist from "./Components/wishlist/Wishlist.jsx";
+import ShopCategoriesDetails from "./Components/productDetails/ShopCategoriesDetails.jsx";
+import ManageProducts from "./Components/adminDashboard/manageProducts/ManageProducts.jsx";
+import Users from "./Components/adminDashboard/Users.jsx";
+import AdminCart from "./Components/adminDashboard/AdminCart.jsx";
+// import Checkout from "./Components/checkout/Checkout.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,17 +36,27 @@ const router = createBrowserRouter(
         <Route path="login" element={<Login />} />
         <Route path="admin" element={<Admin />} />
         <Route path="dashboard" element={<Protected Component={Dashboard} />} />
+        {/* <Route path="checkout" element={<Protected Component={Checkout} />} /> */}
         <Route
           path="/productDetails/:productId"
           element={<Protected Component={ProductDetails} />}
         />
+        <Route
+          path="/categoryDetails/:categoryname"
+          element={<Protected Component={ShopCategoriesDetails} />}
+        />
+
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Protected Component={Wishlist} />} />
         <Route path="/page" element={<Protected Component={Page} />} />
         <Route
-          path="/admin/dashboard"
+          path="admindashboard"
           element={<AdminProtected Component={AdminDashboard} />}
-        />
+        >
+          <Route path="manageproducts" element={<ManageProducts />} />
+          <Route path="user" element={<Users />} />
+          <Route path="admincart" element={<AdminCart />} />
+        </Route>
         <Route path="contact" element={<Contact />} />
       </Route>
     </>

@@ -1,48 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { RotatingLines } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import { getAllProducts } from "../../../_utils/GlobalApi";
+import ShopByCategories from "./ShopByCategories";
 
 const StrapiData = () => {
   const [data, setData] = useState({});
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     getAllProducts()
       .then((res) => {
         setData(res);
-        setLoading(true);
       })
       .catch((error) => {
         setError(error);
-        setLoading(false);
       });
   }, []);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timeout);
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="flex justify-center p-5">
-        <RotatingLines
-          visible={true}
-          height="80"
-          width="80"
-          strokeColor="#00008B"
-          strokeWidth="5"
-          animationDuration="0.75"
-          ariaLabel="rotating-lines-loading"
-        />
-      </div>
-    );
-  }
 
   if (error) {
     return (
@@ -60,27 +33,50 @@ const StrapiData = () => {
 
   return (
     <>
-      <div className="container mx-auto px-4 mb-6">
-        <h1 className="uppercase my-[40px] text-[1.8em] text-zinc-700 font-medium tracking-[0.3em] tracking-normal-[2.5em] mb-[40px] px-[45px]">
+      <div className="container mx-auto mb-6">
+        <h1 className="uppercase my-[40px] text-[1.8em] text-zinc-700 font-medium tracking-[0.3em] tracking-normal-[2.5em] mb-[40px] px-[50px] max-[500px]:px-0 max-[500px]:text-2xl max-[500px]:text-center">
+          SHOP BY CATEGORIES
+        </h1>
+
+        {data.data ? (
+          <ShopByCategories category={data.data} />
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
+            <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
+            <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
+            <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
+            <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
+            <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
+            <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
+            <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
+            <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
+            <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
+            <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
+          </div>
+        )}
+      </div>
+      <div className="container mx-auto mb-6">
+        <h1 className="uppercase my-[40px] text-[1.8em] text-zinc-700 font-medium tracking-[0.3em] tracking-normal-[2.5em] mb-[40px] px-[45px] max-[500px]:px-0 max-[500px]:text-2xl max-[500px]:text-center">
           GRAND GLOBAL BRANDS
         </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 cursor-pointer">
-          {data.data &&
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 cursor-pointer p-3">
+          {data.data ? (
             data.data.data.map((product) => (
               <Link key={product.id} to={`/productDetails/${product.id}`}>
-                <div className="bg-white border border-gray-100 rounded-lg h-[100%]  cursor-pointer">
+                <div className="bg-white border border-gray-100 rounded-lg h-[100%] w-[100%] cursor-pointer">
                   <img
-                    src={`http://localhost:1337${product.attributes.image.data[0].attributes.url}`}
+                    src={`${product.attributes.image.data[0].attributes.url}`}
                     alt={product?.attributes?.title}
-                    className="w-full h-[250px] rounded-md"
+                    className="w-full rounded-md"
                   />
 
                   <div className="flex flex-col justify-center items-center mt-2 p-2">
                     <p className="text-lg font-semibold">
                       {product?.attributes?.title.split(" ")[0]}
                     </p>
-                    <h2 className="text-lg font-[Arial] min-h-[110px] hover:text-orange-500 hover:underline">
-                      {product.attributes.title.slice(0, 100)}...
+                    <h2 className="text-md font-[Arial] hover:text-orange-500 hover:underline max-[500px]:min-h-0">
+                      {product.attributes.title.slice(0, 50)}...
                     </h2>
                   </div>
                   <div className="flex items-center mt-2">
@@ -122,7 +118,39 @@ const StrapiData = () => {
                   </div>
                 </div>
               </Link>
-            ))}
+            ))
+          ) : (
+            <>
+              <div className="bg-white border border-gray-100 rounded-lg h-[100%] w-[290px] cursor-pointer mt-5 p-2">
+                <div className="h-[300px] w-[270px] bg-slate-200 animate-pulse rounded-lg"></div>
+                <div className="h-[30px] w-[100px] bg-slate-200 animate-pulse flex justify-center mx-auto mt-2"></div>
+                <div className="h-[30px] w-[260px] bg-slate-200 animate-pulse mt-2"></div>
+                <div className="h-[30px] w-[80px] bg-slate-200 animate-pulse mt-2"></div>
+                <div className="h-[30px] w-[260px] bg-slate-200 animate-pulse mt-2"></div>
+              </div>
+              <div className="bg-white border border-gray-100 rounded-lg h-[100%] w-[290px] cursor-pointer mt-5 p-2">
+                <div className="h-[300px] w-[270px] bg-slate-200 animate-pulse rounded-lg"></div>
+                <div className="h-[30px] w-[100px] bg-slate-200 animate-pulse flex justify-center mx-auto mt-2"></div>
+                <div className="h-[30px] w-[260px] bg-slate-200 animate-pulse mt-2"></div>
+                <div className="h-[30px] w-[80px] bg-slate-200 animate-pulse mt-2"></div>
+                <div className="h-[30px] w-[260px] bg-slate-200 animate-pulse mt-2"></div>
+              </div>
+              <div className="bg-white border border-gray-100 rounded-lg h-[100%] w-[290px] cursor-pointer mt-5 p-2">
+                <div className="h-[300px] w-[270px] bg-slate-200 animate-pulse rounded-lg"></div>
+                <div className="h-[30px] w-[100px] bg-slate-200 animate-pulse flex justify-center mx-auto mt-2"></div>
+                <div className="h-[30px] w-[260px] bg-slate-200 animate-pulse mt-2"></div>
+                <div className="h-[30px] w-[80px] bg-slate-200 animate-pulse mt-2"></div>
+                <div className="h-[30px] w-[260px] bg-slate-200 animate-pulse mt-2"></div>
+              </div>
+              <div className="bg-white border border-gray-100 rounded-lg h-[100%] w-[290px] cursor-pointer mt-5 p-2">
+                <div className="h-[300px] w-[270px] bg-slate-200 animate-pulse rounded-lg"></div>
+                <div className="h-[30px] w-[100px] bg-slate-200 animate-pulse flex justify-center mx-auto mt-2"></div>
+                <div className="h-[30px] w-[260px] bg-slate-200 animate-pulse mt-2"></div>
+                <div className="h-[30px] w-[80px] bg-slate-200 animate-pulse mt-2"></div>
+                <div className="h-[30px] w-[260px] bg-slate-200 animate-pulse mt-2"></div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>
