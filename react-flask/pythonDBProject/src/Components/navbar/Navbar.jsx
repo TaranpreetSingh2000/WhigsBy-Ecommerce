@@ -284,14 +284,14 @@ const Navbar = () => {
               </div>
             </div>
 
-            <div className="flex gap-3 justify-center items-end my-1 cursor-pointer  ">
+            <div className="flex gap-5 justify-center items-end my-1 cursor-pointer  ">
               <div
                 className="flex items-center"
                 onClick={() => setOpenCart(!openCart)}
               >
                 <BsCart2 className="text-xl cursor-pointer" />
-                <span className="font-semibold text-md cursor-pointer">
-                  <sup className="border border-[#262f4a] rounded-xl p-[0.9px] px-[5px] bg-[#262f4a] text-white">
+                <span className="font-semibold text-md cursor-pointer absolute top-[3.7rem] right-[6.7rem]">
+                  <sup className="border border-red-600 rounded-xl text-[13px] p-[0.4px] px-[3px] bg-red-600 text-white">
                     {isAuth || isAdminAuth ? cart?.length : 0}
                   </sup>
                 </span>
