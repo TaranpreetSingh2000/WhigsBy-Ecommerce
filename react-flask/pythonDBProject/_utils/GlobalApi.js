@@ -54,6 +54,11 @@ const getUserWishlistItem = (email) =>
 
 const deleteWishlistItem = (id) => axiosClient.delete("/whistlists/" + id);
 
+const getCustomerLoginId = () =>
+  axiosClient.get(
+    "https://whigsby-live-server.onrender.com/api/carts?filters[email][$contains]=com"
+  );
+
 export {
   getAllProducts,
   addtoCart,
@@ -64,4 +69,5 @@ export {
   addtoWhistlist,
   getUserWishlistItem,
   deleteWishlistItem,
+  getCustomerLoginId,
 };

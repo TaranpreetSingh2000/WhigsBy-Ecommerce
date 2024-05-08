@@ -25,6 +25,10 @@ import ShopCategoriesDetails from "./Components/productDetails/ShopCategoriesDet
 import ManageProducts from "./Components/adminDashboard/manageProducts/ManageProducts.jsx";
 import Users from "./Components/adminDashboard/Users.jsx";
 import AdminCart from "./Components/adminDashboard/AdminCart.jsx";
+import Checkout from "./Components/checkout/Checkout.jsx";
+import SuccessPopup from "./Components/successPage/SuccessPopup.jsx";
+import Customers from "./Components/adminDashboard/Customers.jsx";
+import Orders from "./Components/adminDashboard/Orders.jsx";
 // import Checkout from "./Components/checkout/Checkout.jsx";
 
 const router = createBrowserRouter(
@@ -48,7 +52,12 @@ const router = createBrowserRouter(
 
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Protected Component={Wishlist} />} />
+        <Route path="checkout" element={<Protected Component={Checkout} />} />
         <Route path="/page" element={<Protected Component={Page} />} />
+        <Route
+          path="/checkout/success"
+          element={<Protected Component={SuccessPopup} />}
+        />
         <Route
           path="admindashboard"
           element={<AdminProtected Component={AdminDashboard} />}
@@ -56,6 +65,8 @@ const router = createBrowserRouter(
           <Route path="manageproducts" element={<ManageProducts />} />
           <Route path="user" element={<Users />} />
           <Route path="admincart" element={<AdminCart />} />
+          <Route path="customer" element={<Customers />} />
+          <Route path="orders" element={<Orders />} />
         </Route>
         <Route path="contact" element={<Contact />} />
       </Route>
