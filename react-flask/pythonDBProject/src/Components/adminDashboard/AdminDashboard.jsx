@@ -16,36 +16,36 @@ const AdminDashboard = () => {
             <div className="flex flex-col flex-grow p-4">
               <h2 className="text-2xl font-semibold">Admin Panel</h2>
               <nav className="mt-6">
-                <a
-                  href="#"
+                <Link
+                  to="/admindashboard/orders"
                   className="text-gray-300 py-2 px-4 block hover:bg-gray-700 hover:text-white"
                 >
                   Orders
-                </a>
+                </Link>
                 <Link
                   to="/admindashboard/manageproducts"
                   className="text-gray-300 py-2 px-4 block hover:bg-gray-700 hover:text-white"
                 >
                   Products
                 </Link>
-                <a
-                  href="#"
+                <Link
+                  to="/admindashboard/customer"
                   className="text-gray-300 py-2 px-4 block hover:bg-gray-700 hover:text-white"
                 >
                   Customers
-                </a>
+                </Link>
                 <Link
                   to="/admindashboard/user"
                   className="text-gray-300 py-2 px-4 block hover:bg-gray-700 hover:text-white"
                 >
                   Users
                 </Link>
-                <Link
+                {/* <Link
                   to="/admindashboard/admincart"
                   className="text-gray-300 py-2 px-4 block hover:bg-gray-700 hover:text-white"
                 >
                   Cart
-                </Link>
+                </Link> */}
               </nav>
             </div>
           </div>

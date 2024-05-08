@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "../_context/CartContext";
 import { deleteCartItems, getUserCartItems } from "../../_utils/GlobalApi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import emptyCart from "../assets/emptycart.webp";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Navigate } from "react-router-dom";
 
 const Page = () => {
+  const navigate = useNavigate();
   const { cart, setCart } = useContext(CartContext);
   const email = localStorage.getItem("Email");
 
@@ -45,6 +47,13 @@ const Page = () => {
       }
     });
   };
+
+  const handleCheckout = () => {
+    navigate("/checkout", {
+      state: { totalAmount: getTotalAmount() },
+    });
+  };
+
   return (
     <>
       <ToastContainer autoClose={1000} containerId="cartRemoveContainer" />
@@ -149,12 +158,12 @@ const Page = () => {
                   </div>
 
                   <div className="flex justify-end">
-                    <Link
-                      to="/checkout"
+                    <button
                       className="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
+                      onClick={handleCheckout}
                     >
                       Checkout
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </div>
