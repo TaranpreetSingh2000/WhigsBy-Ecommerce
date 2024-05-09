@@ -105,9 +105,9 @@ const Wishlist = () => {
                         <span className="text-orange-500 font-semibold mb-2 text-sm font-[sans-serif] tracking-wide">
                           (
                           {(
-                            (item?.products?.attributes.mrp -
-                              item?.products?.attributes.price) /
-                            item?.products?.attributes.mrp
+                            (item?.products?.attributes?.mrp -
+                              item?.products?.attributes?.price) /
+                            item?.products?.attributes?.mrp
                           ).toFixed(1) * 100}
                           % off)
                         </span>

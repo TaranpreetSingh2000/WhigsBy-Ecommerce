@@ -24,7 +24,6 @@ const ProductDetails = () => {
   const fetchCart = useCart();
   const fetchWishlist = useWishlist();
   const [filterdata, setFilterData] = useState({});
-  const { setWistlist } = useContext(CartContext);
   const [showCards, setShowCards] = useState(false);
   const [isAddedToWishlist, setIsAddedToWishlist] = useState(false);
   const [categoryDetails, setCategoryDetails] = useState("");
@@ -113,7 +112,7 @@ const ProductDetails = () => {
 
   return (
     <>
-      <ToastContainer autoClose={1000} />
+      <ToastContainer autoClose={1000} containerId="cart" />
       <div className="pt-4 px-6">
         <Breadcrumb pathname={pathname} />
         <div className="flex justify-center p-4 mb-6 max-[500px]:flex-col">

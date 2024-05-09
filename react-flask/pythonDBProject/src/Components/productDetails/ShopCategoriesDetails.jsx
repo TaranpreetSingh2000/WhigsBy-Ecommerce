@@ -4,6 +4,7 @@ import { getProductsByCategories } from "../../../_utils/GlobalApi";
 import { BallTriangle } from "react-loader-spinner";
 import { BsCart2 } from "react-icons/bs";
 import useCart from "../hooks/useCart";
+import { ToastContainer } from "react-toastify";
 
 const ShopCategoriesDetails = () => {
   const fetchCart = useCart();
@@ -56,6 +57,8 @@ const ShopCategoriesDetails = () => {
 
   return (
     <>
+      <ToastContainer autoClose={1000} containerId="cart" />
+
       {categoryDetails &&
         categoryDetails.map((item, index) => (
           <div
