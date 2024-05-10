@@ -24,7 +24,7 @@ const CategoryProducts = ({ categoryDetails }) => {
                       <img
                         src={`${product.attributes.image.data[0].attributes.url}`}
                         alt={product?.attributes?.title}
-                        className="rounded-md h-[250px] object-fill w-[100%]"
+                        className="rounded-md h-[300px] object-fill w-[100%]"
                         style={{ mixBlendMode: "darken" }}
                       />
                     </div>

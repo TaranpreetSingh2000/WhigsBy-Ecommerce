@@ -17,6 +17,8 @@ import CategoryProducts from "./CategoryProducts";
 import { IoHeartSharp } from "react-icons/io5";
 import useCart from "../hooks/useCart";
 import useWishlist from "../hooks/useWishlist";
+import { BsCartCheckFill } from "react-icons/bs";
+import { FaHeartCircleCheck } from "react-icons/fa6";
 
 const ProductDetails = () => {
   const pathname = window.location.pathname;
@@ -26,9 +28,11 @@ const ProductDetails = () => {
   const [filterdata, setFilterData] = useState({});
   const [showCards, setShowCards] = useState(false);
   const [isAddedToWishlist, setIsAddedToWishlist] = useState(false);
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [categoryDetails, setCategoryDetails] = useState("");
   const email = localStorage.getItem("Email");
   const WishlistItems = JSON.parse(localStorage.getItem("Wishlist"));
+  const CartItems = JSON.parse(localStorage.getItem("CartItems"));
   const { response, loading, error } = useFetch(
     `https://whigsby-live-server.onrender.com/api/products/${productId}?populate=*`
   );
@@ -41,10 +45,15 @@ const ProductDetails = () => {
   };
 
   useEffect(() => {
-    if (WishlistItems.some((item) => item.products.id === Number(productId))) {
+    if (
+      WishlistItems.some((item) => item.products.id === Number(productId)) &&
+      CartItems.some((item) => item.products.id === Number(productId))
+    ) {
       setIsAddedToWishlist(true);
+      setIsAddedToCart(true);
     } else {
       setIsAddedToWishlist(false);
+      setIsAddedToCart(false);
     }
   }, []);
 
@@ -101,12 +110,33 @@ const ProductDetails = () => {
     fetchCart(data, {
       productData: filterdata?.data?.data,
     });
+    if (!toast.isActive(14, "cart")) {
+      toast("Product Added successfully", {
+        position: "top-right",
+        autoClose: true,
+        closeOnClick: true,
+        draggable: false,
+        type: "success",
+        toastId: 14,
+      });
+    }
+    setIsAddedToCart(true);
   };
 
   const onAddToWhishlistClick = () => {
     fetchWishlist(data, {
       productData: filterdata?.data?.data,
     });
+    if (!toast.isActive(14, "cart")) {
+      toast("Product Added to wishlist", {
+        position: "top-right",
+        autoClose: true,
+        closeOnClick: true,
+        draggable: false,
+        type: "success",
+        toastId: 14,
+      });
+    }
     setIsAddedToWishlist(true);
   };
 
@@ -182,26 +212,37 @@ const ProductDetails = () => {
             </p>
 
             <div className="flex items-center">
-              <button
-                className="bg-blue-600  text-md text-white px-5 py-2 mr-2 rounded-md flex items-center gap-2 hover:opacity-[0.9] max-[430px]:text-sm max-[430px]:px-2"
-                onClick={onAddToCartClick}
-              >
-                <span>
-                  <BsCart2 className="text-xl max-[430px]:text-sm" />
-                </span>
-                Add to Cart
-              </button>
-
-              {isAddedToWishlist ? (
+              {isAddedToCart ? (
                 <button
-                  className="bg-gray-700  text-md text-white px-5 py-2 rounded-md flex justify-center items-center gap-2 hover:opacity-[0.9] max-[430px]:text-sm max-[430px]:px-2"
-                  onClick={onAddToWhishlistClick}
+                  className="bg-white  text-md text-blue-700 border border-blue-600 px-5 py-2 mr-2 rounded-md flex items-center gap-2 hover:opacity-[0.9] max-[430px]:text-sm max-[430px]:px-2"
                   disabled
                 >
                   <span>
-                    <IoHeartSharp className=" text-xl text-pink-600 max-[430px]:text-sm" />
+                    <BsCartCheckFill className="text-xl max-[430px]:text-sm" />
                   </span>
-                  Add to Wishlist
+                  Added to Cart
+                </button>
+              ) : (
+                <button
+                  className="bg-blue-600  text-md text-white px-5 py-2 mr-2 rounded-md flex items-center gap-2 hover:opacity-[0.9] max-[430px]:text-sm max-[430px]:px-2"
+                  onClick={onAddToCartClick}
+                >
+                  <span>
+                    <BsCart2 className="text-xl max-[430px]:text-sm" />
+                  </span>
+                  Add to Cart
+                </button>
+              )}
+
+              {isAddedToWishlist ? (
+                <button
+                  className="bg-white  text-md text-blue-700 border border-blue-600 px-5 py-2 rounded-md flex justify-center items-center gap-2 hover:opacity-[0.9] max-[430px]:text-sm max-[430px]:px-2"
+                  disabled
+                >
+                  <span>
+                    <FaHeartCircleCheck className=" text-xl max-[430px]:text-sm" />
+                  </span>
+                  Added to Wishlist
                 </button>
               ) : (
                 <button

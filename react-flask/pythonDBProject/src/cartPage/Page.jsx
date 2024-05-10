@@ -11,6 +11,7 @@ const Page = () => {
   const navigate = useNavigate();
   const { cart, setCart } = useContext(CartContext);
   const email = localStorage.getItem("Email");
+  const CartItems = JSON.parse(localStorage.getItem("CartItems"));
 
   const getTotalAmount = () => {
     let totalAmount = 0;
@@ -26,6 +27,8 @@ const Page = () => {
       toast.success("Product Removed from cart ", {
         containerId: "cartRemoveContainer",
       });
+      const updatedCart = CartItems.filter((item) => item.id !== id);
+      localStorage.setItem("CartItems", JSON.stringify(updatedCart));
       if (res) {
         getCartItem();
       } else {

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../_context/CartContext";
 import { RxCross1 } from "react-icons/rx";
 import { Link } from "react-router-dom";
@@ -46,7 +46,6 @@ const Wishlist = () => {
 
   const onAddToCartClick = (id) => {
     const productToAdd = wishlist.find((item) => item.products.id === id);
-    console.log(productToAdd);
     if (productToAdd) {
       const data = {
         data: {
@@ -74,7 +73,11 @@ const Wishlist = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {wishlist.length > 0 &&
               wishlist.map((item, index) => (
-                <div className="border border-gray-200 rounded-md" key={index}>
+                <div
+                  className="border border-gray-200 rounded-md"
+                  key={index}
+                  // data-id={item.id}
+                >
                   <div className="flex relative">
                     <img
                       src={`${item?.products?.attributes?.image.data[0].attributes.url}`}
@@ -114,6 +117,22 @@ const Wishlist = () => {
                       </div>
                     </div>
                     <div className="border-t border-gray-300 w-full flex items-center justify-center p-3">
+                      {/* {isAddedToCart ? (
+                        <Link
+                          to=""
+                          className="text-green-800 font-semibold cursor-pointer w-full text-center"
+                        >
+                          ADDED TO CART
+                          <i
+                            className="fa fa-check"
+                            aria-hidden="true"
+                            color="green"
+                            style={{
+                              padding: "5px",
+                            }}
+                          ></i>
+                        </Link> */}
+                      {/* ) : ( */}
                       <Link
                         to=""
                         className="text-red-500 font-semibold cursor-pointer w-full text-center hover:text-red-600"
@@ -121,6 +140,7 @@ const Wishlist = () => {
                       >
                         ADD TO CART
                       </Link>
+                      {/* )} */}
                     </div>
                   </div>
                 </div>
@@ -128,11 +148,11 @@ const Wishlist = () => {
           </div>
         ) : (
           <div className="flex justify-center items-center flex-col gap-4">
-            <p className="text-gray-700 font-semibold uppercase text-xl">
+            <p className="text-gray-700 font-semibold uppercase text-lg">
               Your Wishlist is empty
             </p>
-            <img src={wishlistIcon} className="w-[150px]" alt="" />
-            <p className="text-gray-500 text-xl w-[35%] text-center">
+            <img src={wishlistIcon} className="w-[100px]" alt="" />
+            <p className="text-gray-500 text-lg w-[35%] text-center">
               Add items that you like to your wishlist. Review them anytime and
               easily move them to the bag.
             </p>

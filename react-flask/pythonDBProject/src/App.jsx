@@ -40,7 +40,6 @@ const router = createBrowserRouter(
         <Route path="login" element={<Login />} />
         <Route path="admin" element={<Admin />} />
         <Route path="dashboard" element={<Protected Component={Dashboard} />} />
-        {/* <Route path="checkout" element={<Protected Component={Checkout} />} /> */}
         <Route
           path="/productDetails/:productId"
           element={<Protected Component={ProductDetails} />}
@@ -48,6 +47,10 @@ const router = createBrowserRouter(
         <Route
           path="/categoryDetails/:categoryname"
           element={<Protected Component={ShopCategoriesDetails} />}
+        />
+        <Route
+          path="/categoryDetails/:productId"
+          element={<Protected Component={ProductDetails} />}
         />
 
         <Route path="/cart" element={<Cart />} />

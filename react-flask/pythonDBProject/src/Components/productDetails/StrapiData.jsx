@@ -64,11 +64,11 @@ const StrapiData = () => {
           {data.data ? (
             data.data.data.map((product) => (
               <Link key={product.id} to={`/productDetails/${product.id}`}>
-                <div className="bg-white border border-gray-100 rounded-lg h-[100%] w-[100%] cursor-pointer">
+                <div className="bg-white border border-gray-100 rounded-lg h-[100%] w-69 cursor-pointer">
                   <img
                     src={`${product.attributes.image.data[0].attributes.url}`}
                     alt={product?.attributes?.title}
-                    className="w-full rounded-md"
+                    className="w-full h-[250px] rounded-md"
                   />
 
                   <div className="flex flex-col justify-center items-center mt-2 p-2">
@@ -79,7 +79,7 @@ const StrapiData = () => {
                       {product.attributes.title.slice(0, 50)}...
                     </h2>
                   </div>
-                  <div className="flex items-center mt-2">
+                  {/* <div className="flex items-center mt-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-5 text-yellow-400"
@@ -94,7 +94,7 @@ const StrapiData = () => {
                     <span className="ml-1 text-gray-500">
                       {product.attributes.rating.toFixed(1)}
                     </span>
-                  </div>
+                  </div> */}
 
                   <div className="mt-1 p-2 flex items-baseline gap-2">
                     <p className="text-black text-xl py-0.5">

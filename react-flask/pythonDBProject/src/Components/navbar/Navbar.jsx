@@ -26,6 +26,7 @@ const Navbar = () => {
   const menuRef = useRef();
   const email = localStorage.getItem("Email");
   localStorage.setItem("Wishlist", JSON.stringify(wishlist));
+  localStorage.setItem("CartItems", JSON.stringify(cart));
 
   useEffect(() => {
     if (email) {
