@@ -19,17 +19,17 @@ const CategoryProducts = ({ categoryDetails }) => {
                   to={`/productDetails/${product.id}`}
                   className="flex justify-center"
                 >
-                  <div className="bg-white border border-gray-300 rounded-lg h-[100%] cursor-pointer">
+                  <div className="bg-white rounded-lg h-[100%] flex flex-col items-center cursor-pointer">
                     <div>
                       <img
                         src={`${product.attributes.image.data[0].attributes.url}`}
                         alt={product?.attributes?.title}
-                        className="rounded-md h-[300px] object-fill w-[100%]"
+                        className="rounded-md object-scale-down aspect-[4/4]"
                         style={{ mixBlendMode: "darken" }}
                       />
                     </div>
 
-                    <div className="p-3">
+                    <div className="p-3 px-4">
                       <h2 className="text-lg text-[#54a0ad] font-semibold min-h-[110px] hover:text-orange-500 hover:underline">
                         {product.attributes.title.slice(0, 100)}...
                       </h2>

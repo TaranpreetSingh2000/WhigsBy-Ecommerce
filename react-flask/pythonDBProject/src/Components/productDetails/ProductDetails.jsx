@@ -19,6 +19,7 @@ import useCart from "../hooks/useCart";
 import useWishlist from "../hooks/useWishlist";
 import { BsCartCheckFill } from "react-icons/bs";
 import { FaHeartCircleCheck } from "react-icons/fa6";
+import StarRating from "../ratings/StarRating";
 
 const ProductDetails = () => {
   const pathname = window.location.pathname;
@@ -126,11 +127,10 @@ const ProductDetails = () => {
         <Breadcrumb pathname={pathname} />
         <div className="flex justify-center p-4 mb-6 max-[500px]:flex-col">
           <div className="w-1/2 flex flex-col items-center justify-center gap-5 max-[500px]:w-full">
-            <div className=" hover:translate-y-[-9px] w-[70%] transition-all duration-500 ease-in-out">
+            <div className=" hover:translate-y-[-9px] transition-all duration-500 ease-in-out">
               <img
                 src={`${filterdata?.data?.data?.attributes?.image.data[0].attributes.url}`}
                 alt={filterdata?.data?.data?.attributes?.title}
-                className="h-[100%]"
                 style={{ mixBlendMode: "darken" }}
               />
             </div>
@@ -166,20 +166,7 @@ const ProductDetails = () => {
             </div>
 
             <div className="flex gap-1">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-yellow-400 mt-1"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 2a1 1 0 0 1 .784.385l2.647 3.414 4.093.595a1 1 0 0 1 .554 1.705l-2.96 2.88.7 4.274a1 1 0 0 1-1.451 1.054L10 14.254l-3.67 1.93a1 1 0 0 1-1.45-1.054l.7-4.274-2.96-2.88a1 1 0 0 1 .554-1.705l4.093-.595L9.216 2.385A1 1 0 0 1 10 2z"
-                />
-              </svg>
-              <p className="text-gray-600 mb-2 text-lg">
-                {filterdata?.data?.data?.attributes?.rating.toFixed(1)}
-              </p>
+              <StarRating rating={filterdata?.data?.data?.attributes?.rating} />
             </div>
             <p className="text-gray-600 mb-4 text-md">
               {filterdata?.data?.data?.attributes?.category}

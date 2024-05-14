@@ -95,8 +95,8 @@ const Wishlist = () => {
                       </h2>
 
                       <div className="mt-1 pt-2 flex items-baseline gap-2">
-                        <p className="text-black font-semibold text-lg py-0.5">
-                          {item?.products?.attributes.price}
+                        <p className="text-black text-lg py-0.5">
+                          ₹{item?.products?.attributes.price}
                         </p>
 
                         <span className="text-gray-500 mb-2 text-sm">
