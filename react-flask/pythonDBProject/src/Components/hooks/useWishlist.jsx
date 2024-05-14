@@ -16,8 +16,8 @@ const useWishlist = () => {
             products: productData,
           },
         ]);
-    }
-    toast.success("Product Added to Whishlist");    
+      }
+      toast.success("Product Added to wishlist");
     });
   };
   return fetchWishlist;

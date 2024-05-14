@@ -117,6 +117,8 @@ const Checkout = () => {
           <h2 className="text-xl font-semibold mb-4 text-gray-500 font-sans">
             Add your Contact Information
           </h2>
+
+          di.usrer
           <div className="mb-4">
             <label
               htmlFor="name"

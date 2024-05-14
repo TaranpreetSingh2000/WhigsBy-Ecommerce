@@ -11,23 +11,31 @@ const ShopByCategories = ({ category }) => {
   ];
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-5 gap-4 p-3">
-      {uniqueCategories.map((category, index) => (
-        <Link key={index} to={`/categoryDetails/${category}`}>
-          <div
-            key={index}
-            className="bg-white rounded-lg p-3 flex items-center justify-center border border-blue-950 cursor-pointer"
-          >
-            <div className="flex justify-center items-center gap-2">
-              <p className="text-sm font-medium font-[Arial]  duration-100 ease-in-out uppercase">
-                {category}
-              </p>
-              <IoIosArrowForward />
-            </div>
-          </div>
-        </Link>
-      ))}
-    </div>
+    <>
+      {category.data.length === 0 ? (
+        <p className="text-gray-700 text-lg flex justify-center items-center w-full">
+          No category Found
+        </p>
+      ) : (
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 p-3">
+          {uniqueCategories.map((category, index) => (
+            <Link key={index} to={`/categoryDetails/${category}`}>
+              <div
+                key={index}
+                className="bg-white rounded-lg p-3 flex items-center justify-center border border-blue-950 cursor-pointer"
+              >
+                <div className="flex justify-center items-center gap-2">
+                  <p className="text-sm font-medium font-[Arial] duration-100 ease-in-out uppercase">
+                    {category}
+                  </p>
+                  <IoIosArrowForward />
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
+    </>
   );
 };
 

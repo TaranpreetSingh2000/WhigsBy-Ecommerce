@@ -22,6 +22,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+
       <StrapiData />
     </>
   );

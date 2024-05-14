@@ -29,6 +29,9 @@ import Checkout from "./Components/checkout/Checkout.jsx";
 import SuccessPopup from "./Components/successPage/SuccessPopup.jsx";
 import Customers from "./Components/adminDashboard/Customers.jsx";
 import Orders from "./Components/adminDashboard/Orders.jsx";
+import AboutUs from "./Components/about/AboutUs.jsx";
+import CategoriesPage from "./Components/category/CategoriesPage.jsx";
+import { ToastContainer } from "react-toastify";
 // import Checkout from "./Components/checkout/Checkout.jsx";
 
 const router = createBrowserRouter(
@@ -37,10 +40,11 @@ const router = createBrowserRouter(
       <Route path="/" element={<Layout />}>
         <Route path="" element={<Data />} />
         <Route path="signup" element={<Signup />} />
+        <Route path="about" element={<AboutUs />} />
+        <Route path="category" element={<CategoriesPage />} />
         <Route path="login" element={<Login />} />
         <Route path="admin" element={<Admin />} />
         <Route path="dashboard" element={<Protected Component={Dashboard} />} />
-        {/* <Route path="checkout" element={<Protected Component={Checkout} />} /> */}
         <Route
           path="/productDetails/:productId"
           element={<Protected Component={ProductDetails} />}
@@ -48,6 +52,10 @@ const router = createBrowserRouter(
         <Route
           path="/categoryDetails/:categoryname"
           element={<Protected Component={ShopCategoriesDetails} />}
+        />
+        <Route
+          path="/categoryDetails/:productId"
+          element={<Protected Component={ProductDetails} />}
         />
 
         <Route path="/cart" element={<Cart />} />
@@ -80,6 +88,7 @@ function App() {
 
   return (
     <>
+      <ToastContainer />
       <CartContext.Provider value={{ cart, setCart, wishlist, setWistlist }}>
         <RouterProvider router={router} />
       </CartContext.Provider>

@@ -10,13 +10,16 @@ import {
   getProductsByCategories,
   addtoWhistlist,
 } from "../../../_utils/GlobalApi";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CartContext } from "../../_context/CartContext";
 import CategoryProducts from "./CategoryProducts";
 import { IoHeartSharp } from "react-icons/io5";
 import useCart from "../hooks/useCart";
 import useWishlist from "../hooks/useWishlist";
+import { BsCartCheckFill } from "react-icons/bs";
+import { FaHeartCircleCheck } from "react-icons/fa6";
+import StarRating from "../ratings/StarRating";
 
 const ProductDetails = () => {
   const pathname = window.location.pathname;
@@ -26,9 +29,11 @@ const ProductDetails = () => {
   const [filterdata, setFilterData] = useState({});
   const [showCards, setShowCards] = useState(false);
   const [isAddedToWishlist, setIsAddedToWishlist] = useState(false);
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [categoryDetails, setCategoryDetails] = useState("");
   const email = localStorage.getItem("Email");
   const WishlistItems = JSON.parse(localStorage.getItem("Wishlist"));
+  const CartItems = JSON.parse(localStorage.getItem("CartItems"));
   const { response, loading, error } = useFetch(
     `https://whigsby-live-server.onrender.com/api/products/${productId}?populate=*`
   );
@@ -41,10 +46,15 @@ const ProductDetails = () => {
   };
 
   useEffect(() => {
-    if (WishlistItems.some((item) => item.products.id === Number(productId))) {
+    if (
+      WishlistItems.some((item) => item.products.id === Number(productId)) &&
+      CartItems.some((item) => item.products.id === Number(productId))
+    ) {
       setIsAddedToWishlist(true);
+      setIsAddedToCart(true);
     } else {
       setIsAddedToWishlist(false);
+      setIsAddedToCart(false);
     }
   }, []);
 
@@ -101,6 +111,7 @@ const ProductDetails = () => {
     fetchCart(data, {
       productData: filterdata?.data?.data,
     });
+    setIsAddedToCart(true);
   };
 
   const onAddToWhishlistClick = () => {
@@ -112,7 +123,6 @@ const ProductDetails = () => {
 
   return (
     <>
-      <ToastContainer autoClose={1000} containerId="cart" />
       <div className="pt-4 px-6">
         <Breadcrumb pathname={pathname} />
         <div className="flex justify-center p-4 mb-6 max-[500px]:flex-col">
@@ -121,7 +131,6 @@ const ProductDetails = () => {
               <img
                 src={`${filterdata?.data?.data?.attributes?.image.data[0].attributes.url}`}
                 alt={filterdata?.data?.data?.attributes?.title}
-                className="h-[100%]"
                 style={{ mixBlendMode: "darken" }}
               />
             </div>
@@ -139,22 +148,17 @@ const ProductDetails = () => {
 
             <div className="flex items-center gap-1">
               <span className="text-red-500 mb-2 text-2xl">
-                {(
-                  (filterdata?.data?.data?.attributes?.mrp -
-                    filterdata?.data?.data?.attributes?.price) /
-                  filterdata?.data?.data?.attributes?.mrp
-                ).toFixed(1) * 100}
-                %
+                {filterdata?.data?.data?.attributes.discount}% off
               </span>
               <p className="text-black mb-2 text-3xl">
                 <sup className="text-xl mt-[20px] leading-0">₹</sup>
-                {filterdata?.data?.data?.attributes?.price.toFixed(0)}
+                {filterdata?.data?.data?.attributes.price}
               </p>
             </div>
 
             <div className="flex items-center gap-2">
               <span className="text-gray-500 mb-2 text-md font-serif">
-                M.R.P: ₹{" "}
+                M.R.P: ₹
                 <span className="line-through">
                   {filterdata?.data?.data?.attributes?.mrp}
                 </span>
@@ -162,46 +166,44 @@ const ProductDetails = () => {
             </div>
 
             <div className="flex gap-1">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-yellow-400 mt-1"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 2a1 1 0 0 1 .784.385l2.647 3.414 4.093.595a1 1 0 0 1 .554 1.705l-2.96 2.88.7 4.274a1 1 0 0 1-1.451 1.054L10 14.254l-3.67 1.93a1 1 0 0 1-1.45-1.054l.7-4.274-2.96-2.88a1 1 0 0 1 .554-1.705l4.093-.595L9.216 2.385A1 1 0 0 1 10 2z"
-                />
-              </svg>
-              <p className="text-gray-600 mb-2 text-lg">
-                {filterdata?.data?.data?.attributes?.rating.toFixed(1)}
-              </p>
+              <StarRating rating={filterdata?.data?.data?.attributes?.rating} />
             </div>
             <p className="text-gray-600 mb-4 text-md">
               {filterdata?.data?.data?.attributes?.category}
             </p>
 
             <div className="flex items-center">
-              <button
-                className="bg-blue-600  text-md text-white px-5 py-2 mr-2 rounded-md flex items-center gap-2 hover:opacity-[0.9] max-[430px]:text-sm max-[430px]:px-2"
-                onClick={onAddToCartClick}
-              >
-                <span>
-                  <BsCart2 className="text-xl max-[430px]:text-sm" />
-                </span>
-                Add to Cart
-              </button>
-
-              {isAddedToWishlist ? (
+              {isAddedToCart ? (
                 <button
-                  className="bg-gray-700  text-md text-white px-5 py-2 rounded-md flex justify-center items-center gap-2 hover:opacity-[0.9] max-[430px]:text-sm max-[430px]:px-2"
-                  onClick={onAddToWhishlistClick}
+                  className="bg-white  text-md text-blue-700 border border-blue-600 px-5 py-2 mr-2 rounded-md flex items-center gap-2 hover:opacity-[0.9] max-[430px]:text-sm max-[430px]:px-2"
                   disabled
                 >
                   <span>
-                    <IoHeartSharp className=" text-xl text-pink-600 max-[430px]:text-sm" />
+                    <BsCartCheckFill className="text-xl max-[430px]:text-sm" />
                   </span>
-                  Add to Wishlist
+                  Added to Cart
+                </button>
+              ) : (
+                <button
+                  className="bg-blue-600  text-md text-white px-5 py-2 mr-2 rounded-md flex items-center gap-2 hover:opacity-[0.9] max-[430px]:text-sm max-[430px]:px-2"
+                  onClick={onAddToCartClick}
+                >
+                  <span>
+                    <BsCart2 className="text-xl max-[430px]:text-sm" />
+                  </span>
+                  Add to Cart
+                </button>
+              )}
+
+              {isAddedToWishlist ? (
+                <button
+                  className="bg-white  text-md text-blue-700 border border-blue-600 px-5 py-2 rounded-md flex justify-center items-center gap-2 hover:opacity-[0.9] max-[430px]:text-sm max-[430px]:px-2"
+                  disabled
+                >
+                  <span>
+                    <FaHeartCircleCheck className=" text-xl max-[430px]:text-sm" />
+                  </span>
+                  Added to Wishlist
                 </button>
               ) : (
                 <button

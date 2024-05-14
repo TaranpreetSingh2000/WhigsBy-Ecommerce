@@ -16,15 +16,8 @@ const useCart = () => {
             products: productData,
           },
         ]);
+        toast.success("Product Added successfully");
       }
-      toast("Product Added successfully", {
-        position: "top-right",
-        autoClose: true,
-        closeOnClick: true,
-        draggable: false,
-        type: "success",
-        toastId: 13,
-      });
     });
   };
   return fetchCart;
