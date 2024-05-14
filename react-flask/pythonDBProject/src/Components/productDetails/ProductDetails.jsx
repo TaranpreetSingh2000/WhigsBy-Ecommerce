@@ -10,7 +10,7 @@ import {
   getProductsByCategories,
   addtoWhistlist,
 } from "../../../_utils/GlobalApi";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CartContext } from "../../_context/CartContext";
 import CategoryProducts from "./CategoryProducts";
@@ -110,16 +110,6 @@ const ProductDetails = () => {
     fetchCart(data, {
       productData: filterdata?.data?.data,
     });
-    if (!toast.isActive(14, "cart")) {
-      toast("Product Added successfully", {
-        position: "top-right",
-        autoClose: true,
-        closeOnClick: true,
-        draggable: false,
-        type: "success",
-        toastId: 14,
-      });
-    }
     setIsAddedToCart(true);
   };
 
@@ -127,27 +117,16 @@ const ProductDetails = () => {
     fetchWishlist(data, {
       productData: filterdata?.data?.data,
     });
-    if (!toast.isActive(14, "cart")) {
-      toast("Product Added to wishlist", {
-        position: "top-right",
-        autoClose: true,
-        closeOnClick: true,
-        draggable: false,
-        type: "success",
-        toastId: 14,
-      });
-    }
     setIsAddedToWishlist(true);
   };
 
   return (
     <>
-      <ToastContainer autoClose={1000} containerId="cart" />
       <div className="pt-4 px-6">
         <Breadcrumb pathname={pathname} />
         <div className="flex justify-center p-4 mb-6 max-[500px]:flex-col">
           <div className="w-1/2 flex flex-col items-center justify-center gap-5 max-[500px]:w-full">
-            <div className=" hover:translate-y-[-9px] transition-all duration-500 ease-in-out">
+            <div className=" hover:translate-y-[-9px] w-[70%] transition-all duration-500 ease-in-out">
               <img
                 src={`${filterdata?.data?.data?.attributes?.image.data[0].attributes.url}`}
                 alt={filterdata?.data?.data?.attributes?.title}
@@ -169,22 +148,17 @@ const ProductDetails = () => {
 
             <div className="flex items-center gap-1">
               <span className="text-red-500 mb-2 text-2xl">
-                {(
-                  (filterdata?.data?.data?.attributes?.mrp -
-                    filterdata?.data?.data?.attributes?.price) /
-                  filterdata?.data?.data?.attributes?.mrp
-                ).toFixed(1) * 100}
-                %
+                {filterdata?.data?.data?.attributes.discount}% off
               </span>
               <p className="text-black mb-2 text-3xl">
                 <sup className="text-xl mt-[20px] leading-0">₹</sup>
-                {filterdata?.data?.data?.attributes?.price.toFixed(0)}
+                {filterdata?.data?.data?.attributes.price}
               </p>
             </div>
 
             <div className="flex items-center gap-2">
               <span className="text-gray-500 mb-2 text-md font-serif">
-                M.R.P: ₹{" "}
+                M.R.P: ₹
                 <span className="line-through">
                   {filterdata?.data?.data?.attributes?.mrp}
                 </span>

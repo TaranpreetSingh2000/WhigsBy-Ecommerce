@@ -36,20 +36,14 @@ const CategoryProducts = ({ categoryDetails }) => {
 
                       <div className=" flex gap-3 gap-y-[5px]">
                         <span className="text-white font-[Arial] font-bold bg-red-700 mb-2 text-sm px-2 py-1 tracking-wide">
-                          (
-                          {(
-                            (product?.attributes.mrp -
-                              product?.attributes.price) /
-                            product?.attributes.mrp
-                          ).toFixed(1) * 100}
-                          % off)
+                          {product?.attributes.discount}% off
                         </span>
                         <button className="text-red-700 text-left py-0.5 rounded-[4px] font-bold mb-2 text-sm">
                           {product?.attributes.offer}
                         </button>
                       </div>
                       <p className="text-black mb-2 text-2xl">
-                        ₹{product?.attributes.price}
+                        ₹{product.attributes.price}
                         <span>
                           <sup className="text-sm px-0.2 font-sans">00</sup>
                         </span>

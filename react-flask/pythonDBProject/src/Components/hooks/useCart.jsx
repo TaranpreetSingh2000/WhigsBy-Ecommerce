@@ -16,6 +16,7 @@ const useCart = () => {
             products: productData,
           },
         ]);
+        toast.success("Product Added successfully");
       }
     });
   };

@@ -10,6 +10,7 @@ const ShopCategoriesDetails = () => {
   const { categoryname } = useParams();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setLoading(true);
     getCateogoryProducts(categoryname);
   }, [categoryname]);
@@ -89,15 +90,11 @@ const ShopCategoriesDetails = () => {
                 </div>
                 <div className="flex items-center gap-1">
                   <span className="text-red-500 mb-2 text-2xl">
-                    {(
-                      (item?.attributes?.mrp - item?.attributes?.price) /
-                      item?.attributes?.mrp
-                    ).toFixed(1) * 100}
-                    %
+                    {item?.attributes.discount}% off
                   </span>
                   <p className="text-black mb-2 text-3xl">
                     <sup className="text-xl mt-[20px] leading-0">₹</sup>
-                    {item?.attributes?.price.toFixed(0)}
+                    {item.attributes.price}
                   </p>
                 </div>
                 <div className="flex items-center gap-2">

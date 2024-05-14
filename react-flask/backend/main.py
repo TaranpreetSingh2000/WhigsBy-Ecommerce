@@ -6,6 +6,7 @@ from register import register_app
 from getUserEmail import user_app
 from database import create_user_table
 from getAllUsers import user_count_app
+# from index import razorpay_app
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -19,6 +20,7 @@ app.register_blueprint(login_app)
 app.register_blueprint(register_app)
 app.register_blueprint(user_app)
 app.register_blueprint(user_count_app)
+# app.register_blueprint(razorpay_app)
 
 if __name__ == '__main__':
     app.run(debug=True)

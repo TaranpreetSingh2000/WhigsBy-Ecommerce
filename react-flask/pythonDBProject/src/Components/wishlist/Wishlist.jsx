@@ -96,7 +96,7 @@ const Wishlist = () => {
 
                       <div className="mt-1 pt-2 flex items-baseline gap-2">
                         <p className="text-black font-semibold text-lg py-0.5">
-                          ₹{item?.products?.attributes?.price.toFixed(2)}
+                          {item?.products?.attributes.price}
                         </p>
 
                         <span className="text-gray-500 mb-2 text-sm">
@@ -106,13 +106,7 @@ const Wishlist = () => {
                           </span>
                         </span>
                         <span className="text-orange-500 font-semibold mb-2 text-sm font-[sans-serif] tracking-wide">
-                          (
-                          {(
-                            (item?.products?.attributes?.mrp -
-                              item?.products?.attributes?.price) /
-                            item?.products?.attributes?.mrp
-                          ).toFixed(1) * 100}
-                          % off)
+                          {item?.products?.attributes.discount}% off
                         </span>
                       </div>
                     </div>

@@ -72,10 +72,10 @@ const StrapiData = () => {
                   />
 
                   <div className="flex flex-col justify-center items-center mt-2 p-2">
-                    <p className="text-lg font-semibold">
+                    <p className="text-md font-semibold">
                       {product?.attributes?.title.split(" ")[0]}
                     </p>
-                    <h2 className="text-md font-[Arial] hover:text-orange-500 hover:underline max-[500px]:min-h-0">
+                    <h2 className="text-md hover:text-orange-500 hover:underline max-[500px]:min-h-0">
                       {product.attributes.title.slice(0, 50)}...
                     </h2>
                   </div>
@@ -98,22 +98,16 @@ const StrapiData = () => {
 
                   <div className="mt-1 p-2 flex items-baseline gap-2">
                     <p className="text-black text-xl py-0.5">
-                      ₹{product.attributes.price.toFixed(2)}
+                      ₹{product.attributes.price}
                     </p>
-
-                    <span className="text-gray-500 mb-2 text-sm">
+                    <span className="text-gray-800 mb-2 text-sm">
                       M.R.P: ₹
                       <span className="line-through">
                         {product?.attributes.mrp}
                       </span>
                     </span>
-                    <span className="text-black mb-2 text-md font-[sans-serif] tracking-wide">
-                      (
-                      {(
-                        (product?.attributes.mrp - product?.attributes.price) /
-                        product?.attributes.mrp
-                      ).toFixed(1) * 100}
-                      % off)
+                    <span className="text-orange-500 font-semibold mb-2 text-md font-[sans-serif] tracking-wide">
+                      {product?.attributes.discount}% off
                     </span>
                   </div>
                 </div>
