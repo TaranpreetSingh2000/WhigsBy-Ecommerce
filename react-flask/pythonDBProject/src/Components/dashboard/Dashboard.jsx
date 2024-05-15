@@ -1,5 +1,6 @@
 import React from "react";
 import StrapiData from "../productDetails/StrapiData";
+import Carousel from "../carousel/Carousel";
 const Dashboard = () => {
   return (
     <>
@@ -22,7 +23,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-
+      {/* <Carousel /> */}
       <StrapiData />
     </>
   );

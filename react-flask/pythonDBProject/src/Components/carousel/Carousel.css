@@ -1,0 +1,43 @@
+.slick-dots li {
+  margin: 0 4px;
+}
+
+.slick-dots li button {
+  font-size: 1px;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background-color: #ccc;
+}
+
+.slick-slide {
+  display: flex !important;
+  justify-content: center;
+}
+
+.slick-dots li button::before {
+  content: none !important;
+}
+
+.slick-dots li.slick-active button {
+  background-color: #6d6565;
+}
+
+@media (max-width: 640px) {
+  .slick-dots {
+    bottom: 0px;
+  }
+
+  .slick-dots li {
+    margin: 0 1px;
+  }
+
+  .slick-dots li button {
+    font-size: 5px;
+    width: 4px;
+    height: 4px;
+  }
+  .slick-slide .li{
+    margin: 0px 3px;
+  }
+}
