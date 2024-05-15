@@ -44,6 +44,8 @@ const StrapiData = () => {
     );
   }
 
+  console.log(data.data);
+
   return (
     <>
       <div className="container mx-auto mb-6">
@@ -98,12 +100,17 @@ const StrapiData = () => {
               data.data.data.map((product) => (
                 <Link key={product.id} to={`/productDetails/${product.id}`}>
                   <div className="bg-white border border-gray-50 text-center rounded-lg h-[100%] flex flex-col items-center cursor-pointer hover:border hover:border-orange-200 hover:duration-500 ease-in-out">
-                    <div>
+                    <div className="relative">
                       <img
                         src={`${product.attributes.image.data[0].attributes.url}`}
                         alt={product?.attributes?.title}
                         className="rounded-md aspect-[4/4] object-contain"
                       />
+                      {product?.attributes?.delivery && (
+                        <span className="absolute right-0 top-0 bg-green-500 text-white px-2 py-1 text-xs rounded-tl-lg">
+                          Instant Delivery
+                        </span>
+                      )}
                     </div>
 
                     <div className="flex flex-col mt-2 p-2">
@@ -116,7 +123,7 @@ const StrapiData = () => {
                     </div>
 
                     <div className="mt-1 flex items-baseline gap-2">
-                      <p className="text-black text-xl py-0.5">
+                      <p className="text-black text-md py-0.5 font-semibold font-[Arial]">
                         ₹{product.attributes.price}
                       </p>
                       <span className="text-gray-800 mb-2 text-sm">
