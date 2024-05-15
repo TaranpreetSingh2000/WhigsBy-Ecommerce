@@ -140,10 +140,14 @@ const ProductDetails = () => {
               {filterdata?.data?.data?.attributes?.title}
             </h2>
 
-            <div className="w-[130px]">
+            <div className="flex items-baseline gap-3">
               <button className="text-white bg-red-700 text-left px-2 py-0.5 rounded-[4px] font-semibold mb-2 text-sm">
                 {filterdata?.data?.data?.attributes?.offer}
               </button>
+
+              <span className=" bg-green-600 text-white px-2 py-1 text-sm rounded-tl-lg">
+                Instant Delivery
+              </span>
             </div>
 
             <div className="flex items-center gap-1">
