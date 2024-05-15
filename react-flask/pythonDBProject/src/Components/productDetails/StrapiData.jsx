@@ -49,7 +49,7 @@ const StrapiData = () => {
       <div className="container mx-auto mb-6">
         <div className="flex flex-1 items-center p-6 w-full">
           <div className="w-full">
-            <form className="mt-5 sm:flex sm:items-center border-b-2 border-[#86b7fe] gap-2">
+            <form className="mt-5 flex items-center border-b border-[#252e49] gap-2">
               <CgSearch size={20} className="text-gray-600" />
               <input
                 className="border-none w-full focus:outline-none"
