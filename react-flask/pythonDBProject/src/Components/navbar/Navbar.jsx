@@ -36,7 +36,7 @@ const Navbar = () => {
       setCart([]);
       setWistlist([]);
     }
-  }, [email, wishlist]);
+  }, [email]);
 
   const getCartItem = () => {
     getUserCartItems(email).then((res) => {
@@ -135,7 +135,6 @@ const Navbar = () => {
 
   return (
     <>
-      <ToastContainer autoClose={1000} />
       <nav className="bg-white dark:bg-gray-900 w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
         <div className="flex flex-wrap items-center justify-between mx-auto p-2.5">
           <div>
@@ -301,7 +300,7 @@ const Navbar = () => {
               >
                 <BsCart2 className="text-xl cursor-pointer" />
                 <span className="font-semibold text-md cursor-pointer">
-                  <sup className="border border-red-600 rounded-3xl p-[0.6px] px-[5px] bg-red-600 text-white">
+                  <sup className="border border-[#252e49] rounded-3xl p-[0.6px] px-[5px] bg-[#252e49] text-white">
                     {isAuth || isAdminAuth ? cart?.length : 0}
                   </sup>
                 </span>

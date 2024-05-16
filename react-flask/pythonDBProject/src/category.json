@@ -1,0 +1,268 @@
+{
+    "data": [
+    {
+    "id": 36,
+    "attributes": {
+    "title": "Puma Ferrari Motorsport Kart Cat Mid III High Tops Red Shoes",
+    "rating": 5,
+    "category": "shoes",
+    "offer": "Limited time deal",
+    "mrp": 1500,
+    "createdAt": "2024-04-13T18:30:33.281Z",
+    "updatedAt": "2024-05-15T05:35:26.788Z",
+    "publishedAt": "2024-04-13T18:30:34.311Z",
+    "discount": 12,
+    "price": 1250,
+    "delivery": false
+    }
+    },
+    {
+    "id": 42,
+    "attributes": {
+    "title": "SELFSAME - Comfortable and Versatile Cotton Solid Men's Stylish Cargo Multiple Pockets ",
+    "rating": 4.6,
+    "category": "shirt",
+    "offer": "Limited time deal",
+    "mrp": 2999,
+    "createdAt": "2024-04-14T11:14:21.318Z",
+    "updatedAt": "2024-05-15T05:35:34.532Z",
+    "publishedAt": "2024-04-14T11:14:22.840Z",
+    "discount": 18,
+    "price": 999,
+    "delivery": true
+    }
+    },
+    {
+    "id": 47,
+    "attributes": {
+    "title": "ASIAN Men's Tarzan-11 White Casual Sneaker High-Neck Shoes with Lightweight Extra Cushion Lace-Up Shoes for Men's & Boy's…",
+    "rating": 4.9,
+    "category": "shoes",
+    "offer": "Limited time deal",
+    "mrp": 1000,
+    "createdAt": "2024-04-14T11:28:21.523Z",
+    "updatedAt": "2024-05-15T05:33:35.155Z",
+    "publishedAt": "2024-04-14T11:28:22.384Z",
+    "discount": 30,
+    "price": 600,
+    "delivery": true
+    }
+    },
+    {
+    "id": 39,
+    "attributes": {
+    "title": "boAt Airdopes 121 Pro True Wireless Earbuds Signature Sound,Quad Mic Enx,Low Latency Mode for Gaming,50H Playtime,Iwp,Ipx4,Battery Indicator Screen(Mint Cascade),in-Ear",
+    "rating": 4.8,
+    "category": "earphones",
+    "offer": "Limited time deal",
+    "mrp": 1650,
+    "createdAt": "2024-04-14T11:09:44.495Z",
+    "updatedAt": "2024-05-15T05:33:43.361Z",
+    "publishedAt": "2024-04-14T11:09:45.912Z",
+    "discount": 15,
+    "price": 1100,
+    "delivery": false
+    }
+    },
+    {
+    "id": 48,
+    "attributes": {
+    "title": "Dennis Lingo Men's Solid Slim Fit Cotton Casual Shirt with Spread Collar & Full Shirt for Men|| Shirt for Men|| Men Stylish Shirt (Rib-Shirt)",
+    "rating": 4.3,
+    "category": "shirt",
+    "offer": "Limited time deal",
+    "mrp": 1849,
+    "createdAt": "2024-04-24T10:27:57.200Z",
+    "updatedAt": "2024-05-15T05:33:50.818Z",
+    "publishedAt": "2024-04-24T10:28:53.847Z",
+    "discount": 10,
+    "price": 1600,
+    "delivery": true
+    }
+    },
+    {
+    "id": 44,
+    "attributes": {
+    "title": "Dennis Lingo Men's Solid Slim Fit Cotton Casual Shirt with Spread Collar & Full Sleeves (Also Available in Plus Size)",
+    "rating": 4.9,
+    "category": "shirt",
+    "offer": "Limited time deal",
+    "mrp": 1999,
+    "createdAt": "2024-04-14T11:19:27.869Z",
+    "updatedAt": "2024-05-15T05:34:00.361Z",
+    "publishedAt": "2024-04-14T11:19:28.981Z",
+    "discount": 12,
+    "price": 899,
+    "delivery": true
+    }
+    },
+    {
+    "id": 34,
+    "attributes": {
+    "title": "Dennis Lingo Men's Solid Slim Fit Cotton Casual Shirt with Spread Collar & Full Sleeves (Also Available in Plus Size)",
+    "rating": 4.5,
+    "category": "shirt",
+    "offer": "Limited time deal",
+    "mrp": 999,
+    "createdAt": "2024-04-13T18:26:26.055Z",
+    "updatedAt": "2024-05-15T05:34:08.097Z",
+    "publishedAt": "2024-04-13T18:28:38.378Z",
+    "discount": 10,
+    "price": 799,
+    "delivery": false
+    }
+    },
+    {
+    "id": 33,
+    "attributes": {
+    "title": "FUR JADEN Anti Theft Number Lock Backpack Bag with 15.6 Inch Laptop Compartment, USB Charging Port & Organizer Pocket for Men Women Boys Girls",
+    "rating": 4.6,
+    "category": "bags",
+    "offer": "Limited time deal",
+    "mrp": 1200,
+    "createdAt": "2024-04-13T10:31:15.078Z",
+    "updatedAt": "2024-05-15T05:34:19.161Z",
+    "publishedAt": "2024-04-13T10:32:41.617Z",
+    "discount": 15,
+    "price": 999,
+    "delivery": false
+    }
+    },
+    {
+    "id": 43,
+    "attributes": {
+    "title": "SELFSAME - Comfortable and Versatile Terry Nylon Solid Men's Stylish Cargo Multiple Pockets | Cargo Pants Cargo Pant",
+    "rating": 5,
+    "category": "shirt",
+    "offer": "Limited time deal",
+    "mrp": 1999,
+    "createdAt": "2024-04-14T11:17:37.982Z",
+    "updatedAt": "2024-05-15T05:35:44.503Z",
+    "publishedAt": "2024-04-14T11:17:39.519Z",
+    "discount": 12,
+    "price": 899,
+    "delivery": false
+    }
+    },
+    {
+    "id": 41,
+    "attributes": {
+    "title": "Whirlpool 7.5 Kg 5 Star Royal Fully-Automatic Top Load Washing Machine (WHITEMAGIC ROYAL 7.5 GENX, Grey, Hard Water Wash, ZPF Technology)",
+    "rating": 5,
+    "category": "washing machine",
+    "offer": "Limited time deal",
+    "mrp": 19980,
+    "createdAt": "2024-04-14T11:12:31.042Z",
+    "updatedAt": "2024-05-15T05:35:52.559Z",
+    "publishedAt": "2024-04-14T11:12:32.496Z",
+    "discount": 20,
+    "price": 14500,
+    "delivery": true
+    }
+    },
+    {
+    "id": 35,
+    "attributes": {
+    "title": "HAYES LONDON Italian Leather Reversible Belt for Men, Original Top Grain Formal and Casual Belt, Lifetime Leather Warranty",
+    "rating": 4.9,
+    "category": "belts",
+    "offer": "Limited time deal",
+    "mrp": 1639,
+    "createdAt": "2024-04-13T18:28:23.777Z",
+    "updatedAt": "2024-05-15T05:34:26.407Z",
+    "publishedAt": "2024-04-13T18:28:32.935Z",
+    "discount": 12,
+    "price": 1400,
+    "delivery": true
+    }
+    },
+    {
+    "id": 40,
+    "attributes": {
+    "title": "HyperX Cloud Stinger Core Wireless On Ear Headphones with Mic (Black) Clear Calling ENC Mic, Made in India, Low Latency Gaming, Rich Bass Drivers, IPX5, TWS earbuds bluetooth wireless (Green)",
+    "rating": 4.7,
+    "category": "earphones",
+    "offer": "Limited time deal",
+    "mrp": 1629,
+    "createdAt": "2024-04-14T11:11:07.841Z",
+    "updatedAt": "2024-05-15T05:34:36.294Z",
+    "publishedAt": "2024-04-14T11:11:08.434Z",
+    "discount": 20,
+    "price": 1200,
+    "delivery": true
+    }
+    },
+    {
+    "id": 46,
+    "attributes": {
+    "title": "iQOO 12 5G (Legend, 12GB RAM, 256GB Storage) | India's 1st Snapdragon® 8 Gen 3 Mobile Platform | India's only Flagship with 50MP + 50MP + 64MP Camera",
+    "rating": 4.7,
+    "category": "mobile phone",
+    "offer": "Limited time deal",
+    "mrp": 56900,
+    "createdAt": "2024-04-14T11:26:51.867Z",
+    "updatedAt": "2024-05-15T05:34:47.398Z",
+    "publishedAt": "2024-04-14T11:26:53.280Z",
+    "discount": 25,
+    "price": 51500,
+    "delivery": false
+    }
+    },
+    {
+    "id": 45,
+    "attributes": {
+    "title": "iQOO Z7s 5G by vivo (Norway Blue, 6GB RAM, 128GB Storage) | Ultra Bright AMOLED Display | Snapdragon 695 5G 6nm Processor | 64 MP OIS Ultra Stable Camera | 44WFlashCharge",
+    "rating": 5,
+    "category": "mobile phone",
+    "offer": "Limited time deal",
+    "mrp": 18600,
+    "createdAt": "2024-04-14T11:22:58.400Z",
+    "updatedAt": "2024-05-15T05:34:55.272Z",
+    "publishedAt": "2024-04-14T11:23:00.296Z",
+    "discount": 15,
+    "price": 13500,
+    "delivery": false
+    }
+    },
+    {
+    "id": 38,
+    "attributes": {
+    "title": "LG 242 L 3 Star Smart Inverter Frost-Free Double Door Refrigerator (GL-I292RPZX, Shiny Steel, Door Cooling+)",
+    "rating": 4.9,
+    "category": "refrigerator",
+    "offer": "Limited time deal",
+    "mrp": 29300,
+    "createdAt": "2024-04-14T11:07:08.773Z",
+    "updatedAt": "2024-05-15T05:35:12.130Z",
+    "publishedAt": "2024-04-14T11:08:04.129Z",
+    "discount": 20,
+    "price": 23500,
+    "delivery": true
+    }
+    },
+    {
+    "id": 37,
+    "attributes": {
+    "title": "Noise Halo Plus 1.46\" Super AMOLED Display Elite Smart Watch, Bluetooth Calling, Stainless Steel Build, Always on Display, Upto 7 Days Battery (Elite Black)",
+    "rating": 5,
+    "category": "watches",
+    "offer": "Limited time deal",
+    "mrp": 3500,
+    "createdAt": "2024-04-13T18:31:34.201Z",
+    "updatedAt": "2024-05-15T05:35:20.230Z",
+    "publishedAt": "2024-04-13T18:31:44.058Z",
+    "discount": 18,
+    "price": 2200,
+    "delivery": true
+    }
+    }
+    ],
+    "meta": {
+    "pagination": {
+    "page": 1,
+    "pageSize": 25,
+    "pageCount": 1,
+    "total": 16
+    }
+    }
+    }

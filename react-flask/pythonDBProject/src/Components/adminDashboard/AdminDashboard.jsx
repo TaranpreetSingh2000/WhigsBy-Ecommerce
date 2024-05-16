@@ -7,7 +7,6 @@ import { Link, Outlet } from "react-router-dom";
 const AdminDashboard = () => {
   return (
     <>
-      <ToastContainer autoClose={1000} />
       <div className="flex h-screen bg-gray-200 ">
         {/* Sidebar */}
         <aside className="bg-gray-800 text-gray-100 flex-shrink-0 w-64">
