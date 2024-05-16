@@ -36,7 +36,7 @@ const Navbar = () => {
       setCart([]);
       setWistlist([]);
     }
-  }, [email, wishlist]);
+  }, [email]);
 
   const getCartItem = () => {
     getUserCartItems(email).then((res) => {
@@ -301,7 +301,7 @@ const Navbar = () => {
               >
                 <BsCart2 className="text-xl cursor-pointer" />
                 <span className="font-semibold text-md cursor-pointer">
-                  <sup className="border border-red-600 rounded-3xl p-[0.6px] px-[5px] bg-red-600 text-white">
+                  <sup className="border border-[#252e49] rounded-3xl p-[0.6px] px-[5px] bg-[#252e49] text-white">
                     {isAuth || isAdminAuth ? cart?.length : 0}
                   </sup>
                 </span>

@@ -32,6 +32,7 @@ import Orders from "./Components/adminDashboard/Orders.jsx";
 import AboutUs from "./Components/about/AboutUs.jsx";
 import CategoriesPage from "./Components/category/CategoriesPage.jsx";
 import { ToastContainer } from "react-toastify";
+import FilterProducts from "./Components/filter/FilterProducts.jsx";
 // import Checkout from "./Components/checkout/Checkout.jsx";
 
 const router = createBrowserRouter(
@@ -45,6 +46,7 @@ const router = createBrowserRouter(
         <Route path="login" element={<Login />} />
         <Route path="admin" element={<Admin />} />
         <Route path="dashboard" element={<Protected Component={Dashboard} />} />
+
         <Route
           path="/productDetails/:productId"
           element={<Protected Component={ProductDetails} />}

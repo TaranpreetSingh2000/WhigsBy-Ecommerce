@@ -4,19 +4,17 @@ import {
   getAllProducts,
   getProductsSearchCategory,
 } from "../../../_utils/GlobalApi";
-import ShopByCategories from "./ShopByCategories";
 import { CgSearch } from "react-icons/cg";
 
-const StrapiData = () => {
+const StrapiData = ({ fetchedQuery }) => {
   const [data, setData] = useState({});
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    if (searchQuery) {
-      debugger;
-      getProductsSearchCategory(searchQuery).then((res) => {
-        console.log(res);
+    if (searchQuery || fetchedQuery) {
+      const query = searchQuery || fetchedQuery;
+      getProductsSearchCategory(query).then((res) => {
         setData(res);
       });
     } else {
@@ -28,7 +26,7 @@ const StrapiData = () => {
           setError(error);
         });
     }
-  }, [searchQuery]);
+  }, [searchQuery, fetchedQuery]);
 
   if (error) {
     return (
@@ -44,12 +42,10 @@ const StrapiData = () => {
     );
   }
 
-  console.log(data.data);
-
   return (
     <>
-      <div className="container mx-auto mb-6">
-        <div className="flex flex-1 items-center p-6 w-full">
+      <div className="container mx-auto mb-6 p-4">
+        <div className="flex flex-1 items-center w-full">
           <div className="w-full">
             <form className="mt-5 flex items-center border-b border-[#252e49] gap-2">
               <CgSearch size={20} className="text-gray-600" />
@@ -63,7 +59,7 @@ const StrapiData = () => {
             </form>
           </div>
         </div>
-        <h1 className="uppercase my-[40px] text-[1.8em] text-zinc-700 font-medium tracking-[0.3em] tracking-normal-[2.5em] mb-[40px] px-[50px] max-[500px]:px-0 max-[500px]:text-2xl max-[500px]:text-center">
+        {/* <h1 className="uppercase my-[40px] text-[1.8em] text-zinc-700 font-medium tracking-[0.3em] tracking-normal-[2.5em] mb-[40px] px-[50px] max-[500px]:px-0 max-[500px]:text-2xl max-[500px]:text-center">
           SHOP BY CATEGORIES
         </h1>
 
@@ -83,11 +79,11 @@ const StrapiData = () => {
             <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
             <div className="h-[50px] w-[240px] bg-slate-200 animate-pulse rounded-lg"></div>
           </div>
-        )}
+        )} */}
       </div>
 
       <div className="container mx-auto mb-6">
-        <h1 className="uppercase my-[40px] text-[1.8em] text-zinc-700 font-medium tracking-[0.3em] tracking-normal-[2.5em] mb-[40px] px-[45px] max-[500px]:px-0 max-[500px]:text-2xl max-[500px]:text-center">
+        <h1 className="uppercase my-[30px] text-[1.8em] text-zinc-700 font-medium tracking-[0.3em] tracking-normal-[2.5em] mb-[40px] px-[45px] max-[500px]:px-0 max-[500px]:text-2xl max-[500px]:text-center">
           GRAND GLOBAL BRANDS
         </h1>
         {data.data && data.data.data.length === 0 ? (
@@ -99,7 +95,7 @@ const StrapiData = () => {
             {data.data ? (
               data.data.data.map((product) => (
                 <Link key={product.id} to={`/productDetails/${product.id}`}>
-                  <div className="bg-white border border-gray-50 text-center rounded-lg h-[100%] flex flex-col items-center cursor-pointer hover:border hover:border-orange-200 hover:duration-500 ease-in-out">
+                  <div className="text-center bg-white rounded-lg h-[100%] flex flex-col items-center cursor-pointer hover:border hover:border-orange-200 hover:duration-500 ease-in-out">
                     <div className="relative">
                       <img
                         src={`${product.attributes.image.data[0].attributes.url}`}

@@ -16,9 +16,10 @@ const getProductsById = (id) =>
 
 const getProductsSearchCategory = (query) =>
   axiosClient.get(
-    "/products?filters[category][$startsWith]=" + query + "&populate=*"
+    "/products?filters[categories][Name][$containsi]=" + query + "&populate=*"
   );
 
+const getCategories = () => axiosClient.get("/categories");
 // add to cart function
 const addtoCart = (data) =>
   axiosClient.post("/carts", data, "&pagination[limit]=100");
@@ -76,4 +77,5 @@ export {
   deleteWishlistItem,
   getCustomerLoginId,
   getProductsSearchCategory,
+  getCategories,
 };
