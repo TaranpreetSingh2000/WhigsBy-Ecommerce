@@ -19,6 +19,24 @@ const getProductsSearchCategory = (query) =>
     "/products?filters[categories][Name][$containsi]=" + query + "&populate=*"
   );
 
+const getProductsPriceFilter = (min, max) =>
+  axiosClient.get(
+    "/products?filters[price][$gte]=" +
+      min +
+      "&filters[price][$lte]=" +
+      max +
+      "&populate=*"
+  );
+
+const getProductsRatingFilter = (rating) =>
+  axiosClient.get(
+    "/products?filters[rating][$gte]=" +
+      rating +
+      "&filters[rating][$lte]=" +
+      (rating === 3 ? 4 : 5) +
+      "&populate=*"
+  );
+
 const getCategories = () => axiosClient.get("/categories");
 // add to cart function
 const addtoCart = (data) =>
@@ -78,4 +96,6 @@ export {
   getCustomerLoginId,
   getProductsSearchCategory,
   getCategories,
+  getProductsPriceFilter,
+  getProductsRatingFilter,
 };

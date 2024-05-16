@@ -102,8 +102,6 @@ const Checkout = () => {
   };
   return (
     <>
-      <ToastContainer autoClose={1000} />
-
       <div className="flex justify-center items-center">
         <div className="w-1/2 max-[600px]:hidden">
           <img
@@ -117,7 +115,6 @@ const Checkout = () => {
           <h2 className="text-xl font-semibold mb-4 text-gray-500 font-sans">
             Add your Contact Information
           </h2>
-
           di.usrer
           <div className="mb-4">
             <label
@@ -153,7 +150,6 @@ const Checkout = () => {
               required
             />
           </div>
-
           <div className="mb-4">
             <label
               htmlFor="email"
@@ -188,7 +184,6 @@ const Checkout = () => {
               required
             />
           </div>
-
           <button
             className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             onClick={paymentHandler}

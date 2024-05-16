@@ -56,7 +56,6 @@ const Login = () => {
 
   return (
     <>
-      <ToastContainer autoClose={3000} />
       <div className="bg-gray-100 min-h-screen py-[4rem]">
         <div className="max-w-md w-full mx-auto p-8 bg-white rounded-lg shadow-lg">
           <h1 className="text-3xl text-center font-semibold text-gray-800 mb-6">

@@ -1,22 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   getAllProducts,
   getProductsSearchCategory,
 } from "../../../_utils/GlobalApi";
 import { CgSearch } from "react-icons/cg";
+import { CartContext } from "../../_context/CartContext";
 
 const StrapiData = ({ fetchedQuery }) => {
   const [data, setData] = useState({});
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const { priceFilter, initialData } = useContext(CartContext);
 
+  debugger;
   useEffect(() => {
     if (searchQuery || fetchedQuery) {
       const query = searchQuery || fetchedQuery;
       getProductsSearchCategory(query).then((res) => {
         setData(res);
       });
+    } else if (priceFilter || initialData) {
+      const query = priceFilter || initialData;
+      setData(query);
     } else {
       getAllProducts()
         .then((res) => {
@@ -26,7 +32,7 @@ const StrapiData = ({ fetchedQuery }) => {
           setError(error);
         });
     }
-  }, [searchQuery, fetchedQuery]);
+  }, [searchQuery, fetchedQuery, priceFilter, initialData]);
 
   if (error) {
     return (

@@ -11,7 +11,7 @@ const CategoryProducts = ({ categoryDetails }) => {
         </h3>
 
         {categoryDetails ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
             {categoryDetails?.data?.data &&
               categoryDetails?.data?.data.map((product) => (
                 <Link
@@ -19,19 +19,19 @@ const CategoryProducts = ({ categoryDetails }) => {
                   to={`/productDetails/${product.id}`}
                   className="flex justify-center"
                 >
-                  <div className="bg-white rounded-lg h-[100%] flex flex-col items-center cursor-pointer">
+                  <div className="bg-white rounded-lg h-[100%] flex flex-col items-center cursor-pointer hover:border hover:border-orange-300">
                     <div>
                       <img
                         src={`${product.attributes.image.data[0].attributes.url}`}
                         alt={product?.attributes?.title}
-                        className="rounded-md object-scale-down aspect-[4/4]"
+                        className="rounded-md object-contain aspect-[4/4]"
                         style={{ mixBlendMode: "darken" }}
                       />
                     </div>
 
-                    <div className="p-3 px-4">
-                      <h2 className="text-lg text-[#54a0ad] font-semibold min-h-[110px] hover:text-orange-500 hover:underline">
-                        {product.attributes.title.slice(0, 100)}...
+                    <div className="p-2 px-4">
+                      <h2 className="text-md text-[#54a0ad] font-semibold mb-1 hover:text-orange-500 hover:underline">
+                        {product.attributes.title.slice(0, 80)}...
                       </h2>
 
                       <div className=" flex gap-3 gap-y-[5px]">
