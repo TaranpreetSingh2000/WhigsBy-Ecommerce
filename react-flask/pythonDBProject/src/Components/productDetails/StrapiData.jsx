@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   getAllProducts,
   getProductsSearchCategory,
@@ -8,12 +8,13 @@ import { CgSearch } from "react-icons/cg";
 import { CartContext } from "../../_context/CartContext";
 
 const StrapiData = ({ fetchedQuery }) => {
+  const location = useLocation();
+  const { hash, pathname, search } = location;
   const [data, setData] = useState({});
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const { priceFilter, initialData } = useContext(CartContext);
 
-  debugger;
   useEffect(() => {
     if (
       searchQuery ||
@@ -45,12 +46,10 @@ const StrapiData = ({ fetchedQuery }) => {
   if (error) {
     return (
       <div className="container flex justify-center text-xl text-gray-600">
-        <div className="flex flex-col items-center font-serif opacity-[0.9]">
-          <p className="text-center">Oh, something went wrong!!</p>
-          <p>
-            We couldn't fetch the data due to some technical error. It happens,
-            just try again after a couple of minutes.
-          </p>
+        <div class="grid h-screen place-content-center bg-white px-4">
+          <h1 class="uppercase tracking-widest text-gray-500">
+            404 | Not Found
+          </h1>
         </div>
       </div>
     );
@@ -59,20 +58,22 @@ const StrapiData = ({ fetchedQuery }) => {
   return (
     <>
       <div className="container mx-auto mb-6 p-4">
-        <div className="flex flex-1 items-center w-full">
-          <div className="w-full">
-            <form className="mt-5 flex items-center border-b border-[#252e49] gap-2">
-              <CgSearch size={20} className="text-gray-600" />
-              <input
-                className="border-none w-full focus:outline-none"
-                placeholder="Search brands..."
-                type="search"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </form>
+        {pathname === "/listing" && (
+          <div className="flex flex-1 items-center w-full">
+            <div className="w-full">
+              <form className="mt-5 flex items-center border-b border-[#252e49] gap-2">
+                <CgSearch size={20} className="text-gray-600" />
+                <input
+                  className="border-none w-full focus:outline-none"
+                  placeholder="Search brands..."
+                  type="search"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </form>
+            </div>
           </div>
-        </div>
+        )}
         {/* <h1 className="uppercase my-[40px] text-[1.8em] text-zinc-700 font-medium tracking-[0.3em] tracking-normal-[2.5em] mb-[40px] px-[50px] max-[500px]:px-0 max-[500px]:text-2xl max-[500px]:text-center">
           SHOP BY CATEGORIES
         </h1>
@@ -97,9 +98,20 @@ const StrapiData = ({ fetchedQuery }) => {
       </div>
 
       <div className="container mx-auto mb-6">
-        <h1 className="uppercase my-[30px] text-[1.8em] text-zinc-700 font-medium tracking-[0.3em] tracking-normal-[2.5em] mb-[40px] px-[45px] max-[500px]:px-0 max-[500px]:text-2xl max-[500px]:text-center">
-          GRAND GLOBAL BRANDS
-        </h1>
+        <div className="upperHeading flex justify-between items-center my-[30px] max-[500px]:flex-col">
+          <h1 className="uppercase text-[1.5em] text-zinc-700 font-medium tracking-[0.2em] tracking-normal-[2.5em] px-[45px] max-[500px]:px-0 max-[500px]:text-2xl max-[500px]:text-center">
+            {pathname === "/home" ? "Trending Products" : "GRAND GLOBAL BRANDS"}
+          </h1>
+
+          {pathname === "/home" && (
+            <Link
+              to="/listing"
+              className="text-blue-700 font-semibold hover:underline"
+            >
+              View All Collection
+            </Link>
+          )}
+        </div>
         {data.data && data.data.data.length === 0 ? (
           <p className="text-gray-700 text-lg flex justify-center items-center w-full">
             No products Found
@@ -134,7 +146,7 @@ const StrapiData = ({ fetchedQuery }) => {
 
                     <div className="mt-1 flex items-baseline gap-2">
                       <p className="text-black text-md py-0.5 font-semibold font-[Arial]">
-                        {product?.attributes?.rating}₹{product.attributes.price}
+                        ₹{product.attributes.price}
                       </p>
                       <span className="text-gray-800 mb-2 text-sm">
                         M.R.P: ₹

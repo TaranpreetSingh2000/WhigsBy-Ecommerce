@@ -119,7 +119,7 @@ const Page = () => {
                       Your Cart is empty!! Nothing to preview
                     </p>
                     <Link
-                      to="/dashboard"
+                      to="/home"
                       className="inline-block text-sm text-gray-500 underline underline-offset-4 transition cursor-pointer hover:text-gray-600"
                     >
                       Continue shopping

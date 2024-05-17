@@ -10,7 +10,7 @@ import {
 import Signup from "./Components/auth/signup/Signup";
 import Login from "./Components/auth/login/Login";
 import Layout from "./Components/layout/Layout";
-import Dashboard from "./Components/dashboard/Dashboard";
+import Dashboard from "./Components/ProductsListing/ProductsListing.jsx";
 import Protected from "./Components/services/Protected.jsx";
 import Admin from "./Components/auth/admin/Admin.jsx";
 import Contact from "./Components/contact/Contact.jsx";
@@ -32,8 +32,8 @@ import Orders from "./Components/adminDashboard/Orders.jsx";
 import AboutUs from "./Components/about/AboutUs.jsx";
 import CategoriesPage from "./Components/category/CategoriesPage.jsx";
 import { ToastContainer } from "react-toastify";
-import FilterProducts from "./Components/filter/FilterProducts.jsx";
-// import Checkout from "./Components/checkout/Checkout.jsx";
+import Home from "./Components/home/Home.jsx";
+import ProductsListing from "./Components/ProductsListing/ProductsListing.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -45,10 +45,11 @@ const router = createBrowserRouter(
         <Route path="category" element={<CategoriesPage />} />
         <Route path="login" element={<Login />} />
         <Route path="admin" element={<Admin />} />
-        <Route path="dashboard" element={<Protected Component={Dashboard} />} />
+        <Route path="listing" element={<Protected Component={ProductsListing} />} />
+        <Route path="home" element={<Protected Component={Home} />} />
 
         <Route
-          path="/productDetails/:productId"
+          path="productDetails/:productId"
           element={<Protected Component={ProductDetails} />}
         />
         <Route

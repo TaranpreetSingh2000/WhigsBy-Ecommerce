@@ -63,7 +63,7 @@ const ProductDetails = () => {
       setIsAddedToWishlist(true);
       setIsAddedToCart(true);
     }
-  }, [CartItems, WishlistItems, productId]);
+  }, [CartItems, WishlistItems, productId, isAddedToCart, isAddedToWishlist]);
 
   useEffect(() => {
     setFilterData(response);
