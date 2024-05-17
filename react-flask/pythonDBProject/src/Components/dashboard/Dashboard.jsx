@@ -29,12 +29,12 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="flex border border-gray-100 m-4">
-        <div className="w-[22%] border-r border-gray-100 min-h-screen mt-5">
+      <div className="flex border border-gray-100 m-4 max-[700px]:flex-col">
+        <div className="w-[22%] border-r border-gray-100 min-h-screen mt-5 max-[800px]:w-full">
           <FilterProducts fetchCategory={(query) => setCategory(query)} />
         </div>
 
-        <div className="w-[78%]">
+        <div className="w-[78%] max-[800px]:w-full">
           {/* <Carousel /> */}
           <StrapiData fetchedQuery={category} />
         </div>

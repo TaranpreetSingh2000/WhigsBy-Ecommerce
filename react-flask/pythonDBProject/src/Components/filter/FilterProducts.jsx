@@ -28,7 +28,6 @@ const FilterProducts = ({ fetchCategory }) => {
     });
   }, []);
 
-  debugger;
   useEffect(() => {
     if (minPrice && maxPrice) {
       getProductsPriceFilter(minPrice, maxPrice).then((res) => {
@@ -62,7 +61,6 @@ const FilterProducts = ({ fetchCategory }) => {
   };
 
   const handleClearAll = () => {
-    debugger;
     setCheckedQuery([]);
     fetchCategory("");
     setPriceFilter("");
@@ -143,8 +141,8 @@ const FilterProducts = ({ fetchCategory }) => {
       <div>
         <h3 className="text-md mb-2">Rating</h3>
         <div className="">
-          {RATING_FILTER.map((rating) => (
-            <div className="flex gap-1">
+          {RATING_FILTER.map((rating, index) => (
+            <div className="flex gap-1" key={index}>
               <input
                 type="radio"
                 className="border border-gray-300 "
@@ -152,7 +150,7 @@ const FilterProducts = ({ fetchCategory }) => {
                 value={rating}
                 id=""
                 onChange={() => setRating(rating.value)}
-                // checked={checkedQuery.includes(rating.value)}  
+                // checked={checkedQuery.includes(rating.value)}
               />
               <label htmlFor="">{rating.label}</label>
             </div>

@@ -65,31 +65,31 @@ const Wishlist = () => {
     <>
       <div className="container mx-auto p-10">
         {wishlist.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-[767px]:grid-cols-2 max-[460px]:grid-cols-1">
             {wishlist.length > 0 &&
               wishlist.map((item, index) => (
                 <div
-                  className="border border-gray-200 rounded-md"
+                  className="border border-gray-200 rounded-md text-center"
                   key={index}
                   // data-id={item.id}
                 >
                   <div className="flex relative">
                     <img
                       src={`${item?.products?.attributes?.image.data[0].attributes.url}`}
-                      className="w-full aspect-[4/4] mb-4 rounded-md"
+                      className="w-full aspect-[4/4] object-scale-down mb-2 rounded-md"
                     />
                     <RxCross1
                       className="absolute right-0 mx-2 my-2 border border-gray-500 rounded-xl p-1 text-2xl cursor-pointer"
                       onClick={() => handleDeleteWishlistItems(item?.id)}
                     />
                   </div>
-                  <div className="flex flex-col items-center p-2">
+                  <div className="flex flex-col items-center pt-1 px-2">
                     <div className="w-full flex flex-col justify-center items-center">
                       <h2 className="text-md font-[system-ui]">
                         {item?.products?.attributes?.title.slice(0, 50)}...
                       </h2>
 
-                      <div className="mt-1 pt-2 flex items-baseline gap-2">
+                      <div className="mt-1 pt-1 flex items-baseline gap-2">
                         <p className="text-black text-lg py-0.5">
                           ₹{item?.products?.attributes.price}
                         </p>
@@ -105,7 +105,7 @@ const Wishlist = () => {
                         </span>
                       </div>
                     </div>
-                    <div className="border-t border-gray-300 w-full flex items-center justify-center p-3">
+                    <div className="border-t border-gray-300 w-full flex items-center justify-center p-1">
                       {/* {isAddedToCart ? (
                         <Link
                           to=""

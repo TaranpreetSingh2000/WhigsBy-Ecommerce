@@ -13,7 +13,6 @@ const StrapiData = ({ fetchedQuery }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const { priceFilter, initialData } = useContext(CartContext);
 
-  debugger;
   useEffect(() => {
     if (searchQuery || fetchedQuery) {
       const query = searchQuery || fetchedQuery;
@@ -97,7 +96,7 @@ const StrapiData = ({ fetchedQuery }) => {
             No products Found
           </p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 cursor-pointer p-3">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 cursor-pointer p-3 max-[460px]:grid-cols-1">
             {data.data ? (
               data.data.data.map((product) => (
                 <Link key={product.id} to={`/productDetails/${product.id}`}>
