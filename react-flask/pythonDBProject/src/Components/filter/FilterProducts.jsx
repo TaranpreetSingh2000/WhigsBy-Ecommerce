@@ -19,7 +19,7 @@ const FilterProducts = ({ fetchCategory }) => {
   const [checkedQuery, setCheckedQuery] = useState("");
   const [minPrice, setMinPice] = useState(null);
   const [maxPrice, setMaxPice] = useState(null);
-  const [rating, setRating] = useState(1);
+  const [rating, setRating] = useState(null);
   const { setPriceFilter, setInitialData } = useContext(CartContext);
   const [category, setCategory] = useState("");
 
@@ -31,8 +31,16 @@ const FilterProducts = ({ fetchCategory }) => {
 
   useEffect(() => {
     if (
-      (category && minPrice !== null && maxPrice !== null && rating === 1) ||
-      (category && minPrice !== null && maxPrice !== null && rating > 1)
+      (category && minPrice !== null && maxPrice !== null && rating === null) ||
+      (category && minPrice !== null && maxPrice !== null && rating !== null) ||
+      (category === "" &&
+        minPrice !== null &&
+        maxPrice !== null &&
+        rating === null) ||
+      (category === "" &&
+        minPrice !== null &&
+        maxPrice !== null &&
+        rating !== null)
     ) {
       getProductsPriceFilter(minPrice, maxPrice, category, parseInt(rating))
         .then((res) => {
@@ -47,7 +55,7 @@ const FilterProducts = ({ fetchCategory }) => {
         });
     }
 
-    if (rating > 1 && minPrice === null) {
+    if (rating !== null && minPrice === null) {
       setCheckedQuery((prevQueries) => {
         if (!prevQueries.includes(rating)) {
           return [...prevQueries, rating];
@@ -79,7 +87,7 @@ const FilterProducts = ({ fetchCategory }) => {
     setInitialData({});
     setMinPice(null);
     setMaxPice(null);
-    setRating("");
+    setRating(null);
     setCategory("");
     getAllProducts().then((res) => {
       setInitialData(res);

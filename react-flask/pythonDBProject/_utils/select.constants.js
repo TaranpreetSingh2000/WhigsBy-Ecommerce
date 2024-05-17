@@ -17,8 +17,8 @@ const PRICE_RANGE_MAX = [
   { label: " ₹25000+", value: "80000" },
 ];
 const RATING_FILTER = [
-  { label: "<=3★ & >=4★", value: "3" },
-  { label: "<=4★ & >=5★", value: "4" },
+  { label: "3★ & above ", value: "3" },
+  { label: "4★ & above", value: "4" },
 ];
 
 export { PRICE_RANGE_MIN, PRICE_RANGE_MAX, RATING_FILTER };
