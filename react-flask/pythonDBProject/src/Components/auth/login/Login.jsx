@@ -36,7 +36,7 @@ const Login = () => {
         localStorage.setItem("Email", loginData.email);
         toast.success("Login Successfully");
         setTimeout(() => {
-          navigate("/dashboard");
+          navigate("/home");
         }, 3000);
       }
     } catch (error) {

@@ -139,7 +139,7 @@ const Navbar = () => {
         <div className="flex flex-wrap items-center justify-between mx-auto p-2.5">
           <div>
             {isAuth ? (
-              <Link to="/dashboard">
+              <Link to="/home">
                 <img
                   src={logo}
                   className="w-auto h-[80px] cursor-pointer"
@@ -165,7 +165,7 @@ const Navbar = () => {
               <li>
                 {isAuth ? (
                   <Link
-                    to="/dashboard"
+                    to="/home"
                     className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
                   >
                     Home

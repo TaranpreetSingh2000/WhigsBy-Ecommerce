@@ -17,8 +17,8 @@ import { CartContext } from "../../_context/CartContext";
 const FilterProducts = ({ fetchCategory }) => {
   const [data, setData] = useState({});
   const [checkedQuery, setCheckedQuery] = useState("");
-  const [minPrice, setMinPice] = useState(100);
-  const [maxPrice, setMaxPice] = useState(80000);
+  const [minPrice, setMinPice] = useState(null);
+  const [maxPrice, setMaxPice] = useState(null);
   const [rating, setRating] = useState(1);
   const { setPriceFilter, setInitialData } = useContext(CartContext);
   const [category, setCategory] = useState("");
@@ -31,8 +31,8 @@ const FilterProducts = ({ fetchCategory }) => {
 
   useEffect(() => {
     if (
-      (category && minPrice > 100 && maxPrice && rating === 1) ||
-      (category && minPrice > 100 && maxPrice && rating > 1)
+      (category && minPrice !== null && maxPrice !== null && rating === 1) ||
+      (category && minPrice !== null && maxPrice !== null && rating > 1)
     ) {
       getProductsPriceFilter(minPrice, maxPrice, category, parseInt(rating))
         .then((res) => {
@@ -47,7 +47,7 @@ const FilterProducts = ({ fetchCategory }) => {
         });
     }
 
-    if (rating > 1 && minPrice === 100) {
+    if (rating > 1 && minPrice === null) {
       setCheckedQuery((prevQueries) => {
         if (!prevQueries.includes(rating)) {
           return [...prevQueries, rating];
@@ -77,8 +77,8 @@ const FilterProducts = ({ fetchCategory }) => {
     fetchCategory("");
     setPriceFilter({});
     setInitialData({});
-    setMinPice(0);
-    setMaxPice(0);
+    setMinPice(null);
+    setMaxPice(null);
     setRating("");
     setCategory("");
     getAllProducts().then((res) => {
@@ -112,7 +112,7 @@ const FilterProducts = ({ fetchCategory }) => {
 
       <div className="mb-4">
         <h3 className="text-md mb-2">Categories</h3>
-        {data.data &&
+        {data.data ? (
           data.data.data.map((item, index) => (
             <div className="flex gap-2 leading-8" key={item.id}>
               <input
@@ -127,7 +127,47 @@ const FilterProducts = ({ fetchCategory }) => {
                   item?.attributes?.Name.slice(1)}
               </span>
             </div>
-          ))}
+          ))
+        ) : (
+          <>
+            <div className="flex gap-4 items-center">
+              <div className="h-[16px] w-[16px] bg-slate-200 animate-pulse mt-2"></div>
+              <div className="h-[20px] w-[70px] bg-slate-200 animate-pulse mt-2"></div>
+            </div>
+            <div className="flex gap-4 items-center">
+              <div className="h-[16px] w-[16px] bg-slate-200 animate-pulse mt-2"></div>
+              <div className="h-[20px] w-[70px] bg-slate-200 animate-pulse mt-2"></div>
+            </div>
+            <div className="flex gap-4 items-center">
+              <div className="h-[16px] w-[16px] bg-slate-200 animate-pulse mt-2"></div>
+              <div className="h-[20px] w-[70px] bg-slate-200 animate-pulse mt-2"></div>
+            </div>
+            <div className="flex gap-4 items-center">
+              <div className="h-[16px] w-[16px] bg-slate-200 animate-pulse mt-2"></div>
+              <div className="h-[20px] w-[70px] bg-slate-200 animate-pulse mt-2"></div>
+            </div>
+            <div className="flex gap-4 items-center">
+              <div className="h-[16px] w-[16px] bg-slate-200 animate-pulse mt-2"></div>
+              <div className="h-[20px] w-[70px] bg-slate-200 animate-pulse mt-2"></div>
+            </div>
+            <div className="flex gap-4 items-center">
+              <div className="h-[16px] w-[16px] bg-slate-200 animate-pulse mt-2"></div>
+              <div className="h-[20px] w-[70px] bg-slate-200 animate-pulse mt-2"></div>
+            </div>
+            <div className="flex gap-4 items-center">
+              <div className="h-[16px] w-[16px] bg-slate-200 animate-pulse mt-2"></div>
+              <div className="h-[20px] w-[70px] bg-slate-200 animate-pulse mt-2"></div>
+            </div>
+            <div className="flex gap-4 items-center">
+              <div className="h-[16px] w-[16px] bg-slate-200 animate-pulse mt-2"></div>
+              <div className="h-[20px] w-[70px] bg-slate-200 animate-pulse mt-2"></div>
+            </div>
+            <div className="flex gap-4 items-center">
+              <div className="h-[16px] w-[16px] bg-slate-200 animate-pulse mt-2"></div>
+              <div className="h-[20px] w-[70px] bg-slate-200 animate-pulse mt-2"></div>
+            </div>
+          </>
+        )}
       </div>
       <div className="mb-4">
         <h3 className="text-md mb-2">Price </h3>
@@ -137,33 +177,39 @@ const FilterProducts = ({ fetchCategory }) => {
             placeholder="min"
             className="flex-grow text-md"
             options={PRICE_RANGE_MIN}
-            onChange={(selectedOption) => setMinPice(selectedOption.value)}
+            onChange={(selectedOption) =>
+              setMinPice(selectedOption?.value || null)
+            }
           />
           <span className="mx-2 text-gray-500">to</span>
           <Select
             name="rangeFilter"
-            placeholder="₹80000"
+            placeholder="max"
             className="flex-grow text-md"
             options={PRICE_RANGE_MAX}
-            onChange={(selectedOption) => setMaxPice(selectedOption.value)}
+            onChange={(selectedOption) =>
+              setMaxPice(selectedOption?.value || null)
+            }
           />
         </div>
       </div>
       <div>
         <h3 className="text-md mb-2">Rating</h3>
-        <div className="">
-          {RATING_FILTER.map((rating, index) => (
+        <div>
+          {RATING_FILTER.map((ratingOption, index) => (
             <div className="flex gap-1" key={index}>
               <input
                 type="checkbox"
-                className="border border-gray-300 "
+                className="border border-gray-300"
                 name="filterCheck"
-                value={rating}
-                id=""
-                onChange={() => setRating(rating.value)}
-                // checked={checkedQuery.includes(rating.value)}
+                value={ratingOption.value}
+                id={`rating-${ratingOption.value}`}
+                onChange={() => setRating(ratingOption.value)}
+                checked={rating === ratingOption.value}
               />
-              <label htmlFor="">{rating.label}</label>
+              <label htmlFor={`rating-${ratingOption.value}`}>
+                {ratingOption.label}
+              </label>
             </div>
           ))}
         </div>

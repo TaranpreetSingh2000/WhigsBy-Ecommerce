@@ -70,7 +70,7 @@ const Cart = () => {
         </Link>
 
         <Link
-          to="/dashboard"
+          to="/home"
           className="inline-block text-sm text-gray-500 underline underline-offset-4 transition hover:text-gray-600"
         >
           Continue shopping

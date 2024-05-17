@@ -146,7 +146,7 @@ const Wishlist = () => {
               easily move them to the bag.
             </p>
             <Link
-              to="/dashboard"
+              to="/home"
               className="uppercase text-blue-800 border border-blue-700 p-4 py-3 px-5 font-semibold font-sans"
             >
               Continue shopping

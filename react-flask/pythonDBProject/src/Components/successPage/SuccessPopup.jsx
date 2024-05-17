@@ -51,7 +51,9 @@ const SuccessPopup = () => {
           <p className="text-md">{details.email}</p>
         </div>
 
-        <p className="text-gray-700 mb-4 text-left text-xl">Track your details:</p>
+        <p className="text-gray-700 mb-4 text-left text-xl">
+          Track your details:
+        </p>
         <div className="mb-4 text-left flex items-center gap-2">
           <p className="text-sm text-gray-600">Order ID:</p>
           <p className="text-md ">{orderId}</p>
@@ -62,7 +64,7 @@ const SuccessPopup = () => {
         </div>
         <button
           className="bg-gray-700 text-white px-4 py-2 rounded mt-8 hover:bg-gray-600"
-          onClick={() => navigate("/dashboard")}
+          onClick={() => navigate("/home")}
         >
           Close
         </button>

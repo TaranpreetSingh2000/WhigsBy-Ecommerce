@@ -1,12 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import StrapiData from "../productDetails/StrapiData";
-import FilterProducts from "../filter/FilterProducts";
-import { getProductsSearchCategory } from "../../../_utils/GlobalApi";
 
-const Dashboard = () => {
-  const [data, setData] = useState({});
-  const [category, setCategory] = useState("");
-
+const Home = () => {
   return (
     <>
       <div className="flex items-center justify-center py-5 max-[640px]:px-4">
@@ -29,18 +24,9 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="flex border border-gray-100 m-4 max-[700px]:flex-col">
-        <div className="w-[22%] border-r border-gray-100 min-h-screen mt-5 max-[800px]:w-full">
-          <FilterProducts fetchCategory={(query) => setCategory(query)} />
-        </div>
-
-        <div className="w-[78%] max-[800px]:w-full">
-          {/* <Carousel /> */}
-          <StrapiData fetchedQuery={category} />
-        </div>
-      </div>
+      <StrapiData />
     </>
   );
 };
 
-export default Dashboard;
+export default Home;
