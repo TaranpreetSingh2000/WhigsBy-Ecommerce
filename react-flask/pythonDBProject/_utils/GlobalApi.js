@@ -19,14 +19,26 @@ const getProductsSearchCategory = (query) =>
     "/products?filters[categories][Name][$containsi]=" + query + "&populate=*"
   );
 
-const getProductsPriceFilter = (min, max) =>
-  axiosClient.get(
-    "/products?filters[price][$gte]=" +
-      min +
-      "&filters[price][$lte]=" +
-      max +
-      "&populate=*"
-  );
+const getProductsPriceFilter = (min, max, category, rating) => {
+  let baseUrl = "/products?";
+
+  if (category) {
+    baseUrl += `filters[categories][Name][$containsi]=${category}&`;
+  }
+
+  if (min !== undefined && max !== undefined) {
+    baseUrl += `filters[price][$gte]=${min}&filters[price][$lte]=${max}&`;
+  }
+
+  if (rating) {
+    const upperLimit = rating === 3 ? 4 : 5;
+    baseUrl += `filters[rating][$gte]=${rating}&filters[rating][$lte]=${upperLimit}&`;
+  }
+
+  baseUrl += "populate=*";
+
+  return axiosClient.get(baseUrl);
+};
 
 const getProductsRatingFilter = (rating) =>
   axiosClient.get(
