@@ -18,9 +18,10 @@ const FilterProducts = ({ fetchCategory }) => {
   const [data, setData] = useState({});
   const [checkedQuery, setCheckedQuery] = useState("");
   const [minPrice, setMinPice] = useState(100);
-  const [maxPrice, setMaxPice] = useState(30000);
+  const [maxPrice, setMaxPice] = useState(80000);
   const [rating, setRating] = useState(1);
   const { setPriceFilter, setInitialData } = useContext(CartContext);
+  const [category, setCategory] = useState("");
 
   useEffect(() => {
     getCategories().then((res) => {
@@ -29,14 +30,24 @@ const FilterProducts = ({ fetchCategory }) => {
   }, []);
 
   useEffect(() => {
-    if (minPrice && maxPrice) {
-      getProductsPriceFilter(minPrice, maxPrice).then((res) => {
-        setInitialData("");
-        setPriceFilter(res);
-      });
+    if (
+      (category && minPrice > 100 && maxPrice && rating === 1) ||
+      (category && minPrice > 100 && maxPrice && rating > 1)
+    ) {
+      getProductsPriceFilter(minPrice, maxPrice, category, parseInt(rating))
+        .then((res) => {
+          setPriceFilter(res);
+          setInitialData({});
+        })
+        .catch((error) => {
+          console.error(
+            "Error fetching products by category and price filter:",
+            error
+          );
+        });
     }
 
-    if (rating > 1) {
+    if (rating > 1 && minPrice === 100) {
       setCheckedQuery((prevQueries) => {
         if (!prevQueries.includes(rating)) {
           return [...prevQueries, rating];
@@ -44,14 +55,15 @@ const FilterProducts = ({ fetchCategory }) => {
         return prevQueries;
       });
       getProductsRatingFilter(parseInt(rating)).then((res) => {
-        setPriceFilter("");
+        setPriceFilter({});
         setInitialData(res);
       });
     }
-  }, [minPrice, maxPrice, rating]);
+  }, [minPrice, maxPrice, rating, category]);
 
   const handleQuery = (query) => {
     fetchCategory(query);
+    setCategory(query);
     setCheckedQuery((prevQueries) => {
       if (!prevQueries.includes(query)) {
         return [...prevQueries, query];
@@ -63,10 +75,12 @@ const FilterProducts = ({ fetchCategory }) => {
   const handleClearAll = () => {
     setCheckedQuery([]);
     fetchCategory("");
-    setPriceFilter("");
-    setMinPice("");
-    setMaxPice("");
+    setPriceFilter({});
+    setInitialData({});
+    setMinPice(0);
+    setMaxPice(0);
     setRating("");
+    setCategory("");
     getAllProducts().then((res) => {
       setInitialData(res);
     });
@@ -87,11 +101,8 @@ const FilterProducts = ({ fetchCategory }) => {
       {checkedQuery.length > 0 && (
         <div className="flex flex-wrap gap-1">
           {checkedQuery.map((item, index) => (
-            <div className="checkedFilter my-[0.8px]">
-              <ul
-                className="bg-gray-200 px-2 text-sm rounded-md flex items-center py-1 gap-2"
-                key={index}
-              >
+            <div className="checkedFilter my-[0.8px]" key={index}>
+              <ul className="bg-gray-200 px-2 text-sm rounded-md flex items-center py-1 gap-2">
                 <li className="text-sm">{item}</li>
               </ul>
             </div>
@@ -131,7 +142,7 @@ const FilterProducts = ({ fetchCategory }) => {
           <span className="mx-2 text-gray-500">to</span>
           <Select
             name="rangeFilter"
-            placeholder="₹25000"
+            placeholder="₹80000"
             className="flex-grow text-md"
             options={PRICE_RANGE_MAX}
             onChange={(selectedOption) => setMaxPice(selectedOption.value)}
@@ -144,7 +155,7 @@ const FilterProducts = ({ fetchCategory }) => {
           {RATING_FILTER.map((rating, index) => (
             <div className="flex gap-1" key={index}>
               <input
-                type="radio"
+                type="checkbox"
                 className="border border-gray-300 "
                 name="filterCheck"
                 value={rating}

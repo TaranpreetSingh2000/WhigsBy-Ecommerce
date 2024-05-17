@@ -13,15 +13,24 @@ const StrapiData = ({ fetchedQuery }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const { priceFilter, initialData } = useContext(CartContext);
 
+  debugger;
   useEffect(() => {
-    if (searchQuery || fetchedQuery) {
+    if (
+      searchQuery ||
+      (fetchedQuery && Object.keys(priceFilter).length === 0)
+    ) {
       const query = searchQuery || fetchedQuery;
-      getProductsSearchCategory(query).then((res) => {
-        setData(res);
-      });
-    } else if (priceFilter || initialData) {
-      const query = priceFilter || initialData;
-      setData(query);
+      getProductsSearchCategory(query)
+        .then((res) => {
+          setData(res);
+        })
+        .catch((error) => {
+          setError(error);
+        });
+    } else if (priceFilter && Object.keys(priceFilter).length > 0) {
+      setData(priceFilter);
+    } else if (initialData && Object.keys(initialData).length > 0) {
+      setData(initialData);
     } else {
       getAllProducts()
         .then((res) => {
@@ -125,7 +134,7 @@ const StrapiData = ({ fetchedQuery }) => {
 
                     <div className="mt-1 flex items-baseline gap-2">
                       <p className="text-black text-md py-0.5 font-semibold font-[Arial]">
-                        ₹{product.attributes.price}
+                        {product?.attributes?.rating}₹{product.attributes.price}
                       </p>
                       <span className="text-gray-800 mb-2 text-sm">
                         M.R.P: ₹

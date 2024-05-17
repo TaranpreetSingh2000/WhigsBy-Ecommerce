@@ -44,19 +44,26 @@ const ProductDetails = () => {
       setCategoryDetails(res);
     });
   };
-
   useEffect(() => {
-    if (
-      WishlistItems.some((item) => item.products.id === Number(productId)) &&
-      CartItems.some((item) => item.products.id === Number(productId))
-    ) {
+    let isWishlistItem = false;
+    let isCartItem = false;
+
+    if (WishlistItems.some((item) => item.products.id === Number(productId))) {
+      isWishlistItem = true;
+    }
+
+    if (CartItems.some((item) => item.products.id === Number(productId))) {
+      isCartItem = true;
+    }
+
+    setIsAddedToWishlist(isWishlistItem);
+    setIsAddedToCart(isCartItem);
+
+    if (isWishlistItem && isCartItem) {
       setIsAddedToWishlist(true);
       setIsAddedToCart(true);
-    } else {
-      setIsAddedToWishlist(false);
-      setIsAddedToCart(false);
     }
-  }, [CartItems]);
+  }, [CartItems, WishlistItems, productId]);
 
   useEffect(() => {
     setFilterData(response);

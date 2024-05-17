@@ -91,7 +91,7 @@ const Wishlist = () => {
 
                       <div className="mt-1 pt-1 flex items-baseline gap-2">
                         <p className="text-black text-lg py-0.5">
-                          ₹{item?.products?.attributes.price}
+                          ₹{item?.products?.attributes?.price}
                         </p>
 
                         <span className="text-gray-500 mb-2 text-sm">
@@ -101,11 +101,11 @@ const Wishlist = () => {
                           </span>
                         </span>
                         <span className="text-orange-500 font-semibold mb-2 text-sm font-[sans-serif] tracking-wide">
-                          {item?.products?.attributes.discount}% off
+                          {item?.products?.attributes?.discount}% off
                         </span>
                       </div>
                     </div>
-                    <div className="border-t border-gray-300 w-full flex items-center justify-center p-1">
+                    <div className="border-t border-gray-300 w-full flex items-center justify-center p-2">
                       {/* {isAddedToCart ? (
                         <Link
                           to=""
