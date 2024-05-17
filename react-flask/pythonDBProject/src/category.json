@@ -1,268 +1,483 @@
-{
-    "data": [
+[
     {
-    "id": 36,
-    "attributes": {
-    "title": "Puma Ferrari Motorsport Kart Cat Mid III High Tops Red Shoes",
-    "rating": 5,
-    "category": "shoes",
-    "offer": "Limited time deal",
-    "mrp": 1500,
-    "createdAt": "2024-04-13T18:30:33.281Z",
-    "updatedAt": "2024-05-15T05:35:26.788Z",
-    "publishedAt": "2024-04-13T18:30:34.311Z",
-    "discount": 12,
-    "price": 1250,
-    "delivery": false
-    }
+      "id": 1,
+      "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+      "price": 109.95,
+      "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+      "category": "men's clothing",
+      "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      "rating": {
+        "rate": 3.9,
+        "count": 120
+      }
     },
     {
-    "id": 42,
-    "attributes": {
-    "title": "SELFSAME - Comfortable and Versatile Cotton Solid Men's Stylish Cargo Multiple Pockets ",
-    "rating": 4.6,
-    "category": "shirt",
-    "offer": "Limited time deal",
-    "mrp": 2999,
-    "createdAt": "2024-04-14T11:14:21.318Z",
-    "updatedAt": "2024-05-15T05:35:34.532Z",
-    "publishedAt": "2024-04-14T11:14:22.840Z",
-    "discount": 18,
-    "price": 999,
-    "delivery": true
-    }
+      "id": 2,
+      "title": "Mens Casual Premium Slim Fit T-Shirts ",
+      "price": 22.3,
+      "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+      "category": "men's clothing",
+      "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+      "rating": {
+        "rate": 4.1,
+        "count": 259
+      }
     },
     {
-    "id": 47,
-    "attributes": {
-    "title": "ASIAN Men's Tarzan-11 White Casual Sneaker High-Neck Shoes with Lightweight Extra Cushion Lace-Up Shoes for Men's & Boy's…",
-    "rating": 4.9,
-    "category": "shoes",
-    "offer": "Limited time deal",
-    "mrp": 1000,
-    "createdAt": "2024-04-14T11:28:21.523Z",
-    "updatedAt": "2024-05-15T05:33:35.155Z",
-    "publishedAt": "2024-04-14T11:28:22.384Z",
-    "discount": 30,
-    "price": 600,
-    "delivery": true
-    }
+      "id": 3,
+      "title": "Mens Cotton Jacket",
+      "price": 55.99,
+      "description": "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
+      "category": "men's clothing",
+      "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+      "rating": {
+        "rate": 4.7,
+        "count": 500
+      }
     },
     {
-    "id": 39,
-    "attributes": {
-    "title": "boAt Airdopes 121 Pro True Wireless Earbuds Signature Sound,Quad Mic Enx,Low Latency Mode for Gaming,50H Playtime,Iwp,Ipx4,Battery Indicator Screen(Mint Cascade),in-Ear",
-    "rating": 4.8,
-    "category": "earphones",
-    "offer": "Limited time deal",
-    "mrp": 1650,
-    "createdAt": "2024-04-14T11:09:44.495Z",
-    "updatedAt": "2024-05-15T05:33:43.361Z",
-    "publishedAt": "2024-04-14T11:09:45.912Z",
-    "discount": 15,
-    "price": 1100,
-    "delivery": false
-    }
+      "id": 4,
+      "title": "Mens Casual Slim Fit",
+      "price": 15.99,
+      "description": "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
+      "category": "men's clothing",
+      "image": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
+      "rating": {
+        "rate": 2.1,
+        "count": 430
+      }
     },
     {
-    "id": 48,
-    "attributes": {
-    "title": "Dennis Lingo Men's Solid Slim Fit Cotton Casual Shirt with Spread Collar & Full Shirt for Men|| Shirt for Men|| Men Stylish Shirt (Rib-Shirt)",
-    "rating": 4.3,
-    "category": "shirt",
-    "offer": "Limited time deal",
-    "mrp": 1849,
-    "createdAt": "2024-04-24T10:27:57.200Z",
-    "updatedAt": "2024-05-15T05:33:50.818Z",
-    "publishedAt": "2024-04-24T10:28:53.847Z",
-    "discount": 10,
-    "price": 1600,
-    "delivery": true
-    }
+      "id": 5,
+      "title": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
+      "price": 695,
+      "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
+      "category": "jewelery",
+      "image": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
+      "rating": {
+        "rate": 4.6,
+        "count": 400
+      }
     },
     {
-    "id": 44,
-    "attributes": {
-    "title": "Dennis Lingo Men's Solid Slim Fit Cotton Casual Shirt with Spread Collar & Full Sleeves (Also Available in Plus Size)",
-    "rating": 4.9,
-    "category": "shirt",
-    "offer": "Limited time deal",
-    "mrp": 1999,
-    "createdAt": "2024-04-14T11:19:27.869Z",
-    "updatedAt": "2024-05-15T05:34:00.361Z",
-    "publishedAt": "2024-04-14T11:19:28.981Z",
-    "discount": 12,
-    "price": 899,
-    "delivery": true
-    }
+      "id": 6,
+      "title": "Solid Gold Petite Micropave ",
+      "price": 168,
+      "description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
+      "category": "jewelery",
+      "image": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
+      "rating": {
+        "rate": 3.9,
+        "count": 70
+      }
     },
     {
-    "id": 34,
-    "attributes": {
-    "title": "Dennis Lingo Men's Solid Slim Fit Cotton Casual Shirt with Spread Collar & Full Sleeves (Also Available in Plus Size)",
-    "rating": 4.5,
-    "category": "shirt",
-    "offer": "Limited time deal",
-    "mrp": 999,
-    "createdAt": "2024-04-13T18:26:26.055Z",
-    "updatedAt": "2024-05-15T05:34:08.097Z",
-    "publishedAt": "2024-04-13T18:28:38.378Z",
-    "discount": 10,
-    "price": 799,
-    "delivery": false
-    }
+      "id": 7,
+      "title": "White Gold Plated Princess",
+      "price": 9.99,
+      "description": "Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day...",
+      "category": "jewelery",
+      "image": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
+      "rating": {
+        "rate": 3,
+        "count": 400
+      }
     },
     {
-    "id": 33,
-    "attributes": {
-    "title": "FUR JADEN Anti Theft Number Lock Backpack Bag with 15.6 Inch Laptop Compartment, USB Charging Port & Organizer Pocket for Men Women Boys Girls",
-    "rating": 4.6,
-    "category": "bags",
-    "offer": "Limited time deal",
-    "mrp": 1200,
-    "createdAt": "2024-04-13T10:31:15.078Z",
-    "updatedAt": "2024-05-15T05:34:19.161Z",
-    "publishedAt": "2024-04-13T10:32:41.617Z",
-    "discount": 15,
-    "price": 999,
-    "delivery": false
-    }
+      "id": 8,
+      "title": "Pierced Owl Rose Gold Plated Stainless Steel Double",
+      "price": 10.99,
+      "description": "Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Steel",
+      "category": "jewelery",
+      "image": "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg",
+      "rating": {
+        "rate": 1.9,
+        "count": 100
+      }
     },
     {
-    "id": 43,
-    "attributes": {
-    "title": "SELFSAME - Comfortable and Versatile Terry Nylon Solid Men's Stylish Cargo Multiple Pockets | Cargo Pants Cargo Pant",
-    "rating": 5,
-    "category": "shirt",
-    "offer": "Limited time deal",
-    "mrp": 1999,
-    "createdAt": "2024-04-14T11:17:37.982Z",
-    "updatedAt": "2024-05-15T05:35:44.503Z",
-    "publishedAt": "2024-04-14T11:17:39.519Z",
-    "discount": 12,
-    "price": 899,
-    "delivery": false
-    }
+      "id": 9,
+      "title": "WD 2TB Elements Portable External Hard Drive - USB 3.0 ",
+      "price": 64,
+      "description": "USB 3.0 and USB 2.0 Compatibility Fast data transfers Improve PC Performance High Capacity; Compatibility Formatted NTFS for Windows 10, Windows 8.1, Windows 7; Reformatting may be required for other operating systems; Compatibility may vary depending on user’s hardware configuration and operating system",
+      "category": "electronics",
+      "image": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg",
+      "rating": {
+        "rate": 3.3,
+        "count": 203
+      }
     },
     {
-    "id": 41,
-    "attributes": {
-    "title": "Whirlpool 7.5 Kg 5 Star Royal Fully-Automatic Top Load Washing Machine (WHITEMAGIC ROYAL 7.5 GENX, Grey, Hard Water Wash, ZPF Technology)",
-    "rating": 5,
-    "category": "washing machine",
-    "offer": "Limited time deal",
-    "mrp": 19980,
-    "createdAt": "2024-04-14T11:12:31.042Z",
-    "updatedAt": "2024-05-15T05:35:52.559Z",
-    "publishedAt": "2024-04-14T11:12:32.496Z",
-    "discount": 20,
-    "price": 14500,
-    "delivery": true
-    }
+      "id": 10,
+      "title": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
+      "price": 109,
+      "description": "Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)",
+      "category": "electronics",
+      "image": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
+      "rating": {
+        "rate": 2.9,
+        "count": 470
+      }
     },
     {
-    "id": 35,
-    "attributes": {
-    "title": "HAYES LONDON Italian Leather Reversible Belt for Men, Original Top Grain Formal and Casual Belt, Lifetime Leather Warranty",
-    "rating": 4.9,
-    "category": "belts",
-    "offer": "Limited time deal",
-    "mrp": 1639,
-    "createdAt": "2024-04-13T18:28:23.777Z",
-    "updatedAt": "2024-05-15T05:34:26.407Z",
-    "publishedAt": "2024-04-13T18:28:32.935Z",
-    "discount": 12,
-    "price": 1400,
-    "delivery": true
-    }
+      "id": 11,
+      "title": "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5",
+      "price": 109,
+      "description": "3D NAND flash are applied to deliver high transfer speeds Remarkable transfer speeds that enable faster bootup and improved overall system performance. The advanced SLC Cache Technology allows performance boost and longer lifespan 7mm slim design suitable for Ultrabooks and Ultra-slim notebooks. Supports TRIM command, Garbage Collection technology, RAID, and ECC (Error Checking & Correction) to provide the optimized performance and enhanced reliability.",
+      "category": "electronics",
+      "image": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg",
+      "rating": {
+        "rate": 4.8,
+        "count": 319
+      }
     },
     {
-    "id": 40,
-    "attributes": {
-    "title": "HyperX Cloud Stinger Core Wireless On Ear Headphones with Mic (Black) Clear Calling ENC Mic, Made in India, Low Latency Gaming, Rich Bass Drivers, IPX5, TWS earbuds bluetooth wireless (Green)",
-    "rating": 4.7,
-    "category": "earphones",
-    "offer": "Limited time deal",
-    "mrp": 1629,
-    "createdAt": "2024-04-14T11:11:07.841Z",
-    "updatedAt": "2024-05-15T05:34:36.294Z",
-    "publishedAt": "2024-04-14T11:11:08.434Z",
-    "discount": 20,
-    "price": 1200,
-    "delivery": true
-    }
+      "id": 12,
+      "title": "WD 4TB Gaming Drive Works with Playstation 4 Portable External Hard Drive",
+      "price": 114,
+      "description": "Expand your PS4 gaming experience, Play anywhere Fast and easy, setup Sleek design with high capacity, 3-year manufacturer's limited warranty",
+      "category": "electronics",
+      "image": "https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_.jpg",
+      "rating": {
+        "rate": 4.8,
+        "count": 400
+      }
     },
     {
-    "id": 46,
-    "attributes": {
-    "title": "iQOO 12 5G (Legend, 12GB RAM, 256GB Storage) | India's 1st Snapdragon® 8 Gen 3 Mobile Platform | India's only Flagship with 50MP + 50MP + 64MP Camera",
-    "rating": 4.7,
-    "category": "mobile phone",
-    "offer": "Limited time deal",
-    "mrp": 56900,
-    "createdAt": "2024-04-14T11:26:51.867Z",
-    "updatedAt": "2024-05-15T05:34:47.398Z",
-    "publishedAt": "2024-04-14T11:26:53.280Z",
-    "discount": 25,
-    "price": 51500,
-    "delivery": false
-    }
+      "id": 13,
+      "title": "Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin",
+      "price": 599,
+      "description": "21. 5 inches Full HD (1920 x 1080) widescreen IPS display And Radeon free Sync technology. No compatibility for VESA Mount Refresh Rate: 75Hz - Using HDMI port Zero-frame design | ultra-thin | 4ms response time | IPS panel Aspect ratio - 16: 9. Color Supported - 16. 7 million colors. Brightness - 250 nit Tilt angle -5 degree to 15 degree. Horizontal viewing angle-178 degree. Vertical viewing angle-178 degree 75 hertz",
+      "category": "electronics",
+      "image": "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg",
+      "rating": {
+        "rate": 2.9,
+        "count": 250
+      }
     },
     {
-    "id": 45,
-    "attributes": {
-    "title": "iQOO Z7s 5G by vivo (Norway Blue, 6GB RAM, 128GB Storage) | Ultra Bright AMOLED Display | Snapdragon 695 5G 6nm Processor | 64 MP OIS Ultra Stable Camera | 44WFlashCharge",
-    "rating": 5,
-    "category": "mobile phone",
-    "offer": "Limited time deal",
-    "mrp": 18600,
-    "createdAt": "2024-04-14T11:22:58.400Z",
-    "updatedAt": "2024-05-15T05:34:55.272Z",
-    "publishedAt": "2024-04-14T11:23:00.296Z",
-    "discount": 15,
-    "price": 13500,
-    "delivery": false
-    }
+      "id": 14,
+      "title": "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultrawide Screen QLED ",
+      "price": 999.99,
+      "description": "49 INCH SUPER ULTRAWIDE 32:9 CURVED GAMING MONITOR with dual 27 inch screen side by side QUANTUM DOT (QLED) TECHNOLOGY, HDR support and factory calibration provides stunningly realistic and accurate color and contrast 144HZ HIGH REFRESH RATE and 1ms ultra fast response time work to eliminate motion blur, ghosting, and reduce input lag",
+      "category": "electronics",
+      "image": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg",
+      "rating": {
+        "rate": 2.2,
+        "count": 140
+      }
     },
     {
-    "id": 38,
-    "attributes": {
-    "title": "LG 242 L 3 Star Smart Inverter Frost-Free Double Door Refrigerator (GL-I292RPZX, Shiny Steel, Door Cooling+)",
-    "rating": 4.9,
-    "category": "refrigerator",
-    "offer": "Limited time deal",
-    "mrp": 29300,
-    "createdAt": "2024-04-14T11:07:08.773Z",
-    "updatedAt": "2024-05-15T05:35:12.130Z",
-    "publishedAt": "2024-04-14T11:08:04.129Z",
-    "discount": 20,
-    "price": 23500,
-    "delivery": true
-    }
+      "id": 15,
+      "title": "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
+      "price": 56.99,
+      "description": "Note:The Jackets is US standard size, Please choose size as your usual wear Material: 100% Polyester; Detachable Liner Fabric: Warm Fleece. Detachable Functional Liner: Skin Friendly, Lightweigt and Warm.Stand Collar Liner jacket, keep you warm in cold weather. Zippered Pockets: 2 Zippered Hand Pockets, 2 Zippered Pockets on Chest (enough to keep cards or keys)and 1 Hidden Pocket Inside.Zippered Hand Pockets and Hidden Pocket keep your things secure. Humanized Design: Adjustable and Detachable Hood and Adjustable cuff to prevent the wind and water,for a comfortable fit. 3 in 1 Detachable Design provide more convenience, you can separate the coat and inner as needed, or wear it together. It is suitable for different season and help you adapt to different climates",
+      "category": "women's clothing",
+      "image": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
+      "rating": {
+        "rate": 2.6,
+        "count": 235
+      }
     },
     {
-    "id": 37,
-    "attributes": {
-    "title": "Noise Halo Plus 1.46\" Super AMOLED Display Elite Smart Watch, Bluetooth Calling, Stainless Steel Build, Always on Display, Upto 7 Days Battery (Elite Black)",
-    "rating": 5,
-    "category": "watches",
-    "offer": "Limited time deal",
-    "mrp": 3500,
-    "createdAt": "2024-04-13T18:31:34.201Z",
-    "updatedAt": "2024-05-15T05:35:20.230Z",
-    "publishedAt": "2024-04-13T18:31:44.058Z",
-    "discount": 18,
-    "price": 2200,
-    "delivery": true
-    }
-    }
-    ],
-    "meta": {
-    "pagination": {
-    "page": 1,
-    "pageSize": 25,
-    "pageCount": 1,
-    "total": 16
-    }
-    }
-    }
+      "id": 16,
+      "title": "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket",
+      "price": 29.95,
+      "description": "100% POLYURETHANE(shell) 100% POLYESTER(lining) 75% POLYESTER 25% COTTON (SWEATER), Faux leather material for style and comfort / 2 pockets of front, 2-For-One Hooded denim style faux leather jacket, Button detail on waist / Detail stitching at sides, HAND WASH ONLY / DO NOT BLEACH / LINE DRY / DO NOT IRON",
+      "category": "women's clothing",
+      "image": "https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_.jpg",
+      "rating": {
+        "rate": 2.9,
+        "count": 340
+      }
+    },
+    {
+      "id": 17,
+      "title": "Rain Jacket Women Windbreaker Striped Climbing Raincoats",
+      "price": 39.99,
+      "description": "Lightweight perfet for trip or casual wear---Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat, fully stripes Lined and The Raincoat has 2 side pockets are a good size to hold all kinds of things, it covers the hips, and the hood is generous but doesn't overdo it.Attached Cotton Lined Hood with Adjustable Drawstrings give it a real styled look.",
+      "category": "women's clothing",
+      "image": "https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg",
+      "rating": {
+        "rate": 3.8,
+        "count": 679
+      }
+    },
+    {
+      "id": 18,
+      "title": "MBJ Women's Solid Short Sleeve Boat Neck V ",
+      "price": 9.85,
+      "description": "95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline / Double stitching on bottom hem",
+      "category": "women's clothing",
+      "image": "https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg",
+      "rating": {
+        "rate": 4.7,
+        "count": 130
+      }
+    },
+    {
+      "id": 19,
+      "title": "Opna Women's Short Sleeve Moisture",
+      "price": 7.95,
+      "description": "100% Polyester, Machine wash, 100% cationic polyester interlock, Machine Wash & Pre Shrunk for a Great Fit, Lightweight, roomy and highly breathable with moisture wicking fabric which helps to keep moisture away, Soft Lightweight Fabric with comfortable V-neck collar and a slimmer fit, delivers a sleek, more feminine silhouette and Added Comfort",
+      "category": "women's clothing",
+      "image": "https://fakestoreapi.com/img/51eg55uWmdL._AC_UX679_.jpg",
+      "rating": {
+        "rate": 4.5,
+        "count": 146
+      }
+    },
+    {
+      "id": 20,
+      "title": "DANVOUY Womens T Shirt Casual Cotton Short",
+      "price": 12.99,
+      "description": "95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.",
+      "category": "women's clothing",
+      "image": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
+      "rating": {
+        "rate": 3.6,
+        "count": 145
+      }
+    },
+
+    {
+        "id": 21,
+        "title": "Levi's Men's 511 Slim Fit Jeans",
+        "price": 59.99,
+        "description": "Slim through the seat and thigh; Skinny leg; Sits below the waist",
+        "category": "men's clothing",
+        "image": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg",
+        "rating": {
+          "rate": 4.5,
+          "count": 300
+        }
+      },
+      {
+        "id": 22,
+        "title": "Nike Men's Revolution 5 Running Shoe",
+        "price": 65.0,
+        "description": "Mesh upper for optimal breathability; Lightweight cushioning for revolutionary comfort",
+        "category": "men's clothing",
+        "image": "https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_.jpg",
+        "rating": {
+          "rate": 4.8,
+          "count": 250
+        }
+      },
+      {
+        "id": 23,
+        "title": "Columbia Men's Watertight II Rain Jacket",
+        "price": 59.99,
+        "description": "100% Nylon; Imported; Zipper closure; Machine Wash; ADVANCED TECHNOLOGY: Columbia Men's Watertight II Jacket is crafted of a waterproof nylon shell durable enough to withstand anything from drizzle to downpour at a moment's notice.",
+        "category": "men's clothing",
+        "image": "https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg",
+        "rating": {
+          "rate": 4.3,
+          "count": 350
+        }
+      },
+      {
+        "id": 24,
+        "title": "Amazon Essentials Men's Lightweight Water-Resistant Packable Puffer Jacket",
+        "price": 39.99,
+        "description": "Shell: 100% Nylon; Lining: 100% Nylon; Fill: 100% Polyester; Imported; Machine Wash; Cold-weather style is easy with this versatile water-resistant lightweight puffer jacket featuring a full-zip front and stand-up collar",
+        "category": "men's clothing",
+        "image": "https://fakestoreapi.com/img/81nMag7JKfL._AC_UY879_.jpg",
+        "rating": {
+          "rate": 4.0,
+          "count": 400
+        }
+      },
+      {
+        "id": 25,
+        "title": "Carhartt Men's K87 Workwear Pocket Short Sleeve T-Shirt",
+        "price": 16.99,
+        "description": "100% Cotton; Imported; Machine Wash; Carhartt Company Gear Collection; Generously cut sizing, tends to run big; Made in multiple countries (DO-Dominican Republic,GT-Guatemala,HN -Honduras,HT-Haiti,MX- Mexico,VN- Vietnam)",
+        "category": "men's clothing",
+        "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+        "rating": {
+          "rate": 4.7,
+          "count": 500
+        }
+      },
+      {
+        "id": 26,
+        "title": "Ray-Ban RB3025 Classic Aviator Sunglasses",
+        "price": 154.99,
+        "description": "Imported; Metal frame; Glass lens; Non-Polarized; 100% UV protection coating; Lens width: 58 millimeters; Lens height: 50 millimeters; Bridge: 14 millimeters; Arm: 135 millimeters; Clean lenses with the lens cloth and keep in case.",
+        "category": "men's clothing",
+        "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+        "rating": {
+          "rate": 4.6,
+          "count": 350
+        }
+      },
+      {
+        "id": 27,
+        "title": "Oakley Men's Oo9239 Crankshaft Rectangular Sunglasses",
+        "price": 59.99,
+        "description": "Polycarbonate lens; Non-Polarized; Iridium; 100% UV protection coating; Lens width: 60 millimeters; Lens height: 37 millimeters; Bridge: 17 millimeters; Arm: 132 millimeters; 3 high; 3 wide",
+        "category": "men's clothing",
+        "image": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
+        "rating": {
+          "rate": 4.2,
+          "count": 400
+        }
+      },
+      {
+        "id": 28,
+        "title": "Under Armour Men's Tech 2.0 Short-Sleeve T-Shirt",
+        "price": 24.99,
+        "description": "84% Polyester, 16% Elastane; Imported; Machine Wash; UA Tech fabric is quick-drying, ultra-soft & has a more natural feel; Material wicks sweat & dries really fast; Anti-odor technology prevents the growth of odor-causing microbes",
+        "category": "men's clothing",
+        "image": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
+        "rating": {
+          "rate": 4.8,
+          "count": 350
+        }
+      },
+      {
+        "id": 29,
+        "title": "Dickies Men's Original 874 Work Pant",
+        "price": 24.99,
+        "description": "65% Polyester, 35% Cotton; Imported; Hook and Eye closure; Machine Wash; CLASSIC WORKWEAR: Our most popular work pant, these wrinkle and stain-resistant cotton/poly blend twill pants are built for hard wear & easy care. The flattering design features a classic rise that sits comfortably at the waist with slightly tapered legs",
+        "category": "men's clothing",
+        "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+        "rating": {
+          "rate": 4.5,
+          "count": 400
+        }
+      },
+      {
+        "id": 30,
+        "title": "Timberland Men's White Ledge Mid Waterproof Ankle Boot",
+        "price": 79.95,
+        "description": "100% Leather; Imported; Rubber sole; Shaft measures approximately 4.75\" from arch; Platform measures approximately 0.5 inches; You need waterproof hiking boots that can take on any trail conditions. Our White Ledge leather hikers feature shock-absorbing cushioning, rubber lug outsoles for traction and rugged outdoor-tested style",
+        "category": "men's clothing",
+        "image": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
+        "rating": {
+          "rate": 4.2,
+          "count": 450
+        }
+      },
+      {
+        "id": 31,
+        "title": "SAMSUNG 970 EVO Plus SSD 2TB - M.2 NVMe Interface Internal Solid State Drive with V-NAND Technology",
+        "price": 249.99,
+        "description": "INNOVATIVE V-NAND TECHNOLOGY: Powered by Samsung V-NAND Technology, the 970 EVO Plus SSD’s NVMe interface (PCIe Gen 3.0 x4 NVMe 1.3) offers enhanced bandwidth, low latency, and power efficiency ideal for tech enthusiasts, high end gamers, and 4K & 3D content designers",
+        "category": "electronics",
+        "image": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
+        "rating": {
+          "rate": 4.9,
+          "count": 400
+        }
+      },
+      {
+        "id": 32,
+        "title": "AMD Ryzen 9 5900X 12-core, 24-Thread Unlocked Desktop Processor",
+        "price": 549.99,
+        "description": "The world's best gaming desktop processor, with 12 cores and 24 processing threads; Can deliver elite 100-plus FPS performance in the world's most popular games; Cooler not included, high-performance cooler recommended",
+        "category": "electronics",
+        "image": "https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_.jpg",
+        "rating": {
+          "rate": 4.9,
+          "count": 500
+        }
+      },
+      {
+        "id": 33,
+        "title": "Apple MacBook Pro (16-inch, 16GB RAM, 1TB Storage, 2.3GHz Intel Core i9) - Space Gray",
+        "price": 2399.99,
+        "description": "Ninth-generation 8-Core Intel Core i9 Processor; Stunning 16-inch Retina Display with True Tone technology; Touch Bar and Touch ID; AMD Radeon Pro 5500M Graphics with GDDR6 memory; Ultrafast SSD; Intel UHD Graphics 630; Six-speaker system with force-cancelling woofers; Four Thunderbolt 3 (USB-C) ports; Up to 11 hours of battery life; 802.11AC Wi-Fi",
+        "category": "electronics",
+        "image": "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg",
+        "rating": {
+          "rate": 4.7,
+          "count": 600
+        }
+      },
+      {
+        "id": 34,
+        "title": "Samsung Galaxy S21 Ultra 5G | Factory Unlocked Android Cell Phone | US Version 5G Smartphone | Pro-Grade Camera, 8K Video, 108MP High Res | 128GB, Phantom Black (SM-G998UZKAXAA)",
+        "price": 1199.99,
+        "description": "Trade-In With Samsung: Buy a new Samsung Galaxy S21 Ultra 5G and get up to $700 enhanced trade-in credit toward your Samsung Galaxy S21 Ultra 5G, S21+ 5G or S21 5G.; Enhanced Trade-In Offer: For a limited time, on device trade-in, you can get up to $700 back when you purchase a Samsung Galaxy S21 Ultra 5G and trade in an eligible device.",
+        "category": "electronics",
+        "image": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg",
+        "rating": {
+          "rate": 4.8,
+          "count": 700
+        }
+      },
+      {
+        "id": 35,
+        "title": "LG OLED C1 Series 65-inch 4K Smart TV with AI ThinQ (2021) Bundle with LG SN11RG 7.1.4 Channel High Res Audio Sound Bar with Dolby Atmos and Surround Speakers",
+        "price": 3599.99,
+        "description": "LG OLED TV: Only OLED pixels emit their own light, allowing for perfect black, intense color and stunning picture.; α9 GEN 4 AI PROCESSOR 4K: Picture and sound adjustment happen automatically with our best processor.; SMART TV WITH WEBOS 6.0: Stream your favorite content with just one click. LG ThinQ AI: See how convenient life can be thanks to LG ThinQ AI that listens, thinks and answers.; GAME OPTIMIZER: Game Optimizer gives you easier access to all your game settings and you'll get HDR Gaming, VRR and FreeSync Premium all with low latency.",
+        "category": "electronics",
+        "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+        "rating": {
+          "rate": 4.9,
+          "count": 800
+        }
+      },
+      {
+        "id": 36,
+        "title": "Sony WH-1000XM4 Wireless Industry Leading Noise Canceling Overhead Headphones with Mic for Phone-Call and Alexa Voice Control, Black",
+        "price": 348.0,
+        "description": "Industry-leading noise canceling with Dual Noise Sensor technology; Next-level music with Edge-AI, co-developed with Sony Music Studios Tokyo; Up to 30-hour battery life with quick charging (10 min charge for 5 hours of playback)",
+        "category": "electronics",
+        "image": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
+        "rating": {
+          "rate": 4.8,
+          "count": 900
+        }
+      },
+      {
+        "id": 37,
+        "title": "GoPro HERO9 Black - Waterproof Action Camera with Front LCD and Touch Rear Screens, 5K Ultra HD Video, 20MP Photos, 1080p Live Streaming, Webcam, Stabilization",
+        "price": 349.99,
+        "description": "5K Video - Shoot stunning video with up to 5K resolution, perfect for maintaining serious detail even when zooming in. Packing a new 23.6MP sensor that’s an absolute powerhouse, HERO9 Black brings lifelike image sharpness, fluid motion, and in-camera horizon leveling that always impresses.; Front Display + Rear Touch Screen - A new, larger rear touch screen with touch zoom on HERO9 Black should feel instantly familiar and a dazzling new front display makes for easy framing and intuitive camera control.",
+        "category": "electronics",
+        "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+        "rating": {
+          "rate": 4.7,
+          "count": 1000
+        }
+      },
+      {
+        "id": 38,
+        "title": "Canon EOS R6 Full-Frame Mirrorless Camera with 4K Video, Full-Frame CMOS Senor, DIGIC X Image Processor, Dual UHS-II SD Memory Card Slots, and Up to 12 fps with Mechnical Shutter, Body Only",
+        "price": 2499.0,
+        "description": "High Image Quality featuring a 20 Megapixel Full-frame CMOS Sensor, DIGIC X Image Processor with an ISO range of 100-102400; Dual Pixel CMOS AF covering Approx. 100% Area with 1,053 AF Areas; Subject tracking of People and Animals using Deep Learning Technology; High-Speed Continuous Shooting of up to 12 fps with Mechanical Shutter and up to 20 fps Electronic (Silent) Shutter",
+        "category": "electronics",
+        "image": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg",
+        "rating": {
+          "rate": 4.9,
+          "count": 800
+        }
+      },
+      {
+        "id": 39,
+        "title": "DJI Mini 2 – Ultralight and Foldable Drone Quadcopter, 3-Axis Gimbal with 4K Camera, 12MP Photo, 31 Mins Flight Time, OcuSync 2.0 HD Video Transmission, QuickShots Gray",
+        "price": 449.0,
+        "description": "PACK LIGHT, FLY FREE: at less than 249 g, it weighs about as much as an apple and fits in the palm of your hand. compact and convenient, this small drone is your ideal travel companion, transforming how you capture your favorite memories. 3-AXIS GIMBAL WITH 4K CAMERA: a 12mp camera in the sky delivers content guaranteed to impress. along with 4k/30fps video and a 3-axis motorized gimbal, mini 2 ensures stunning image quality that is consistently smooth no matter how adventurous your piloting gets.",
+        "category": "electronics",
+        "image": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg",
+        "rating": {
+          "rate": 4.8,
+          "count": 700
+        }
+      },
+      {
+        "id": 40,
+        "title": "Garmin Forerunner 245 Music, GPS Running Smartwatch with Music and Advanced Dynamics, Black",
+        "price": 349.99,
+        "description": "Sync with music streaming services, such as Spotify, to easily store and play your favorite songs right from your watch; Evaluates your current training status to indicate if you’re undertraining or overdoing it; Offers additional performance monitoring features",
+        "category": "electronics",
+        "image": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
+        "rating": {
+          "rate": 4.7,
+          "count": 600
+        }
+      }
+  ]
